@@ -1,0 +1,152 @@
+day01
+* 一、计算机的相关知识，基础操作
+* 二、Java的介绍，JVM+JRE+JDK，目录详解
+* 三、HelloWorld的诞生（基本格式、环境变量的配置、Java开发工具）、书写格式（公共规范与标识符命名规则）
+
+day02
+* 一、常量
+* 二、进制
+* 三、变量（定义、数据类型、类型转换）
+* 四、算术运算符、赋值运算符、关系运算符
+
+day03
+* 一、逻辑运算符、位运算符、三元运算符
+* 二、键盘录入
+* 三、顺序结构与选择结构
+
+day04
+* 一、循环结构（定义、区别、死循环 + 两种思想）
+* 二、控制跳转语句（continue,break,return）
+* 三、方法（定义、调用、重载）
+
+day05
+* 一、数组（一维数组、二维数组、参数传递）
+
+day06
+* 一、面向对象（概念、使用、内存、区别）
+* 二、封装（概念、实现例子）
+
+day07
+* 一、构造方法
+* 二、Javabean（创建、使用、内存图解）
+* 三、static关键字（内存图解、特点、注意事项）
+* 四、main方法格式 + 工具类制作 + 说明书制作 + 帮助文档解读（Math案例使用）
+
+day08
+* 一、代码块
+* 二、继承（相关概念、this与super之于成员变量与方法）
+* 三、重写与重载
+* 四、final
+
+day09
+* 一、多态
+* 二、抽象类
+* 三、接口
+
+day10
+* 一、包
+* 二、权限修饰符 状态修饰符 抽象修饰符
+* 三、内部类
+
+day11
+* 一、eclipse的概述和使用
+* 二、Object类的概述和方法
+
+day12
+* 一、Scanner类的概述和方法
+* 二、String类的概述和方法（解码、编码、判断、其他转换、替换）
+
+day13
+* 一、StringBuffer类及StringBulider区别
+* 二、冒泡、选择排序，二分查找及Array工具类
+* 三、基本类型包装类
+
+day14
+* 一、正则表达式（分割、替换、分组、获取↓）
+* 二、Pattern和Matcher典型调用(Pattern Matcher find() group())
+* 三、Math Random System BigInteger BigDecimal类
+* 四、时间类
+	* Date （对time的构造getset）
+	* SimpleDateFormat （Date与String之间的桥梁）
+	* Calendar （实例化与字段获取修改）
+
+(集合体系4天）
+day15
+* 一、集合框架
+* 二、Collection接口（基本功能、遍历1、带All功能）
+* 三、迭代器及原理（遍历2/迭代2）（并发修改异常）
+* 四、List接口（List特有功能、List特有迭代3)
+* 五、Vector类、List三子类特点
+
+day16
+* 一、ArrayList去除重复，LinkedList特有功能、栈和序列的数据结构
+* 二、泛型（概念和使用、类方法接口通配符）
+* 三、增强for循环与三种迭代
+* 四、静态导入
+* 五、可变参数
+* 六、数组与集合联系方法，集合嵌套
+
+day17
+* 一、HashSet（原理、代码实现）
+* 二、LinkedSet（特点）
+* 三、TreeSet（自然排序、比较器及其原理和代码应用）
+
+day18
+* 一、Map集合（概述、功能、遍历12）
+* 二、HashMap、LinkedHashMap、TreeMap集合及类比
+* 三、Map嵌套，HashMap和Hashtable区别
+* 四、Collections集合工具类
+* 五、泛型固定下边界，泛型固定上边界
+
+day19
+一、异常（概述，分类，try..，throw..，finally，自定义及使用）
+二、File类（概述、创建、重命名和删除、判断、获取功能，过滤代码实现）
+
+day20
+* 一、IO流（概念，读、写）
+* 二、拷贝（1、2、3、4及flush()和close()）
+* 三、标准代码（1.6-、1.7）
+
+day21
+* 一、字符流（读、写，拷贝）
+* 二、带缓冲的字符流x4及方法
+* 三、装饰设计模式
+* 四、指定码表字符流
+* 五、递归
+
+day22
+* 一、序列流SequenceInputStream
+* 二、内存输出流ByteArrayOutputString
+* 三、对象操作流ObjectOutputStream和ObjectInputStream
+* 四、打印流printStream和printWriter
+* 五、标准输入输出流System.in和System.out
+* 六、随机访问流RandomAccessFile
+* 七、数据输入输出流DataInputStream和DataOutputStream
+* 八、Properties概述及其功能
+
+day23
+**分析**
+**功能补全**
+**数学抽象与世界模拟**
+
+day24
+一、多线程（概念，两种实现方式及匿名形式，区别，方法）
+二、同步（代码块、方法，安全问题、死锁）
+
+day25
+* 一、设计模式（单例设计模式，简单工厂模式，工厂方法模式，适配器设计模式）
+* 二、Runtime单例类
+* 三、Timer计时器类
+* 四、多线程（通信、互斥锁，线程组，线程池，5状态）
+* 五、GUI（窗口，布局管理器，事件和监听）
+
+day26
+* 一、网络编程（概述，三要素）
+* 二、UDP传输
+* 三、TCP传输
+
+day27
+* 一、反射（概述与过程，类加载器及分类，获取Class与配置文件，获取带参构造方法、成员变量、方法、泛型反射、动态代理）
+* 二、模板设计模式
+* 三、枚举类（概述，实现，注意事项及方法）
+* 四、JDK5、7、8新特性

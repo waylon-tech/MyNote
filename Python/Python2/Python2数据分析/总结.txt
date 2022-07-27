@@ -1,0 +1,45 @@
+01 Python程序库入门
+* 1.介绍了软件、程序库和安装方法
+* 2.以NumPy数组为例，对库的作用进行了介绍
+* 3.IPython作为shell的用法
+
+02 NumPy数组
+* 1.numpy数组的创建选择
+* 2.数据的属性、数据类型、转换、
+* 3.数组的切片索引（一维）、形状处理、堆叠、拆分、高级索引
+* 4.数组的广播
+
+03 统计学与线性代数
+* 1.NumPy和Scipy的模块介绍和子库
+* 2.NumPy：描述性统计计算，线性代数运算，特征值和特征向量，随机数，掩码式数组
+* 3.SciPy：数学运算函数，分布检验函数
+* 4.Matplotlib：绘制条形图
+
+04 pandas入门
+* 1.pandas的模块介绍和子库
+* 2.pandas数据结构DataFrame，Sreies（介绍、创建方式、属性、共同功能）
+* 3.pandas查询数据
+* 4.DataFrame进行统计计算、数据聚合、数据透视表，处理缺失数据、处理日期数据
+* 5.DataFrame的串联附加与连接
+
+05 数据的检索、加工与存储
+* 1.CSV文件读写操作：NumPy与pandas
+* 2.NumPy.npy与Python pickle读写操作：NumPy与pandas
+* 3.HDF5读写操作：h5py
+* 4.Excel读写操作：pandas
+* 5.JSON读写操作：pandas
+* 6.RSS和Atom订阅解析：feedparser
+* 7.HTML解析：beautifulsoup4
+
+06 数据可视化
+* 1.matplotlib程序库
+* 2.matplotlib绘图：基本图，对数图，散点图中的泡式图，三维图，图例和注解
+* 3.pandas绘图：基本图、半对数图、散点图，时滞图，自相关图
+* 4.Plot.ly绘图：箱形图
+
+07 信号处理与时间序列
+* 1.附录 理论补充
+* 2.statsmodels程序库
+* 3.基本：移动平均值，窗口函数
+* 4.相关：协整检验，自相关，自回归，ARMA模型
+* 5.分析：傅里叶分析，谱分析
