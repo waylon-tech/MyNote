@@ -130,13 +130,16 @@ Transformer 由一个编码器和一个解码器组成，编码器和解码器�
 给定查询集 $Q = \{q_1, q_2, \dots, q_{d_k} \}$，键集 $K = \{k_1, k_2, \dots, k_{d_k} \}$ 和值集 $V = \{v_1, v_2, \dots, v_{d_v} \}$.
 
 Transformer 采用缩放的点积注意力：
+
 $$
 \begin{align}
 H & = \text{ATT}\left( Q,K,V \right) = AV \\
  & = \text{Softmax}\left( \text{ATT-Mask}\left( \frac{QK^T}{\sqrt{d_k}} \right) \right) V
 \end{align}
 $$
+
 其中掩码函数 $\text{ATT-Mask}(\cdot)$ 用于限制每个查询向量可以参与哪些键值对：
+
 $$
 \text{ATT-Mask}(x) = 
 \left\{\begin{align}
@@ -1166,7 +1169,6 @@ $$
   \end{align}
   $$
   
-
 * Entity Linking
 
   对于每个已经检测出 entity mentions 的 mention $m_i = \left( e_{m_i}, \text{start}_{m_i}, \text{tail}_{m_i} \right)$，其中 $e_{m_i} \neq e_\emptyset$，$h_{m_i}$ 应该尽量靠近 label entity：
