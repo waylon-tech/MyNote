@@ -143,7 +143,7 @@ $$
 $$
 \text{ATT-Mask}(x) = 
 \left\{\begin{align}
--\infin, & \space \space q_i \space 与 \space v_j \space 不参与\\
+-\infty, & \space \space q_i \space 与 \space v_j \space 不参与\\
 x, & \space \space q_i \space 与 \space v_j \space 参与
 \end{align}\right.
 $$

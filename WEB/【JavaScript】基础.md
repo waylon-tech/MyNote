@@ -1,123 +1,75 @@
-#JavaScript基础
-##目录
-* 1 基础
-	* 1.1 基本语法
-	* 1.2 数据类型及变量
-	* 1.3 深入字符串
-	* 1.4 深入数组
-	* 1.5 深入对象
-	* 1.6 函数初步
-	* 1.7 流程语句
-	* 1.8 Map和Set
-	* 1.9 事件
-	* 1.10 表单验证
-	* 1.11 `javascript:void(0)` 含义
-* 2 函数
-	* 2.1 定义和调用
-	* 2.2 变量作用域与解构赋值
-	* 2.3 方法
-	* 2.4 高阶函数
-	* 2.5 闭包
-	* 2.6 箭头函数
-	* 2.7 生成器
-* 3 标准对象
-	* 3.1 基本对象
-	* 3.2 Date
-	* 3.3 RegExp
-	* 3.4 JSON
-* 4 面向对象编程
-	* 4.1 创建对象
-	* 4.2 原型继承
-	* 4.3 class继承
-* 5 浏览器
-	* 5.1 浏览器对象与 HTML DOM
-	* 5.2 HTML DOM 操作
-	* 5.3 表单操作
-	* 5.4 文件操作
-	* 5.5 AJAX
-	* 5.6 Promise
-	* 5.7 Canvas
-* 6 错误处理
-	* 6.1 捕获与抛出
-	* 6.2 异步错误处理
-* 7 jQuery
-	* 7.1 基本概念
-	* 7.2 选择器
-	* 7.3 DOM内容操作
-	* 7.4 DOM结构操作
-	* 7.5 事件
-	* 7.6 动画
-	* 7.7 AJAX
-	* 7.8 拓展
-* 8 underscore
-	* 8.1 基本概念
-	* 8.2 Collections
-	* 8.3 Array
-	* 8.4 Object
-	* 8.5 Functions
+## 目录
 
-##1 基础
+[toc]
+
+## 1 基础
 JavaScript 是互联网上最流行的脚本语言，这门语言可用于 HTML 和 web，更可广泛用于服务器、PC、笔记本电脑、平板电脑和智能手机等设备。
 
-###1.1 基本语法
+### 1.1 基本语法
 **A 使用方式**
 
-HTML 中的脚本必须位于 <script> 与 </script> 标签之间。
+HTML 中的脚本必须位于 `<script>` 与 `</script>` 标签之间。
 
 (1) `<head>` 中的 JavaScript
 
-	<!DOCTYPE html>
-	<html>
-	<head>
-	<script>
-	function myFunction()
-	{
-	document.getElementById("demo").innerHTML="我的第一个 JavaScript 函数";
-	}
-	</script>
-	</head>
-	
-	<body>
-	
-	<h1>我的 Web 页面</h1>
-	
-	<p id="demo">一个段落</p>
-	
-	<button type="button" onclick="myFunction()">尝试一下</button>
-	
-	</body>
-	</html>
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function myFunction()
+            {
+                document.getElementById("demo").innerHTML="我的第一个 JavaScript 函数";
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <h1>我的 Web 页面</h1>
+
+        <p id="demo">一个段落</p>
+
+        <button type="button" onclick="myFunction()">尝试一下</button>
+
+    </body>
+</html>
+```
 
 (2) `<body>` 中的 JavaScript
 
-	<!DOCTYPE html>
-	<html>
-	<body>
-	<h1>我的 Web 页面</h1>
-	
-	<p id="demo">一个段落</p>
-	
-	<button type="button" onclick="myFunction()">尝试一下</button>
-	
-	<script>
-	// Tip: JavaScript 放到了页面代码的底部，这样就可以确保在 <p> 元素创建之后再执行脚本
-	function myFunction()
-	{
-	document.getElementById("demo").innerHTML="我的第一个 JavaScript 函数";
-	}
-	</script>
-	
-	</body>
-	</html>
+```html
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>我的 Web 页面</h1>
+
+        <p id="demo">一个段落</p>
+
+        <button type="button" onclick="myFunction()">尝试一下</button>
+
+        <script>
+            // Tip: JavaScript 放到了页面代码的底部，这样就可以确保在 <p> 元素创建之后再执行脚本
+            function myFunction()
+            {
+                document.getElementById("demo").innerHTML="我的第一个 JavaScript 函数";
+            }
+        </script>
+
+    </body>
+</html>
+```
 
 (3) 外部的 JavaScript
 
-	<!DOCTYPE html>
-	<html>
-	<body>
-	<script src="myScript.js"></script>
-	</body>
-	</html>
+```html
+<!DOCTYPE html>
+<html>
+    <body>
+        <script src="myScript.js"></script>
+    </body>
+</html>
+```
 
 **B 注释**
 
@@ -137,31 +89,35 @@ JavaScript 可以通过不同的方式来输出数据：
 
 例如：
 
-	<script> 
-	// 1. 弹窗警告
-	window.alert(5 + 6);
+```html
+<script> 
+    // 1. 弹窗警告
+    window.alert(5 + 6);
 
-	// 2. 写入 HTML 文档
-	document.write(Date()); 
+    // 2. 写入 HTML 文档
+    document.write(Date()); 
 
-	// 3. 写入 HTML 元素
-	document.getElementById("demo").innerHTML = "段落已修改。"; 
+    // 3. 写入 HTML 元素
+    document.getElementById("demo").innerHTML = "段落已修改。"; 
 
-	// 4. 写到控制台
-	console.log("Hello World!"); 
-	</script> 
+    // 4. 写到控制台
+    console.log("Hello World!"); 
+</script> 
+```
 
-###1.2 数据类型及变量
+### 1.2 数据类型及变量
 **A 数值类型（number）**
 
-		123;		// 整数123
-		0.456;		// 浮点数0.456
-		-99			// 负数
-		NaN;		// Not a Number
-		Infinity;	// 无穷大
+```javascript
+123;		// 整数123
+0.456;		// 浮点数0.456
+-99			// 负数
+NaN;		// Not a Number
+Infinity;	// 无穷大
 
-		1.2345e6	// 科学计数法数字
-		0xff00;		// 十六进制数
+1.2345e6	// 科学计数法数字
+0xff00;		// 十六进制数
+```
 
 * 可以进行四则运算 `+`，`-`，`*`，`/`，以及求余 `%`
 * 可以通过 `=`，`+=`，`-=`，`*=`，`/=`，`%=`进行赋值运输
@@ -173,8 +129,10 @@ JavaScript 可以通过不同的方式来输出数据：
 
 **C 布尔类型**
 
-		true;	// 真值
-		false;	// 假值
+```javascript
+true;	// 真值
+false;	// 假值
+```
 
 可以进行以下运算：
 
@@ -192,30 +150,36 @@ JavaScript 可以通过不同的方式来输出数据：
 * `<=` - 小于等于
 * `==` - 相等，会自动转换数据类型
 * `===` - 相等，不会自动转换数据类型，即同时比较数值和类型
-	* 例外 - `NaN === NaN`为`false`，用`isNaN()`来判断
+	* 例外 - `NaN === NaN` 为 `false`，用 `isNaN()` 来判断
 	* 注意 - 整数运算可能产生浮点数，注意浮点数的相等比较
 * `!=` - 同理
 * `!==` - 同理
 
 条件运算符：
 
-	variableName=(condition) ? value1 : value2
+```javascript
+variableName = (condition) ? value1 : value2
+```
 
 **D 空类型**
 
 * `null` - 空值
-	* 注意 - `0`表示数值，`''`表述长度为0的字符串，都与此不同
+	* 注意 - `0`表示数值，`''` 表述长度为 0 的字符串，都与此不同
 * `undefined` - 表示值未定义，仅在判断函数参数是否传递的情况下有用
 
 **E 数组类型**
 
 字面表示：
 
-		[0, 3.14, 'Hello', null, true];
+```javascript
+[0, 3.14, 'Hello', null, true];
+```
 
 函数表示：
 
-		new Array(1, 2, 3);
+```javascript
+new Array(1, 2, 3);
+```
 
 数组使用带中括号的索引访问，索引下标从零开始。
 
@@ -229,7 +193,9 @@ JavaScript对象是一组由键-值组成的无序集合。
 
 字面表示：
 
-	{firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"}
+```javascript
+{firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"}
+```
 
 **G 变量**
 
@@ -242,25 +208,27 @@ JavaScript对象是一组由键-值组成的无序集合。
 提示：
 
 * JavaScript **变量均为对象**。当您声明一个变量时，就创建了一个新的对象。
-* 为了规范变量声明（防止不用`var`进行声明等），在JavaScript代码的第一行添加`use strict;`，使用**strict模式**。
+* 为了规范变量声明（防止不用 `var` 进行声明等），在 JavaScript 代码的第一行添加 `use strict;`，使用 **strict 模式**。
 * 一个好的编程习惯是，在代码开始处，**统一**对需要的变量进行声明。
 
 案例演示：
 
-		// 数值
-		var x = 7;
-		// 字符串
-		var str = '';
-		// 布尔类型
-		var judge = true;
-		// 数组
-		var arr = [];
-		var arr = new Array(1, 2, 3);
-		// 对象
-		var obj = {
-			name: 'Sakura',
-			city: 'East Fancy Town'
-		};
+```javascript
+// 数值
+var x = 7;
+// 字符串
+var str = '';
+// 布尔类型
+var judge = true;
+// 数组
+var arr = [];
+var arr = new Array(1, 2, 3);
+// 对象
+var obj = {
+    name: 'Sakura',
+    city: 'East Fancy Town'
+};
+```
 
 **类型操作**
 
@@ -268,38 +236,44 @@ JavaScript对象是一组由键-值组成的无序集合。
 
 可以使用 `typeof` 操作符来查看 JavaScript 变量的数据类型。
 
-		typeof "John"                 // 返回 string 
-		typeof 3.14                   // 返回 number
-		typeof NaN                    // 返回 number，注意！
-		typeof false                  // 返回 boolean
-		typeof [ 1,2,3,4]              // 返回 object，注意！
-		typeof {name: 'John', age:34}  // 返回 object
-		typeof new Date()             // 返回 object，注意！
-		typeof function () {}         // 返回 function
-		typeof myCar                  // 返回 undefined (if myCar is not declared) ，注意！
-		typeof null                   // 返回 object，注意！
+```v
+typeof "John"                  // 返回 string 
+typeof 3.14                    // 返回 number
+typeof NaN                     // 返回 number，注意！
+typeof false                   // 返回 boolean
+typeof [ 1,2,3,4]              // 返回 object，注意！
+typeof {name: 'John', age:34}  // 返回 object
+typeof new Date()              // 返回 object，注意！
+typeof function () {}          // 返回 function
+typeof myCar                   // 返回 undefined (if myCar is not declared) ，注意！
+typeof null                    // 返回 object，注意！
+```
 
-对于 JavaScript Array 或 JavaScript Date ，就无法通过 typeof 来判断他们的类型。
+对于 JavaScript Array 或 JavaScript Date ，就无法通过 `typeof` 来判断他们的类型。
 
 这是可以考虑使用 `constructor` 属性，他返回所有 JavaScript 变量的构造函数。
 
-		"John".constructor                 // 返回函数 String()  { [native code] }
-		(3.14).constructor                 // 返回函数 Number()  { [native code] } 
-		false.constructor                  // 返回函数 Boolean() { [native code] }
-		[1,2, 3,4].constructor              // 返回函数 Array()   { [native code] }
-		{name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
-		new Date().constructor             // 返回函数 Date()    { [native code] }
-		function() {}.constructor         // 返回函数 Function(){ [native code] }
+```javascript
+"John".constructor                 // 返回函数 String()  { [native code] }
+(3.14).constructor                 // 返回函数 Number()  { [native code] } 
+false.constructor                  // 返回函数 Boolean() { [native code] }
+[1,2, 3,4].constructor             // 返回函数 Array()   { [native code] }
+{name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
+new Date().constructor             // 返回函数 Date()    { [native code] }
+function() {}.constructor          // 返回函数 Function(){ [native code] }
+```
 
 从而定制一下判断函数：
 
-		function isArray(myArray) { 
-		    return myArray.constructor.toString().indexOf("Array") > -1; 
-		}
+```javascript
+function isArray(myArray) { 
+    return myArray.constructor.toString().indexOf("Array") > -1; 
+}
 
-		function isDate(myDate) { 
-		    return myDate.constructor.toString().indexOf("Date") > -1; 
-		}
+function isDate(myDate) { 
+    return myDate.constructor.toString().indexOf("Date") > -1; 
+}
+```
 
 (2) 类型转换
 
@@ -311,24 +285,28 @@ JavaScript对象是一组由键-值组成的无序集合。
 * `toFixed()` - 把数字转换为字符串，结果的小数点后有指定位数的数字。
 * `toPrecision()` - 把数字格式化为指定的长度。
 
-		String(x)         // 将变量 x 转换为字符串并返回
-		String(123)       // 将数字 123 转换为字符串并返回
-		String( 100+ 23)  // 将数字表达式转换为字符串并返回
-
-		x.toString() 
-		(123).toString() 
-		(100 + 23).toString()
+	```javascript
+	String(x)         // 将变量 x 转换为字符串并返回
+	String(123)       // 将数字 123 转换为字符串并返回
+	String( 100+ 23)  // 将数字表达式转换为字符串并返回
+	
+	x.toString() 
+	(123).toString() 
+	(100 + 23).toString()
+	```
 
 布尔值 -> 字符串：
 
 * `String()` - 全局方法 
 * `toString()` - Boolean 方法
 
-		String(false)        // 返回 "false"
-		String(true)         // 返回 "true"
-		
-		false.toString()     // 返回 "false"
-		true.toString()      // 返回 "true"
+	```javascript
+	String(false)        // 返回 "false"
+	String(true)         // 返回 "true"
+	
+	false.toString()     // 返回 "false"
+	true.toString()      // 返回 "true"
+	```
 
 日期 -> 字符串：
 
@@ -344,9 +322,11 @@ JavaScript对象是一组由键-值组成的无序集合。
 * `getSeconds()` - 返回 Date 对象的秒数 (0 ~ 59)。
 * `getTime()` - 返回 1970 年 1 月 1 日至今的毫秒数。
 
-		String(Date())      // 返回 Thu Jul 17 2014 15:38:19 GMT+0200 (W. Europe Daylight Time)
-		
-		Date().toString()   // 返回 Thu Jul 17 2014 15:38:19 GMT+0200 (W. Europe Daylight Time)
+	```javascript
+	String(Date())      // 返回 Thu Jul 17 2014 15:38:19 GMT+0200 (W. Europe Daylight Time)
+	
+	Date().toString()   // 返回 Thu Jul 17 2014 15:38:19 GMT+0200 (W. Europe Daylight Time)
+	```
 
 字符串 -> 数字：
 
@@ -355,55 +335,65 @@ JavaScript对象是一组由键-值组成的无序集合。
 * `parseInt()` - 解析一个字符串，并返回一个整数。
 * `+` - 用于将变量转换为数字，如果变量不能转换，它仍然会是一个数字，但值为 NaN (不是一个数字):
 
-		Number("3.14")    // 返回 3.14
-		Number(" ")       // 返回 0 
-		Number("")        // 返回 0 
-		Number("99 88")   // 返回 NaN
-
-		var y = "5";      // y 是一个字符串
-		var x = + y;      // x 是一个数字
-		var y = "John";   // y 是一个字符串
-		var x = + y;      // x 是一个数字 (NaN)
+	```javascript
+	Number("3.14")    // 返回 3.14
+	Number(" ")       // 返回 0 
+	Number("")        // 返回 0 
+	Number("99 88")   // 返回 NaN
+	
+	var y = "5";      // y 是一个字符串
+	var x = + y;      // x 是一个数字
+	var y = "John";   // y 是一个字符串
+	var x = + y;      // x 是一个数字 (NaN)
+	```
 
 布尔值 -> 数字：
 
 * `Number()` - 全局方法
 
-		Number(false)     // 返回 0
-		Number(true)      // 返回 1
+	```javascript
+	Number(false)     // 返回 0
+	Number(true)      // 返回 1
+	```
 
 日期 -> 数字：
 
 * `Number()` - 全局方法
 * `getTime()` - 返回 1970 年 1 月 1 日至今的毫秒数。
 
-		d = new Date(); 
-		Number(d)          // 返回 1404568027739
-		
-		d = new Date(); 
-		d.getTime()        // 返回 1404568027739
+	```javascript
+	d = new Date(); 
+	Number(d)          // 返回 1404568027739
+	
+	d = new Date(); 
+	d.getTime()        // 返回 1404568027739
+	```
 
 自动类型转换：
 
 * 当 JavaScript 尝试操作一个 "错误" 的数据类型时，会自动转换为 "正确" 的数据类型。
 
-		5 + null    // 返回 5         because null is converted to 0
-		"5" + null  // 返回"5null"   because null is converted to "null" 
-		"5" + 1     // 返回 "51"      because 1 is converted to "1"  
-		"5" - 1     // 返回 4         because "5" is converted to 5
+  ```javascript
+  5 + null    // 返回 5         because null is converted to 0
+  "5" + null  // 返回"5null"   because null is converted to "null" 
+  "5" + 1     // 返回 "51"      because 1 is converted to "1"  
+  "5" - 1     // 返回 4         because "5" is converted to 5
+  ```
 
 * 当尝试输出一个对象或一个变量时 JavaScript 会自动调用变量的 toString() 方法。
 
-		document.getElementById("demo").innerHTML = myVar; 
-		
-		// if myVar = {name:"Fjohn"}  // toString 转换为 "[object Object]"
-		// if myVar = [1,2,3,4]       // toString 转换为 "1,2,3,4"
-		// if myVar = new Date()      // toString 转换为 "Fri Jul 18 2014 09:08:55 GMT+0200"
-		// if myVar = 123             // toString 转换为 "123"
-		// if myVar = true            // toString 转换为 "true"
-		// if myVar = false           // toString 转换为 "false"
+	```javascript
+	document.getElementById("demo").innerHTML = myVar; 
+	
+	// if myVar = {name:"Fjohn"}  // toString 转换为 "[object Object]"
+	// if myVar = [1,2,3,4]       // toString 转换为 "1,2,3,4"
+	// if myVar = new Date()      // toString 转换为 "Fri Jul 18 2014 09:08:55 GMT+0200"
+	// if myVar = 123             // toString 转换为 "123"
+	// if myVar = true            // toString 转换为 "true"
+	// if myVar = false           // toString 转换为 "false"
+	```
 
-###1.3 深入字符串
+### 1.3 深入字符串
 **A 转义字符**
 
 * `\'` - 单引号
@@ -418,9 +408,11 @@ JavaScript对象是一组由键-值组成的无序集合。
 
 使用反引号`来表示多行字符串：
 
-		`这是一个
-		多行
-		字符串。`;
+```javascript
+`这是一个
+多行
+字符串。`;
+```
 
 **C 模板字符串**
 
@@ -430,8 +422,10 @@ JavaScript对象是一组由键-值组成的无序集合。
 
 案例演示：
 
-		var name = 'Sakura';
-		var message = `Hello, ${name}!`;
+```javascript
+var name = 'Sakura';
+var message = `Hello, ${name}!`;
+```
 
 **D 字符串操作**
 
@@ -444,7 +438,7 @@ JavaScript对象是一组由键-值组成的无序集合。
 * `indexOf(str)` - 搜索指定字符串出现的位置
 * `substring(start,end)` - 返回指定索引区间的子串
 	* 注意 - 子串不包括end
-* `split(str)` - 按照指定字符串切割字符串为数组，str可以为RegExp（见“3.3 RegExp”）
+* `split(str)` - 按照指定字符串切割字符串为数组，`str` 可以为 [RegExp](#3.3 RegExp)
 * `concat()` - 连接两个或多个字符串，返回连接后的字符串
 * `charAt()` - 返回指定索引位置的字符
 * `indexOf()` - 返回字符串中检索指定字符第一次出现的位置
@@ -452,9 +446,8 @@ JavaScript对象是一组由键-值组成的无序集合。
 * `match()` - 	找到一个或多个正则表达式的匹配
 * `replace()` - 替换与正则表达式匹配的子串
 * `search()` - 检索与正则表达式相匹配的值
-* 
 
-###1.4 深入数组
+### 1.4 深入数组
 * `arr.length` - 获取数组长度
 	* 注意 - 改变该值会改变数组长度
 * `arr[下标]` - 获取并可修改数组指定位置的元素
@@ -462,7 +455,7 @@ JavaScript对象是一组由键-值组成的无序集合。
 * `indexOf(元素)` - 搜索指定元素出现的位置
 * `slice(start,end)` - 返回指定索引区间的子列
 	* 提示 - 参数项为空时会获取字符串本身，可利用此点实现数组复制
-	* 注意 - 子列不包括end
+	* 注意 - 子列不包括 `end`
 * `push(元素1, 元素2, ...)` - 向数组末尾添加若干个元素
 * `pop()` - 删除数组末尾的一个元素
 	* 注意 - 空数组使用时返回`undefined`
@@ -474,102 +467,110 @@ JavaScript对象是一组由键-值组成的无序集合。
 	* 注意- 会修改当前数组
 * `reverse()` - 反转数组
 * `splice(start,end,元素1,元素2,...)` - 替换数组中的子列
-	* 提示 - 可以只添加：`start`为插入位置，`end`取0；可以只删除：各元素项置空
+	* 提示 - 可以只添加：`start`为插入位置，`end` 取 0；可以只删除：各元素项置空
 * `concat(arr1/元素1,arr2/元素2,...)` - 连接数组
 	* 注意 - 该函数返回一个新数组
 * `join(str)` - 将当前数组每个元素用指定字符串连接起来，返回总字符串
 	* 注释 - 如果数组的元素不是字符串，会自动转换为字符串再连接
 
-###1.5 深入对象
+### 1.5 深入对象
 * `obj.属性名` - 获取并可添加对象的属性
-	* 注意 - 访问不存在的属性返回`undefined`
+	* 注意 - 访问不存在的属性返回 `undefined`
 * `obj['属性名']` - 获取并可添加对象的属性，访问属性名可以不是有效变量
-	* 注意 - 访问不存在的属性返回`undefined`
+	* 注意 - 访问不存在的属性返回 `undefined`
 * `delete obj.属性名` - 删除指定属性
 * `delete obj['属性名']` - 删除指定属性，访问属性名可以不是有效变量
 * `属性名 in obj` - 检测对象是否有指定属性
 	* 注意 - 继承的属性也会检测到
 * `obj.hasOwnProperty('属性名')` - 检测对象自身是否拥有指定属性
 
-###1.6 函数初步
+### 1.6 函数初步
 在JavaScript中，函数即对象，可以随意地被程序操控。
 
 **语法：**
 
-		// 定义
-		function functionname(var1,var2)
-		{
-			return 0;
-		}
+```javascript
+// 定义
+function functionname(var1,var2)
+{
+    return 0;
+}
 
-		// 调用
-		myFunction(argument1,argument2)
+// 调用
+myFunction(argument1,argument2)
+```
 
 **示例：**
 
-		<button onclick="myFunction('Harry Potter','Wizard')">Try it</button>
-		
-		<script>
-		function myFunction(name,job)
-		{
-		alert("Welcome " + name + ", the " + job);
-		}
-		</script>
+```html
+<button onclick="myFunction('Harry Potter','Wizard')">Try it</button>
+
+<script>
+    function myFunction(name,job)
+    {
+        alert("Welcome " + name + ", the " + job);
+    }
+</script>
+```
 
 详细内容在后文叙述。
 
-###1.7 流程语句
-####1.7.1 条件语句
+### 1.7 流程语句
+#### 1.7.1 条件语句
 **语法**
 
-		variableName=(condition) ? value1 : value2
+```javascript
+variableName=(condition) ? value1 : value2
 
-		if (条件1) {
-			语句;
-		} else if (条件2) {
-			语句;
-		} else {
-			语句;
-		}
+if (条件1) {
+    语句;
+} else if (条件2) {
+    语句;
+} else {
+    语句;
+}
 
-		 switch(n)
-		 {
-		 case 1:
-		  执行代码块 1
-		 break;
-		 case 2:
-		  执行代码块 2
-		 break;
-		 default:
-		 n 与 case 1 和 case 2 不同时执行的代码
-		 }
+switch(n)
+{
+    case 1:
+        执行代码块 1
+        break;
+    case 2:
+        执行代码块 2
+        break;
+    default:
+        n 与 case 1 和 case 2 不同时执行的代码
+}
+```
 
 **注意**
 
 若判断值不是布尔类型，JavaScript会把`null`、`undefined`、`0`、`NaN`和`''`视为`false`，其余为`true`。
 
-####1.7.2 循环语句
+#### 1.7.2 循环语句
 **语法**
 
-		for (var k=start; k<=end; k++) {
-			语句;
-		}
+```javascript
+for (var k=start; k<=end; k++) {
+    语句;
+}
 
-		for (var item in obj) {
-			语句;
-		}
+for (var item in obj) {
+    语句;
+}
 
-		for (var item of iterable) {
-			语句;
-		}
+for (var item of iterable) {
+    语句;
+}
 
-		while (条件) {
-			语句;
-		}
+while (条件) {
+    语句;
+}
 
-		do {
-			语句;
-		} while (条件);
+do {
+    语句;
+} while (条件);
+```
 
 **注释**
 
@@ -584,215 +585,276 @@ JavaScript对象是一组由键-值组成的无序集合。
 
 对于`iterable`类型（`Array`，`Map`，`Set`等），还可以通过内置的`forEach()`方法遍历：
 
-		iter.forEach(function (element, index, array) {
-			// element: 指定当前元素的值
-			// index: 指向当前索引
-			// array: 指向Array对象本身
-			console.log(element + ', index = ' + index);
-		});
+```javascript
+iter.forEach(function (element, index, array) {
+    // element: 指定当前元素的值
+    // index: 指向当前索引
+    // array: 指向Array对象本身
+    console.log(element + ', index = ' + index);
+});
+```
 
-###1.8 Map和Set
-为了解决对象类型键只能为字符串的问题，引入了Map和Set。
+### 1.8 Map和Set
+为了解决对象类型键只能为字符串的问题，引入了 Map 和 Set。
 
 **(1) Map**
 
-Map是一组键值对结构，特点是具有极快的查找速度。
+Map 是一组键值对结构，特点是具有极快的查找速度。
 
 **语法**
 
-		// 创建
-		var map = new Map([[键1:值1], [键2:值2], ...]);
-		// 访问
-		map.get('键');
-		// 设置
-		map.set('键');
+```javascript
+// 创建
+var map = new Map([[键1:值1], [键2:值2], ...]);
+// 访问
+map.get('键');
+// 设置
+map.set('键');
+```
 
 **(2) Set**
 
-Set是一组键序列，特点是无重复，因为键不能重复。
+Set 是一组键序列，特点是无重复，因为键不能重复。
 
 **语法**
 
-		// 创建
-		var set = new Set([键1, 键2, ...]);
-		// 访问
-		set;
-		// 添加
-		set.add(键);
-		// 删除
-		set.delete(键);
+```javascript
+// 创建
+var set = new Set([键1, 键2, ...]);
+// 访问
+set;
+// 添加
+set.add(键);
+// 删除
+set.delete(键);
 
-		// 交并补运算
+// 交并补运算
+```
 
 **技巧**
 
-* 使用Set快速去重（去除重复元素方法1）
+* 使用 Set 快速去重（去除重复元素方法 1）
 
-		var set = new Set(arr);
+	```javascript
+	var set = new Set(arr);
+	```
 
 **注意**
 
-Set没有索引，使用`forEach()`方法回调的前两个参数都是元素本身。
+Set没有索引，使用 `forEach()` 方法回调的前两个参数都是元素本身。
 
-###1.9 事件
+### 1.9 事件
 事件是可以被 JavaScript 侦测到的行为。也称为 HTML DOM 事件
 
-####HTML 事件
+#### HTML 事件
 HTML 事件可以是浏览器行为，也可以是用户行为。
 
 HTML 网页中的每个元素都可以产生某些可以触发 JavaScript 函数的事件。
 
 一下是一些常见的 HTML 事件：
 
-<table class="reference" style="width: 100%"><tbody><tr> <th>事件</th> <th>描述</th> </tr> <tr> <td>onchange</td> <td> HTML 元素改变</td> </tr> <tr> <td>onclick</td> <td>用户点击 HTML 元素</td> </tr> <tr> <td>onmouseover</td> <td>用户在一个HTML元素上移动鼠标</td> </tr> <tr> <td>onmouseout</td> <td>用户从一个HTML元素上移开鼠标</td> </tr> <tr> <td>onkeydown</td> <td>用户按下键盘按键</td> </tr> <tr> <td>onload</td> <td>浏览器已完成页面的加载</td> </tr> </tbody></table>
+<table class="reference" style="width: 100%">
+    <tbody>
+        <tr>
+            <th>事件</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td>onchange</td>
+            <td> HTML 元素改变</td>
+        </tr>
+        <tr>
+            <td>onclick</td>
+            <td>用户点击 HTML 元素</td>
+        </tr>
+        <tr>
+            <td>onmouseover</td>
+            <td>用户在一个 HTML 元素上移动鼠标</td>
+        </tr>
+        <tr>
+            <td>onmouseout</td>
+        	<td>用户从一个 HTML 元素上移开鼠标</td>
+        </tr>
+        <tr>
+            <td>onkeydown</td>
+            <td>用户按下键盘按键</td>
+        </tr>
+        <tr>
+            <td>onload</td>
+            <td>浏览器已完成页面的加载</td>
+        </tr>
+    </tbody>
+</table>
 
 更多 HTML DOM 事件请查阅相关资料。
 
-####事件触发 JavaScript
+#### 事件触发 JavaScript
 HTML 元素中添加事件属性，使用 JavaScript 代码来添加 HTML 元素。（HTML 事件属性可以直接执行 JavaScript 代码）
 
 单引号形式：
 
-	 <some-HTML-element some-event='some JavaScript'>
+```html
+<some-HTML-element some-event='some JavaScript'>
+```
 
 双引号形式：
 
-	 <some-HTML-element some-event="some JavaScript">
+```html
+<some-HTML-element some-event="some JavaScript">
+```
 
 示例：
 
-	<!-- 修改某个 HTML 元素 -->
-	<button onclick='getElementById("demo").innerHTML=Date()'>The time is?</button>
+```html
+<!-- 修改某个 HTML 元素 -->
+<button onclick='getElementById("demo").innerHTML=Date()'>The time is?</button>
 
-	<!-- 修改自身，注意 this.innerHTML 中 this 的使用 -->
-	<button onclick="this.innerHTML=Date()">The time is?</button>
+<!-- 修改自身，注意 this.innerHTML 中 this 的使用 -->
+<button onclick="this.innerHTML=Date()">The time is?</button>
+```
 
-###1.10 表单验证
-####必填（或必选）项目
+### 1.10 表单验证
+#### 必填（或必选）项目
 函数：检查用户是否已填写表单中的必填（或必选）项目。
 
-假如必填或必选项为空，那么警告框会弹出，并且函数的返回值为 false；
+假如必填或必选项为空，那么警告框会弹出，并且函数的返回值为 `false`；
 
-否则函数的返回值则为 true（意味着数据没有问题）；
+否则函数的返回值则为 `true`（意味着数据没有问题）；
 
-	function validateForm()        
-	{        
-	var x=document.forms["myForm"]["fname"].value; // 留意表单内容的提取手法  
-	if (x==null || x=="")        
-	  {        
-	  alert("First name must be filled out");        
-	  return false;        
-	  }        
-	}
+```javascript
+function validateForm()        
+{        
+    var x=document.forms["myForm"]["fname"].value; // 留意表单内容的提取手法  
+    if (x==null || x=="")        
+    {        
+        alert("First name must be filled out");        
+        return false;        
+    }        
+}
+```
 
 以上函数在 form 表单提交时被调用:
 
-	<form name="myForm" action="demo_form.asp" onsubmit="return validateForm()" method="post"> 
-	First name: <input type="text" name="fname">  <!-- 留意 onsubmit 中的函数调用方式 -->
-	<input type="submit" value="Submit"> 
-	</form>
+```html
+<form name="myForm" action="demo_form.asp" onsubmit="return validateForm()" method="post"> 
+    First name: <input type="text" name="fname">  <!-- 留意 onsubmit 中的函数调用方式 -->
+    <input type="submit" value="Submit"> 
+</form>
+```
 
-####E-mail 验证
+#### E-mail 验证
 函数：检查输入的数据是否符合电子邮件地址的基本语法。
 
 输入的数据必须包含 @ 符号和点号(.)；
 
-	@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号；
-	
-	function validateForm()        
-	{        
-	var x=document.forms["myForm"]["email"].value;        
-	var atpos=x.indexOf("@");        
-	var dotpos=x.lastIndexOf(".");        
-	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)        
-	  {        
-	  alert("Not a valid e-mail address");        
-	  return false;        
-	  }       
-	}
+```javascript
+// @ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号；
+
+function validateForm()        
+{        
+    var x=document.forms["myForm"]["email"].value;        
+    var atpos=x.indexOf("@");        
+    var dotpos=x.lastIndexOf(".");        
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)        
+    {        
+        alert("Not a valid e-mail address");        
+        return false;        
+    }       
+}
+```
 
 下面是连同 HTML 表单的完整代码：
 
-	<form name="myForm" action="demo_form.asp" onsubmit="return validateForm();" method="post"> 
-	Email: <input type="text" name="email"> 
-	<input type="submit" value="Submit"> 
-	</form>
+```html
+<form name="myForm" action="demo_form.asp" onsubmit="return validateForm();" method="post"> 
+    Email: <input type="text" name="email"> 
+    <input type="submit" value="Submit"> 
+</form>
+```
 
-###1.11`javascript:void(0)` 含义
+### 1.11 `javascript:void(0)` 含义
 **含义：**
 
-javascript:void(0) 中最关键的是 void 关键字， void 是 JavaScript 中非常重要的关键字，该操作符指定要计算一个表达式但是不返回值。
+`javascript:void(0)` 中最关键的是 `void` 关键字， `void` 是 JavaScript 中非常重要的关键字，该操作符指定要计算一个表达式但是不返回值。
 
 示例：
 
-	<head> 
-	<script type="text/javascript"> 
-	<!-- 
-	function getValue(){ 
-	  var a,b,c; 
-	  a = void ( b = 5, c = 7 ); 
-	  document.write('a = ' + a + ' b = ' + b +' c = ' + c ); 
-	} 
-	//--> 
-	</script> 
-	</head>
+```html
+<head> 
+    <script type="text/javascript"> 
+        <!-- 
+        function getValue(){ 
+            var a,b,c; 
+            a = void ( b = 5, c = 7 ); 
+            document.write('a = ' + a + ' b = ' + b +' c = ' + c ); 
+        } 
+        //--> 
+    </script> 
+</head>
+```
 
 其中，参数 a 将返回 undefined 。
 
-**`href="#"`与`href="javascript:void(0)"`的区别**
+**`href="#"` 与 `href="javascript:void(0)"` 的区别**
 
-* `#` 包含了一个位置信息，默认的锚是 `#top` 也就是网页的上端。
-* `javascript:void(0)`, 仅仅表示一个死链接。
+* `#` 包含了一个位置信息，默认的锚是 `#top` 也就是网页的上端
+* `javascript:void(0)`，仅仅表示一个死链接
 
 示例：
 
-	<a href="javascript:void(0);">点我没有反应的!</a> 
-	<a href="#pos">点我定位到指定位置!</a> 
-	<br><br><br> <p id="pos">尾部定位点</p>
+```html
+<a href="javascript:void(0);">点我没有反应的!</a> 
+<a href="#pos">点我定位到指定位置!</a> 
+<br><br><br> <p id="pos">尾部定位点</p>
+```
 
-##2 函数
-###2.1 定义和调用
+## 2 函数
+### 2.1 定义和调用
 **(1) 函数定义**
 
-		function 函数名(参数1, 参数2) {
-			语句;
-			return 返回值;
-		}
+```javascript
+function 函数名(参数1, 参数2) {
+    语句;
+    return 返回值;
+}
 
-		var 函数变量 = function(参数1, 参数2) {
-			语句;
-			return 返回值;
-		};
+var 函数变量 = function(参数1, 参数2) {
+    语句;
+    return 返回值;
+};
+```
 
 **(2) 函数调用**
 
 JavaScript 函数有 4 种调用方式。每种方式的不同在于 this 的指向，2.3 节会详细讨论。
 
-		// 作为函数调用
-		函数变量名(参数1, 参数2);
+```javascript
+// 作为函数调用
+函数变量名(参数1, 参数2);
 
-		// 作为方法调用
-		对象.函数变量名(参数1, 参数2);
+// 作为方法调用
+对象.函数变量名(参数1, 参数2);
 
-		// 构造函数调用
-		new 函数变量名(参数1, 参数2);
+// 构造函数调用
+new 函数变量名(参数1, 参数2);
 
-		// 作为对象调用
-		函数变量名.call(对象名, 参数1, 参数2);
-		函数变量名.apply(对象名, [参数1, 参数2]);
+// 作为对象调用
+函数变量名.call(对象名, 参数1, 参数2);
+函数变量名.apply(对象名, [参数1, 参数2]);
+```
 
 **(3) 参数**
 
 * 函数参数传递的过程是**值传递**
 * 函数参数为对象传递的过程是**址传递**
-* JavaScript允许传入任意个参数。
+* JavaScript 允许传入任意个参数。
 	* 传入过多参数时，会自动忽略多余的参数。（在 `arguments` 中）
-	* 传入过少参数时，会用`undefined`替代。
+	* 传入过少参数时，会用 `undefined` 替代。
 	* 技巧 - 可以通过如 `y = y || 0;` 来为参数指定默认参数
-* `arguments` - 函数内使用的关键字变量，指向当前函数的调用者传入的所有参数，可按照Array使用
+* `arguments` - 函数内使用的关键字变量，指向当前函数的调用者传入的所有参数，可按照 Array 使用
 	* 技巧 - 该变量常用于判断插入参数的个数，用 `length` 属性
-* `rest` - 用于存储可变参数的数组，在定义函数时添加`...rest`到参数列末尾，然后按照Array使用
-	* 注意 - 若传入过少参数，`rest`为空
+* `rest` - 用于存储可变参数的数组，在定义函数时添加 `...rest` 到参数列末尾，然后按照 Array 使用
+	* 注意 - 若传入过少参数，`rest` 为空
 
 **(4) 函数提升**
 
@@ -800,10 +862,12 @@ JavaScript 函数有 4 种调用方式。每种方式的不同在于 this 的指
 
 因此，函数可以在声明之前调用：
 
-		myFunction(5);               
-		function myFunction(y) {        
-		    return y * y;        
-		}
+```javascript
+myFunction(5);               
+function myFunction(y) {        
+    return y * y;        
+}
+```
 
 注意，使用表达式定义函数时无法提升。
 
@@ -813,24 +877,26 @@ JavaScript 函数有 4 种调用方式。每种方式的不同在于 this 的指
 
 示例：
 
-		(function () { 
-		    var x = "Hello!!";      // 我将调用自己 
-		})();
+```javascript
+(function () { 
+    var x = "Hello!!";      // 我将调用自己 
+})();
+```
 
 **(6) 函数的对象本质**
 
 在 JavaScript 中，函数本质上是一个函数对象。
 
-使用 typeof 操作符判断函数类型将返回 "function" 。
+使用 `typeof` 操作符判断函数类型将返回 "function"。
 
 JavaScript 函数有 **属性** 和 **方法**。
 
 **注释：**
 
-* 函数定义作为对象的属性，称之为对象方法。 
-* 函数如果用于创建新的对象，称之为对象的构造函数。
+* 函数定义作为对象的属性，称之为对象方法。
+* 函数如果用于创建新的对象，称之为对象的构造函数
 
-###2.2 变量作用域与解构赋值
+### 2.2 变量作用域与解构赋值
 **(1) 变量机制**
 
 **变量查找**
@@ -839,7 +905,7 @@ JavaScript 函数有 **属性** 和 **方法**。
 
 **变量提升**
 
-JavaScript函数定义时会先扫描整个函数体的语句，并把所有变量的声明提升到函数顶部，但不会提升变量的赋值。
+JavaScript 函数定义时会先扫描整个函数体的语句，并把所有变量的声明提升到函数顶部，但不会提升变量的赋值。
 
 因此，在函数内部首先声明所有变量。
 
@@ -850,72 +916,80 @@ JavaScript函数定义时会先扫描整个函数体的语句，并把所有变�
 * 函数内部声明的变量作用域为整个函数体
 * `for`循环等**语句块**中无法定义具有局部作用域的变量，若用，使用关键字`let`声明变量：
 
-		for(let i=0; i<100; i++) {
-			语句;
-		}
+  ```javascript
+  for(let i=0; i<100; i++) {
+      语句;
+  }
+  ```
 
-* 关键字`const`用于**声明常量**，其也具有块级作用域
+* 关键字 `const` 用于**声明常量**，其也具有块级作用域
 
 **全局作用域**
 
-* JavaScript默认有一个全局对象`window`，全局作用域的变量实际上被绑定为`window`的一个属性
-* 顶层函数的定义也被视为全局变量，并绑定到`window`对象：
+* JavaScript 默认有一个全局对象 `window`，全局作用域的变量实际上被绑定为 `window` 的一个属性
+* 顶层函数的定义也被视为全局变量，并绑定到 `window` 对象：
 
-		function hello() {
-			alert('hello');
-		}
-
-		hello();
-		window.hello();
+	```javascript
+	function hello() {
+	    alert('hello');
+	}
+	
+	hello();
+	window.hello();
+	```
 
 **变量生存周期**
 
 JavaScript 变量生命周期在它声明时初始化。
 
-* 局部变量在函数执行完毕后销毁。
-* 全局变量在页面关闭后销毁。
+* 局部变量在函数执行完毕后销毁
+* 全局变量在页面关闭后销毁
 
 **技巧 - 命名空间**
 
-JavaScript只有一个全局作用域，不同的JavaScript文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，会造成命名冲突。为此，可以将变量和函数统一到一个全局变量中：
+JavaScript 只有一个全局作用域，不同的 JavaScript 文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，会造成命名冲突。为此，可以将变量和函数统一到一个全局变量中：
 
-		var MYAPP = {};
+```javascript
+var MYAPP = {};
 
-		MYAPP.x = 'var1';
-		MYAPP.f = function() {
-			return 'function';
-		};
+MYAPP.x = 'var1';
+MYAPP.f = function() {
+    return 'function';
+};
+```
 
 **(3) 解构赋值**
 
 解构赋值是指同时对一组变量赋值。语法如下：
 
-		// 数组解构赋值
-		var [x, y, z] = ['hello', 'JavaScript', 'ES6'];
+```javascript
+// 数组解构赋值
+var [x, y, z] = ['hello', 'JavaScript', 'ES6'];
 
-		// 数组嵌套赋值与忽略赋值
-		var [, [, z]] = ['hello', ['JavaScript', 'ES6']];
+// 数组嵌套赋值与忽略赋值
+var [, [, z]] = ['hello', ['JavaScript', 'ES6']];
 
-		// 对象解构赋值
-		var person {
-			name: 'Sakura',
-			domain: 'PureSakura',
-			age: 7
-		}
-		var {name, domain, age} = person;
+// 对象解构赋值
+var person {
+    name: 'Sakura',
+    domain: 'PureSakura',
+    age: 7
+}
+var {name, domain, age} = person;
 
-		// 对象嵌套赋值与默认赋值
-		var person {
-			name: 'Sakura',
-			age: 7,
-			address: {
-				city: 'Guangzhou',
-				street: 'SakuraStreet',
-				zipcode: '777777'
-			}
-		}
-		var {name, domain='PureSakura', address: {city, street}} = person
-		
+// 对象嵌套赋值与默认赋值
+var person {
+    name: 'Sakura',
+    age: 7,
+    address: {
+    	city: 'Guangzhou',
+    	street: 'SakuraStreet',
+    	zipcode: '777777'
+    }
+}
+var {name, domain='PureSakura', address: {city, street}} = person
+```
+
 **注意**
 
 对于已经声明的变量，再用解构赋值会出错，因为解构语句被解析为语句块；此时用**括号**将解构语句包围即可。
@@ -924,98 +998,121 @@ JavaScript只有一个全局作用域，不同的JavaScript文件如果使用了
 
 * 交换变量
 
-		var x=1, y=2;
-		[x, y] = [y, x];
+  ```javascript
+  var x=1, y=2;
+  [x, y] = [y, x];
+  ```
 
 * 快速获取域名和路径
 
-		var {hostname:domain, pathname:path} = location;
+  ```javascript
+  var {hostname:domain, pathname:path} = location;
+  ```
 
 * 快速创建对象（带默认值的函数参数）
 
-		function buildDate([year, month, day, hour=0, minute=0, second=0]) {
-			return new Date(year + '-' + month + '-' + day + '-' + hour + '-' + minute + '-' + second);
-		}
+	```javascript
+	function buildDate([year, month, day, hour=0, minute=0, second=0]) {
+	    return new Date(year + '-' + month + '-' + day + '-' + hour + '-' + minute + '-' + second);
+	}
+	
+	buildDate([year: 2017, month:1, day:1]);
+	```
 
-		buildDate([year: 2017, month:1, day:1]);
-
-###2.3 方法及 `this` 指向详解
+### 2.3 方法及 `this` 指向详解
 方法是在对象绑定的函数。
 
-		var obj = {
-			x: 'x';
-			y: true;
-			z: function() {
-				语句;
-			}
-		}
+```javascript
+var obj = {
+    x: 'x';
+    y: true;
+    z: function() {
+        语句;
+    }
+}
+```
 
-方法内可以使用`this`关键字，指向当前对象。下面详细介绍：
+方法内可以使用 `this` 关键字，指向当前对象。下面详细介绍：
 
 **(1) this关键字详解**
 
 * 基本原则：谁调用指向谁
-* 如果作为函数调用，则`this`指向全局对象（`window`）
-* 如果作为方法调用，则`this`指向调用对象
-* 如果构造函数调用，则`this`指向调用对象？？
-* 如果作为对象调用，则`this`指向调用对象(strict模式)/`window`(非strict模式，首参为`null`或`undefined`)
+* 如果作为函数调用，则 `this` 指向全局对象（`window`）
+* 如果作为方法调用，则 `this` 指向调用对象
+* 如果构造函数调用，则 `this` 指向调用对象？？
+* 如果作为对象调用，则 `this` 指向调用对象 (strict 模式) / `window` (非 strict 模式，首参为 `null` 或 `undefined`)
 
 **注意**
 
-* 使用 window 对象作为一个变量容易造成程序崩溃。要保证`this`指向正确对象，必须使用`对象.方法()`形式调用方法。
+* 使用 window 对象作为一个变量容易造成程序崩溃。要保证`this`指向正确对象，必须使用 `对象.方法()` 形式调用方法。
 
-* 在对象方法内嵌套指定了函数再或者拿出对象内的函数（新变量指向），函数内`this`会丢失对象（因为是方法调用了该函数），而指向了`underfined`(strict模式)/`window`(非strict模式)。对此，有以下解决方案：
+* 在对象方法内嵌套指定了函数再或者拿出对象内的函数（新变量指向），函数内`this`会丢失对象（因为是方法调用了该函数），而指向了 `underfined` (strict 模式) / `window` (非 strict 模式)。对此，有以下解决方案：
 
 	* 中间变量暂存对象引用
 
-			var that = this;
+	  ```javascript
+	  var that = this;
+	  ```
 
 	* 使用apply函数
 
-			函数.apply(对象, [参数1, 参数2, ...]);
-
+	  ```javascript
+	  函数.apply(对象, [参数1, 参数2, ...]);
+	  ```
+	
 	* 使用call函数
-
-			函数.call(对象, 参数1, 参数2, ...);
+	
+		```javascript
+		函数.call(对象, 参数1, 参数2, ...);
+		```
 
 **(2) 装饰器**
 
-使用apply/call函数可以设计装饰器：
+使用 `apply` / `call` 函数可以设计装饰器：
 
-		var old_function = function;
-		window.function = function() {
-			语句;
-			return old_function.apply(null, arguments);
+```javascript
+var old_function = function;
+window.function = function() {
+    语句;
+    return old_function.apply(null, arguments);
+}
+```
 
-###2.4 高阶函数
+### 2.4 高阶函数
 **(1) map/reduce**
 
-map/reduce的概念同Python。
+map/reduce 的概念同 Python。
 
-在JavaScript中，`map()`和`reduce()`函数定义在`Array`中。
+在 JavaScript 中，`map()`和`reduce()`函数定义在`Array`中。
 
 语法：
 
-		arr.map(func);
-		arr.reduce(func);
+```javascript
+arr.map(func);
+arr.reduce(func);
+```
 
 案例演示：
 
-		var arr = [1, 2, 3, 4, 5];
-		var results = arr.map(pow); // [1, 4, 9, 16, 25]
-		var results = arr.reduce(function (x, y) {  // reduce()必须接收两个参数
-			return x+y;
-		}); // 15
+```javascript
+var arr = [1, 2, 3, 4, 5];
+var results = arr.map(pow); // [1, 4, 9, 16, 25]
+var results = arr.reduce(function (x, y) {  // reduce()必须接收两个参数
+    return x+y;
+}); // 15
+```
 
 **(2) filter**
 
-filter的概念同Python。
+filter 的概念同 Python。
 
-在JavaScript中，`filter()`函数定义在`Array`中。
+在JavaScript中，`filter()` 函数定义在 `Array` 中。
 
 语法：
 
-		arr.filter(function (element, index, self) {});
+```javascript
+arr.filter(function (element, index, self) {});
+```
 
 * `element` - 传入的元素
 * `index` - 元素下标
@@ -1023,46 +1120,52 @@ filter的概念同Python。
 
 技巧：去除重复元素方法2
 
-		var r,
-			arr = [ ...(略) ];
-		r = arr.filter(function (element, index, self) {
-			return self.indexOf(element) === index;
-		}
+```javascript
+var r,
+    arr = [ ...(略) ];
+r = arr.filter(function (element, index, self) {
+    return self.indexOf(element) === index;
+}
+```
 
 案例演示：
 
-		var arr = ['A', '', 'B', null, underfined, 'C', '  '];
-		var r = arr.filter(function(x) {
-			// 若s为全空格，返回false，因为trim()后为''，又为了防止''.trim()，先用判断s
-			return s && s.trim();
-		});
+```javascript
+var arr = ['A', '', 'B', null, underfined, 'C', '  '];
+var r = arr.filter(function(x) {
+    // 若s为全空格，返回false，因为trim()后为''，又为了防止''.trim()，先用判断s
+    return s && s.trim();
+});
+```
 
 **(3) sort**
 
-sort的概念同Python的sorted。
+sort 的概念同 Python 的 sorted。
 
-JavaScript的`sort()`函数会传入两个元素A、B，根据返回值判断两个元素的先后：
+JavaScript 的 `sort()` 函数会传入两个元素 A、B，根据返回值判断两个元素的先后：
 
-* -1	-	A < B
-* 0		-	A = B
-* 1		-	A > B
+* `-1`	  -	`A < B`
+* `0`		-	`A = B`
+* `1`		-	`A > B`
 
 案例演示：
 
-		var arr = [1, 2, 3];
-		arr.sort(function(x, y) {
-			if(x < y)
-				return -1;
-			if(x > y) {
-				return 1;
-			return 0;
-		});
+```javascript
+var arr = [1, 2, 3];
+arr.sort(function(x, y) {
+    if(x < y)
+        return -1;
+    if(x > y) {
+        return 1;
+        return 0;
+    });
+```
 
 **注意**
 
-`arr.sort()`会对当前数组进行修改。
+`arr.sort() `会对当前数组进行修改。
 
-###2.5 闭包
+### 2.5 闭包
 因为函数也是变量，所以函数可以作为返回值返回。
 
 但是，对于返回函数，如果其引用了外部变量，若该变量后续会发生变化，则最终参与运算的是变化量的最终状态值。
@@ -1073,131 +1176,139 @@ JavaScript的`sort()`函数会传入两个元素A、B，根据返回值判断两
 
 案例演示：
 
-		function count() {
-			var arr=[];
-			for(var i=1; i<3; i++) {
-				arr.push((function (n) {	// 参数n用于接受传入数据
-					return function() {
-						return n * n;
-					}
-				})(i));		// i为传入的参数，这是创建匿名函数并立刻执行的语法（即函数自调用）
-				return arr;
-		}
-		
-		var results = count();
-		var f1 = results[0];
-		var f2 = results[1];
-		var f3 = results[2];
+```javascript
+function count() {
+    var arr=[];
+    for(var i=1; i<3; i++) {
+        arr.push((function (n) {	// 参数n用于接受传入数据
+            return function() {
+                return n * n;
+            }
+        })(i));		// i为传入的参数，这是创建匿名函数并立刻执行的语法（即函数自调用）
+        return arr;
+    }
+
+var results = count();
+var f1 = results[0];
+var f2 = results[1];
+var f3 = results[2];
+```
 
 典例：计数器
 
-		// 通过函数自调用实现闭包
-		var add = (function () {
-		    var counter = 0;
-		    return function () {return counter += 1;}
-		})();
-		
-		add();
-		add();
-		add();
-		
-		// 计数器为 3
+```javascript
+// 通过函数自调用实现闭包
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+
+add();
+add();
+add();
+
+// 计数器为 3
+```
 
 解析：
 
-> 变量 add 指定了函数自我调用的返回字值。
-
-> 自我调用函数只执行一次。设置计数器为 0。并返回函数表达式。
-
-> add变量可以作为一个函数使用。非常棒的部分是它可以访问函数上一层作用域的计数器。
-
+> 变量 `add` 指定了函数自我调用的返回字值。
+>
+> 自我调用函数只执行一次。设置计数器为 `0`。并返回函数表达式。
+>
+> `add` 变量可以作为一个函数使用。非常棒的部分是它可以访问函数上一层作用域的计数器。
+>
 > 这个叫作 JavaScript 闭包。它使得函数拥有私有变量变成可能。
-
-> 计数器受匿名函数的作用域保护，只能通过 add 方法修改。
-
+>
+> 计数器受匿名函数的作用域保护，只能通过 `add` 方法修改。
+>
 > **闭包是可访问上一层函数作用域里变量的函数，即便上一层函数已经关闭。**
 
 典例：函数运算器
 
-		'use strict';
-		
-		// 定义数字0:
-		var zero = function (f) {
-		    return function (x) {
-		        return x;
-		    }
-		};
-		
-		// 定义数字1:
-		var one = function (f) {
-		    return function (x) {
-		        return f(x);
-		    }
-		};
-		
-		// 定义加法:
-		function add(n, m) {
-		    return function (f) {
-		        return function (x) {
-		            return m(f)(n(f)(x));
-		        }
-		    }
-		}
-		
-		// 计算数字2 = 1 + 1:
-		var two = add(one, one);
-		
-		// 计算数字3 = 1 + 2:
-		var three = add(one, two);
-		
-		// 计算数字5 = 2 + 3:
-		var five = add(two, three);
-		
-		// 你说它是3就是3，你说它是5就是5，你怎么证明？
-		
-		// 呵呵，看这里:
-		
-		// 给3传一个函数,会打印3次:
-		(three(function () {
-		    console.log('print 3 times');
-		}))();
-		
-		// 给5传一个函数,会打印5次:
-		(five(function () {
-		    console.log('print 5 times');
-		}))();
-		
-		// 继续接着玩一会...
+```javascript
+'use strict';
 
-###2.6 箭头函数
+// 定义数字0:
+var zero = function (f) {
+    return function (x) {
+        return x;
+    }
+};
+
+// 定义数字1:
+var one = function (f) {
+    return function (x) {
+        return f(x);
+    }
+};
+
+// 定义加法:
+function add(n, m) {
+    return function (f) {
+        return function (x) {
+            return m(f)(n(f)(x));
+        }
+    }
+}
+
+// 计算数字2 = 1 + 1:
+var two = add(one, one);
+
+// 计算数字3 = 1 + 2:
+var three = add(one, two);
+
+// 计算数字5 = 2 + 3:
+var five = add(two, three);
+
+// 你说它是3就是3，你说它是5就是5，你怎么证明？
+
+// 呵呵，看这里:
+
+// 给3传一个函数,会打印3次:
+(three(function () {
+    console.log('print 3 times');
+}))();
+
+// 给5传一个函数,会打印5次:
+(five(function () {
+    console.log('print 5 times');
+}))();
+
+// 继续接着玩一会...
+```
+
+### 2.6 箭头函数
 箭头函数相当于匿名函数，类似于Python的`lambda`，并且简化了函数定义。
 
 **语法**
 
-		// 定义1
-		x => x * x;
+```javascript
+// 定义1
+x => x * x;
 
-		// 定义2
-		x => {
-			if(x>0)
-				return x * x;
-			else
-				return -x * x;
-		}
+// 定义2
+x => {
+    if(x>0)
+        return x * x;
+    else
+        return -x * x;
+}
 
-		// 多参数
-		(x,y) => x * x + y * y;
+// 多参数
+(x,y) => x * x + y * y;
 
-		// 无参数
-		() => 3.14;
+// 无参数
+() => 3.14;
 
-		// 可变参数
-		(x, y, ...rest) => {
-			...(略)
-		}
+// 可变参数
+(x, y, ...rest) => {
+    ...(略)
+}
 
-		// 返回对象
-		x => ({key: value});
+// 返回对象
+x => ({key: value});
+```
 
 **与JS匿名的区别**
 
@@ -1207,64 +1318,73 @@ JavaScript的`sort()`函数会传入两个元素A、B，根据返回值判断两
 
 案例演示：
 
-		var obj ] {
-			birth: 2000,
-			getAge: function(year) {
-				var b = this.birth;
-				var fn = (y) => y - this.birth;
-				return fn.call({birth:2000}, year); // 第一个参数将被忽略
-		}
+```javascript
+var obj ] {
+    birth: 2000,
+    getAge: function(year) {
+		var b = this.birth;
+		var fn = (y) => y - this.birth;
+		return fn.call({birth:2000}, year); // 第一个参数将被忽略
+	}
+}
+```
 
-###2.7 生成器
-生成器的概念同Python的generator。
+### 2.7 生成器
+生成器的概念同 Python 的 generator。
 
 **语法**
 
-		f = function* 函数名(argument) {
-			语句...
-			yield 变量; // 返回一次变量值
-			语句...
-		}
+```javascript
+f = function* 函数名(argument) {
+    语句...
+    yield 变量; // 返回一次变量值
+    语句...
+}
 
-		// 方法1：调用一次，返回一次，直到完毕
-		f.next(); // {value: 返回值, done: 是否完成的布尔值}
+// 方法1：调用一次，返回一次，直到完毕
+f.next(); // {value: 返回值, done: 是否完成的布尔值}
 
-		// 方法2：使用循环for...of
-		for(let x of f(argument)) {
-			语句;
-		}
+// 方法2：使用循环for...of
+for(let x of f(argument)) {
+	语句;
+}
+```
 
 **注释**
 
-如果`done`为`true`，则`value`就是`return`的返回值。
+如果 `done` 为 `true`，则 `value` 就是 `return` 的返回值。
 
 **作用**
 
 * 可以记住执行状态，实现需要利用面向对象才能实现的功能，有时**可替代闭包**语法
-* 把异步回调代码变成“同步”代码，后面AJAX会体会到
+* 把异步回调代码变成“同步”代码，后面 AJAX 会体会到
 
-##3 标准对象
-###3.1 基本对象
+## 3 标准对象
+### 3.1 基本对象
 **(1) 数据对象**
 
 **“1.2 数据类型及变量”**中提到的都是对象：
 
-		typeof 123; // 'number'
-		typeof NaN; // 'number'
-		typeof 'str'; // 'string'
-		typeof true; // 'boolean'
-		typeof undefined; // 'undefined'
-		typeof Math.abs; // 'function'
-		typeof null; // 'object'
-		typeof []; // 'object'
-		typeof {}; // 'object'
+```javascript
+typeof 123; // 'number'
+typeof NaN; // 'number'
+typeof 'str'; // 'string'
+typeof true; // 'boolean'
+typeof undefined; // 'undefined'
+typeof Math.abs; // 'function'
+typeof null; // 'object'
+typeof []; // 'object'
+typeof {}; // 'object'
+```
 
 **(2) 包装对象**
 
 包装对象类似于Java中的`int`和`Integer`，后者包装对象是可操作（创建）的数据类型对象，功能一样，但类型为`Object`。
 
-		typeof new String('str'); // 'object'
-		new String('str') === 'str'; // false
+```javascript
+typeof new String('str'); // 'object'
+new String('str') === 'str'; // false
+```
 
 **注意**
 
@@ -1272,136 +1392,104 @@ JavaScript的`sort()`函数会传入两个元素A、B，根据返回值判断两
 
 **区别**
 
-带`new`关键字使用是表示创建包装对象；
+带 `new` 关键字使用是表示创建包装对象；
 
-不带`new`使用表示强制类型转换。
+不带 `new` 使用表示强制类型转换。
 
 **(3) 总结规则**
 
 * 不要使用`new Number()`、`new Boolean()`、`new String()`创建包装对象
-* 可用`parseInt()`或`parseFloat()`宽松解析（内容尾部可以不是数字），和`Number()`严格解析（内容必须是纯数字）来转换任意类型到`number`
-* `String()`或`toString()`（`null`和`undefined`没有此方法）转换任意类型到`string`
-* 通常不必把任意类型转换为`boolean`再判断，可直接判断
-* `typeof`操作符可以判断出(1)中所述类型
-* 判断`Array`使用`Array.isArray(arr)`
-* 判断`null`使用`x === null`
-* 判断`NaN`使用`isNaN(x)`
-* 判断某个全局变量是否存在使用`typeof window.x === 'undefined'`
-* 判断函数内部某个变量是否存在使用`typeof x === 'undefined'`
+* 可用 `parseInt()` 或 `parseFloat()` 宽松解析（内容尾部可以不是数字），和 `Number()` 严格解析（内容必须是纯数字）来转换任意类型到 `number`
+* `String()` 或 `toString()`（`null` 和 `undefined` 没有此方法）转换任意类型到 `string`
+* 通常不必把任意类型转换为 `boolean` 再判断，可直接判断
+* `typeof` 操作符可以判断出(1)中所述类型
+* 判断 `Array` 使用 `Array.isArray(arr)`
+* 判断 `null` 使用 `x === null`
+* 判断 `NaN`使用 `isNaN(x)`
+* 判断某个全局变量是否存在使用 `typeof window.x === 'undefined'`
+* 判断函数内部某个变量是否存在使用 `typeof x === 'undefined'`
 
 **注意**
 
-数字的`toString()`方法，JavaScript会将其第一个`.`判断为小数点，故有以下使用方式：
+数字的 `toString()` 方法，JavaScript 会将其第一个 `.` 判断为小数点，故有以下使用方式：
 
-		20..toString()
+```javascript
+20..toString()
 
-		20 .toString()
+20 .toString()
 
-		(20).toString()
+(20).toString()
 
-		20["toString"]()
+20["toString"]()
+```
 
-###3.2 Date
-在JavaScript中，`Date`对象用来表示日期和时间。
+### 3.2 Date
+在 JavaScript 中，`Date` 对象用来表示日期和时间。
 
 **(1) 基本语法**
 
-		// 获取当前Date对象
-		var now = new Date();
+```javascript
+// 获取当前Date对象
+var now = new Date();
 
-		// 创建指定Date对象 -- 指定参数
-		var now = new Date(2018, 0, 15, 19, 15, 30, 777);
+// 创建指定Date对象 -- 指定参数
+var now = new Date(2018, 0, 15, 19, 15, 30, 777);
 
-		// 创建指定Date对象 -- ISO 8611格式字符串
-		var d = new Date.parse('2018-08-12T21:40:07.777+08:00'); // 其返回一个时间戳
-		var now = new Date(d);	// 根据时间戳创建Date对象
+// 创建指定Date对象 -- ISO 8611格式字符串
+var d = new Date.parse('2018-08-12T21:40:07.777+08:00'); // 其返回一个时间戳
+var now = new Date(d);	// 根据时间戳创建Date对象
 
-		// 获取本地时间
-		now;	// Sun Aug 12 2018 21:27:12 GMT+0800 (中国标准时间)
-		now.toString();	// Sun Aug 12 2018 21:27:12 GMT+0800 (中国标准时间)
+// 获取本地时间
+now;	// Sun Aug 12 2018 21:27:12 GMT+0800 (中国标准时间)
+now.toString();	// Sun Aug 12 2018 21:27:12 GMT+0800 (中国标准时间)
 
-		// 获取UTC时间
-		now.toUTCString();	// Sun, 12 Aug 2018 13:27:12 GMT 
-		
-		// 获取年份
-		now.getFullYear();	// 2018
-		
-		// 获取月份
-		now.getMonth();	// 7，月份范围为0~11，表示一月到十二月
-		
-		// 获取日期
-		now.getDate();	// 12
-		
-		// 获取星期
-		now.getDay();	// 0，0表示星期日，1表示星期一，以此类推
-		
-		// 获取小时
-		now.getHous();	// 21
-		
-		// 获取分钟
-		now.getMinutes();	// 31
-		
-		// 获取秒数
-		now.getSeconds();	// 12
-		
-		// 获取毫秒数
-		now.getMilliSeconds();	// 60
-		
-		// 获取时间戳
-		now.getTime();	// 1534080432060
+// 获取UTC时间
+now.toUTCString();	// Sun, 12 Aug 2018 13:27:12 GMT 
+
+// 获取年份
+now.getFullYear();	// 2018
+
+// 获取月份
+now.getMonth();	// 7，月份范围为0~11，表示一月到十二月
+
+// 获取日期
+now.getDate();	// 12
+
+// 获取星期
+now.getDay();	// 0，0表示星期日，1表示星期一，以此类推
+
+// 获取小时
+now.getHous();	// 21
+
+// 获取分钟
+now.getMinutes();	// 31
+
+// 获取秒数
+now.getSeconds();	// 12
+
+// 获取毫秒数
+now.getMilliSeconds();	// 60
+
+// 获取时间戳
+now.getTime();	// 1534080432060
+```
 
 **注意**
 
 当前时间是浏览器从本机操作系统中获取的时间，不一定准确，可以更改。
 
-使用`Date.parse()`创建的月份使用实际月份01~12。
+使用 `Date.parse()` 创建的月份使用实际月份 01~12。
 
-Date对象显示的时间是本地时间，
+Date 对象显示的时间是本地时间，
 
-JS的时间戳是从格林威治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)起至现在的总**毫秒**数
+JS 的时间戳是从格林威治时间 1970 年 01 月 01 日 00 时 00 分 00 秒 (北京时间 1970 年 01 月 01 日 08 时 00 分 00 秒) 起至现在的总**毫秒**数。
 
-###3.3 RegExp
-在JavaScript中，用正则表达式匹配字符串。正则表达式的语法同Python。
+### 3.3 RegExp
+在 JavaScript 中，用正则表达式匹配字符串。正则表达式的语法同Python。
 
 **(1) 正则表达式的语法**
 
-**A: 匹配单个字符**
-
-* `.`				- 匹配任意字符（除了\n）
-* `[...]`			- 匹配字符集中的任意一个字符
-* `\d` 与 `\D`		- 匹配数字集 与 匹配非数字集
-* `\s` 与 `\S`		- 匹配空白集 与 非空白字符集
-* `\w` 与 `\W`		- 匹配单词字符集[a-zA-Z0-9] 与 非单词字符集
-* 
-注意：转义字符，用`\[`和`\]`等表示
-
-**B: 匹配多个字符**
-
-* `*`			- 匹配前一个字符0次至多次
-* `+`			- 匹配前一个字符1次至多次
-* `?`				- 匹配前一个字符0次或者1次
-* `{m}` 与 `{m,n}`	- 匹配前一个字符m次与m到n次
-* `*?` 与 `+?` 与 `??`	- 匹配模式变为非贪婪（尽可能少匹配字符）
-
-**C 边界匹配**
-
-* `^`				- 匹配字符串开头
-* `$`				- 匹配字符串结尾
-* `\A` 与 `\Z`		- 指定的字符串必须出现在开头或结尾
-
-**D: 分组匹配**
-
-* `A|B`				- 匹配左右任意一个表达式（A或B）
-* `(ab)`			- 括号中表达式作为一个分组
-* `\<number>`		- 引用编号为num的分组匹配到的字符串（自动编号）
-* `(?P<name>)`		- 给分组起个别名
-* `(?P=name)`		- 引用别名为name的分组匹配到的字符
-
-**E: 补充**
-
-* 非贪婪模式：只匹配pattern能匹配到的最少字符，便不再往后匹配
-* 意义：如果一个表达式中有多个未知匹配次数的表达式，应防止进行不必要的尝试匹配
-* 正则语法对其他高级语言通用
+见 Python 的。
 
 **(2) 正则表达式的使用**
 
@@ -1410,23 +1498,27 @@ JS的时间戳是从格林威治时间1970年01月01日00时00分00秒(北京时
 
 方法1：
 
-		var re = /pattern/modifiers;
+```javascript
+var re = /pattern/modifiers;
+```
 
 方法2：
 
-		var re = new RegExp('pattern');
+```javascript
+var re = new RegExp('pattern');
+```
 
 两种方法一样。
 
 **B：匹配**
 
-* `re.test('str')` 匹配字符串。返回`true`或`false`
-* `str.split(RegStr)` - 切割字符串。返回`Array`
-* `re.exec('str')` - 分组字符串，前提是正则表达式中定义了组。返回`Array`，其格式为：[原字符串, 组1, 组2, ...]，失败时返回`null`
+* `re.test('str')` 匹配字符串。返回 `true` 或 `false`
+* `str.split(RegStr)` - 切割字符串。返回 `Array`
+* `re.exec('str')` - 分组字符串，前提是正则表达式中定义了组。返回 `Array`，其格式为：`[原字符串, 组1, 组2, ...]`，失败时返回 `null`
 * `str.search(RegStr)` - 检索字符串。返回子字符串的起始位置。
 * `str.replace(RegStr)` - 替换一个匹配的子字符串。返回新字符串。
-* `/正则表达式/g` - 全局匹配，通过多次执行`exec()`获取所有匹配字符串
-	* 注意 - 不能使用`/^...$/`
+* `/正则表达式/g` - 全局匹配，通过多次执行 `exec()` 获取所有匹配字符串
+	* 注意 - 不能使用 `/^...$/`
 * `/正则表达式/i` - 执行对大小写不敏感的匹配
 * `/正则表达式/m` - 执行多行匹配
 
@@ -1434,33 +1526,37 @@ JS的时间戳是从格林威治时间1970年01月01日00时00分00秒(北京时
 
 示例：
 
-		var patt = /e/; 
-		patt.test("The best things in life are free!"); // true
+```javascript
+var patt = /e/; 
+patt.test("The best things in life are free!"); // true
 
-		/e/.exec("The best things in life are free!"); // e
+/e/.exec("The best things in life are free!"); // e
 
-		var str = "Visit w3cschool"; 
-		var n = str.search(/w3cschool/i); // 6
+var str = "Visit w3cschool"; 
+var n = str.search(/w3cschool/i); // 6
 
-		var str = "Visit Microsoft!"; 
-		var res = str.replace(/microsoft/i, "w3cschool"); // Visit w3cschool!
+var str = "Visit Microsoft!"; 
+var res = str.replace(/microsoft/i, "w3cschool"); // Visit w3cschool!
+```
 
 ### 3.4 JSON
-JSON即 JavaScript Object Notation，它是一种轻量级的数据交换格式，几乎所有语言都能解析JSON。
+JSON 即 JavaScript Object Notation，它是一种轻量级的数据交换格式，几乎所有语言都能解析 JSON。
 
-JSON是JavaScript基本数据类型的集合，字符集必须是UTF-8。
+JSON 是 JavaScript 基本数据类型的集合，字符集必须是 UTF-8。
 
-JSON的字符串和Oject键必须用双引号`""`。
+JSON 的字符串和 Object 键必须用双引号 `""`。
 
 **(1) JSON语法**
 
 举个例子来说：
 
-		{"employees":[ 
-		    {"firstName":"John", "lastName":"Doe"}, 
-		    {"firstName":"Anna", "lastName":"Smith"}, 
-		    {"firstName":"Peter", "lastName":"Jones"} 
-		]}
+```javascript
+{"employees":[ 
+    {"firstName":"John", "lastName":"Doe"}, 
+    {"firstName":"Anna", "lastName":"Smith"}, 
+    {"firstName":"Peter", "lastName":"Jones"} 
+]}
+```
 
 * `{}` - 保存对象
 * `键:值,` - 数据项
@@ -1468,44 +1564,50 @@ JSON的字符串和Oject键必须用双引号`""`。
 
 **(2) 序列化**
 
-		// 默认序列化
-		JSON.stringify(对象名, 筛选数组|处理函数, 输出缩进用字符);
+```javascript
+// 默认序列化
+JSON.stringify(对象名, 筛选数组|处理函数, 输出缩进用字符);
 
-		// 自定义序列化
-		var 对象名 {
-			...
-			toJSON: function() {
-				return {
-					键1: 值1;
-					...
-				};
-			}
-		};
+// 自定义序列化
+var 对象名 {
+    ...
+    toJSON: function() {
+        return {
+            键1: 值1;
+            ...
+        };
+    }
+};
+```
 
 **注释**
 
-处理函数接收`(key, value)`两个参数值，返回属性值。
+处理函数接收 `(key, value)` 两个参数值，返回属性值。
 
 
 **(3) 反序列化**
 
-		JSON.parse(json, 处理函数);
+```javascript
+JSON.parse(json, 处理函数);
+```
 
 **注释**
 
-处理函数接收`(key, value)`两个参数值，返回属性值。处理函数可以为空，表示不“过滤”。
+处理函数接收 `(key, value)` 两个参数值，返回属性值。处理函数可以为空，表示不“过滤”。
 
-##4 面向对象编程
-###4.1 创建对象
+## 4 面向对象编程
+### 4.1 创建对象
 **方法一**
 
-		var arr = [];
-		// 原型链： arr ----> Array.prototype ----> Object.prototype ----> null
+```javascript
+var arr = [];
+// 原型链： arr ----> Array.prototype ----> Object.prototype ----> null
 
-		var func = function() {};
-		// 原型链： func ----> Function.prototype ----> Object.prototype ----> null
+var func = function() {};
+// 原型链： func ----> Function.prototype ----> Object.prototype ----> null
 
-		var obj = {key: value};
+var obj = {key: value};
+```
 
 **提示**
 
@@ -1513,20 +1615,22 @@ JSON的字符串和Oject键必须用双引号`""`。
 		
 **方法二**
 
-		function OBJ(proper或者{...}) {
-			this.proper = proper;
-			this.func = function() {
-				语句;
-			}
-		}
-		var obj = new OBJ('value');
-		// 原型链： obj ----> OBJ.prototype ----> Object.prototype ----> null
+```javascript
+function OBJ(proper或者{...}) {
+    this.proper = proper;
+    this.func = function() {
+        语句;
+    }
+}
+var obj = new OBJ('value');
+// 原型链： obj ----> OBJ.prototype ----> Object.prototype ----> null
+```
 
 **注释**
 
-在无返回（返回`undefined`）函数使用了`new`后，该函数就变成了构造函数，`this`指向新创建的对象，并默认返回`this`。
+在无返回（返回 `undefined`）函数使用了 `new` 后，该函数就变成了构造函数，`this` 指向新创建的对象，并默认返回 `this`。
 
-`new function`创建的对象获得了一个`constructor`属性，它指向原始函数本身。
+`new function` 创建的对象获得了一个 `constructor` 属性，它指向原始函数本身。
 
 整个原型链和构造函数的关系为：
 
@@ -1537,58 +1641,66 @@ JSON的字符串和Oject键必须用双引号`""`。
 
 各个对象的属性、**方法**是不共享的。若要实现方法的共享，就要将方法移动到对象的共享原型上：
 
-		function OBJ(proper) {
-			this.proper = proper;
-		}
-		OBJ.prototype.func = function() {
-			语句;
-		}
+```javascript
+function OBJ(proper) {
+    this.proper = proper;
+}
+OBJ.prototype.func = function() {
+    语句;
+}
+```
 
 **提示**
 
 一个常用的编程模式是在函数内封装所有的`new`操作：
 
-		...(接上)
-		function createOBJ(props) {
-			return new OBJ(props || {});
-		}
+```javascript
+...(接上)
+function createOBJ(props) {
+    return new OBJ(props || {});
+}
+```
 
-其中的参数是一个Object，无顺序要求，可以直接接受JSON数据。
+其中的参数是一个 Object，无顺序要求，可以直接接受 JSON 数据。
 
-###4.2 原型继承
+### 4.2 原型继承
 **语法**
 
-		// PrimaryOBJ构造函数
-		function PrimaryOBJ(props) {
-			Student.call(this, props):
-			this.grade = props.grade || 1;
-		}
+```javascript
+// PrimaryOBJ构造函数
+function PrimaryOBJ(props) {
+    Student.call(this, props):
+    this.grade = props.grade || 1;
+}
 
-		// 空函数F
-		function F() {
-		}
+// 空函数F
+function F() {
+}
 
-		// 把F的原型指向Student.prototype
-		F.prototype = Student.prototype;
+// 把F的原型指向Student.prototype
+F.prototype = Student.prototype;
 
-		// 把PrimaryOBJ原型指向一个新的F对象，新F对象正好指向Student.prototype
-		PrimaryOBJ.prototype = new F();
+// 把PrimaryOBJ原型指向一个新的F对象，新F对象正好指向Student.prototype
+PrimaryOBJ.prototype = new F();
 
-		// 把PrimaryOBJ原型的构造函数修复为PrimaryOBJ
-		PrimaryOBJ.prototype.constructor = PrimaryOBJ;
+// 把PrimaryOBJ原型的构造函数修复为PrimaryOBJ
+PrimaryOBJ.prototype.constructor = PrimaryOBJ;
 
-		// 继续在PrimaryStudent原型（就是new F()对象）上定义方法
-		PrimaryStudent.prototype.func2 = function() {
-			语句;
-		}
+// 继续在PrimaryStudent原型（就是new F()对象）上定义方法
+PrimaryStudent.prototype.func2 = function() {
+    语句;
+}
+```
 
 将上面的后几步过程封装为一个函数：
 
-		function inherits(Child, Parent) {
-			var F = function() {};
-			F.prototype = Parent.prototype;
-			Child.prototype = new F();
-			Child.prototype.constructor = Child();
+```javascript
+function inherits(Child, Parent) {
+    var F = function() {};
+    F.prototype = Parent.prototype;
+    Child.prototype = new F();
+    Child.prototype.constructor = Child();
+```
 
 整个原型链和构造函数的关系为：
 
@@ -1598,41 +1710,47 @@ JSON的字符串和Oject键必须用双引号`""`。
 
 使用语句
 
-		PrimaryStudent.prototype = new Student();
+```javascript
+PrimaryStudent.prototype = new Student();
+```
 
 也可以实现原型继承，但缺点是不仅继承了父原型的方法，还继承了父原型的属性。
 
-###4.3 class继承
+### 4.3 class继承
 **(1) 创建**
 
-		class OBJ {
-			constructor(prop) {
-				this.prop = prop;
-			}
+```javascript
+class OBJ {
+    constructor(prop) {
+        this.prop = prop;
+    }
 
-			func() {
-				语句;
-			}
-		}
+    func() {
+        语句;
+    }
+}
 
-		var obj = new OBJ();
+var obj = new OBJ();
+```
 
 **(2) 继承**
 
-		class PrimaryOBJ extends OBJ {
-			constructor(prop1, prop2) {
-				super(prop1);
-				this.prop2 = prop2;
-			}
+```javascript
+class PrimaryOBJ extends OBJ {
+    constructor(prop1, prop2) {
+        super(prop1);
+        this.prop2 = prop2;
+    }
 
-			func2() {
-				语句;
-			}
-		}
+    func2() {
+        语句;
+    }
+}
+```
 
-##5 浏览器
-###5.1 浏览器对象与 HTML DOM
-####5.1.1 浏览器对象
+## 5 浏览器
+### 5.1 浏览器对象与 HTML DOM
+#### 5.1.1 浏览器对象
 **(1) window**
 
 `window`对象不但充当全局作用域，而且表示浏览器窗口。
@@ -1646,27 +1764,29 @@ JSON的字符串和Oject键必须用双引号`""`。
 
 **(2) navigator**
 
-`navigator`对象表示浏览器的信息。
+`navigator` 对象表示浏览器的信息。
 
-`navigator`有以下常用属性：
+`navigator` 有以下常用属性：
 
 * `appName` - 浏览器名称
 * `appVersion` - 浏览器版本
 * `language` - 浏览器语言
 * `plaform` - 操作系统类型
-* `userAgent` - 浏览器设定的`User-Agent`字符串
+* `userAgent` - 浏览器设定的 `User-Agent` 字符串
 
 **注意**
 
-`navigator`的信息很容易被篡改。例如判断浏览器版本，一般不用以上属性，而是充分利用JavaScript对不存在属性返回`undefined`的特性，直接用短路运算符计算：
+`navigator` 的信息很容易被篡改。例如判断浏览器版本，一般不用以上属性，而是充分利用JavaScript对不存在属性返回 `undefined` 的特性，直接用短路运算符计算：
 
-		var width = window.innerWidth || document.body.clientWidth
+```javascript
+var width = window.innerWidth || document.body.clientWidth
+```
 
 **(3) screen**
 
-`screen`对象表示屏幕的信息。
+`screen `对象表示屏幕的信息。
 
-`screen`有以下常用属性：
+`screen` 有以下常用属性：
 
 * `width` - 屏幕宽度，单位：像素
 * `height` - 屏幕高度，单位：像素
@@ -1674,16 +1794,16 @@ JSON的字符串和Oject键必须用双引号`""`。
 
 **(4) location**
 
-`location`对象表示当前页面URL信息。
+`location` 对象表示当前页面 URL 信息。
 
-`location`有以下常用属性：
+`location` 有以下常用属性：
 
 * `href` - URL
 * `protocal` - 协议
 * `host` - 网址
 * `port` - 端口
 * `pathname` - 资源路径
-* `search` - 请求参数（?开始的URL查询部分）
+* `search` - 请求参数（? 开始的 URL 查询部分）
 * `hash` - 哈希值
 
 `location`有以下常用方法：
@@ -1697,32 +1817,32 @@ JSON的字符串和Oject键必须用双引号`""`。
 
 `document`有以下常用属性：
 
-* `title` - `<title>`标签的内容，可修改
-* `cookie` - 当前页面的Cookie
+* `title` - `<title>` 标签的内容，可修改
+* `cookie` - 当前页面的 Cookie
 
-`document`有以下常用方法：
+`document` 有以下常用方法：
 
-* `getElementById(元素ID)` - 根据ID获取指定DOM节点
-* `getElementByTagName(元素名)` - 根据获取标签名称获取指定DOM节点
+* `getElementById(元素ID)` - 根据 ID 获取指定 DOM 节点
+* `getElementByTagName(元素名)` - 根据获取标签名称获取指定 DOM 节点
 
 **注释**
 
-Cookie是由服务器发送到key-value标识符，例如`user=ABC123XYZ(加密的字符串)...`。
+Cookie 是由服务器发送到 key-value 标识符，例如 `user=ABC123XYZ(加密的字符串)...`。
 
-由于允许在HTML中嵌入JavaScript代码，所以为了确保安全，服务器端在设置Cookie时，应该始终坚持使用httpOnly选项。
+由于允许在HTML中嵌入  JavaScript 代码，所以为了确保安全，服务器端在设置 Cookie 时，应该始终坚持使用 httpOnly 选项。
 
 **(6) history**
 
-`history`对象保存了浏览器的历史记录。
+`history` 对象保存了浏览器的历史记录。
 
-`history`有以下常用方法：
+`history` 有以下常用方法：
 
 * `back()` - 浏览器后退页面
 * `forward()` - 浏览器前进页面
 
 不要用这个对象了。
 
-####5.1.2 HTML DOM
+#### 5.1.2 HTML DOM
 当网页被加载时，浏览器会创建页面的文档对象模型（<b>D</b>ocument <b>O</b>bject <b>M</b>odel，简称 DOM）。
 
 HTML DOM 定义了用于 HTML 的一系列标准的对象，以及访问和处理 HTML 文档的标准方法。通过 DOM，你可以访问所有的 HTML 元素，连同它们所包含的文本和属性。
@@ -1740,7 +1860,7 @@ HTML DOM 模型被构造为**对象**的树：
 * JavaScript 能够改变页面中的所有 CSS 样式
 * JavaScript 能够对页面中的所有事件做出反应
 
-###5.2 DOM操作
+### 5.2 DOM操作
 ####(1) 获取DOM对象
 
 方法：
@@ -1791,24 +1911,24 @@ HTML DOM 模型被构造为**对象**的树：
 	<!DOCTYPE html>
 	<html>
 	<body>
-
+	
 	<!-- 改变 HTML 输出流 -->
 	<script>
 	document.write(Date());
 	</script>
-
+	
 	<!-- 改变 HTML 内容 -->
 	<p id="p1">Hello World!</p>
 	<script>
 	document.getElementById("p1").innerHTML="New text!";
 	</script>
-
+	
 	<!-- 改变 HTML 属性 -->
 	<img id="image" src="smiley.gif">
 	<script>
 	document.getElementById("image").src="landscape.jpg";
 	</script>
-
+	
 	<!-- 改变 HTML 样式 -->
 	<p id="p2">Hello World!</p> 
 	<script> 
@@ -1817,7 +1937,7 @@ HTML DOM 模型被构造为**对象**的树：
 	
 	</body>
 	</html>
-	
+
 ####(3) 插入DOM对象
 
 * `createElement('元素名')` - 创建新节点
@@ -1872,10 +1992,10 @@ HTML DOM 模型被构造为**对象**的树：
 	<!DOCTYPE html> 
 	<html> 
 	<body>
-
+	
 	<!-- 赋值语句 -->
 	<h1 onclick="this.innerHTML='Ooops!'">点击文本!</h1> 
-
+	
 	<!-- 函数调用 -->
 	<script> 
 	function changetext(id) 
@@ -1884,10 +2004,10 @@ HTML DOM 模型被构造为**对象**的树：
 	} 
 	</script> 
 	<h1 onclick="changetext(this)">Click on this text!</h1>
-
+	
 	<!-- JavaScript 注册 HTML DOM 事件 -->
 	document.getElementById("myBtn").onclick=function(){displayDate()}; 
-
+	
 	</body> 
 	</html>
 
@@ -1898,13 +2018,13 @@ HTML DOM 模型被构造为**对象**的树：
 	    document.getElementById("demo").innerHTML = sometext; 
 	});
 
-###5.3 表单操作
+### 5.3 表单操作
 **(1) 获取值**
 
 对于`text`，`password`，`hidden`，`select`类型可以之间通过节点的`value`属性获取输入值：
 
 		// <input type="text" id="email">
-
+	
 		var input = document.getElementById('email');
 		input.value;
 
@@ -1912,7 +2032,7 @@ HTML DOM 模型被构造为**对象**的树：
 
 		// <label><input type="radio" name="weekday" id="monday" value="1"> Monday</label>
 		// <label><input type="radioa" name="weekday" id="tuesday" value="2"> Tuesday</label>
-
+	
 		var mon = document.getElementById('monday');
 		var tue = document.getElementById('tuesday');
 		mon.checked; // true/false
@@ -1932,7 +2052,7 @@ HTML DOM 模型被构造为**对象**的树：
 			<input type="text" name="test>
 			<button type="button" onclick="doSubmitForm()">Submit</button>
 		</form>
-
+	
 		<script>
 		function doSubmitForm() {
 			var form = document.getElementById('test-form');
@@ -1988,7 +2108,7 @@ HTML DOM 模型被构造为**对象**的树：
 * `encodeURIComponent(str)` - 将字符串编码为URI组件
 	* 区别：URI是完整的URL组成，而URI组件是其中一个，组件编码会对所有非字符进行编码
 
-###5.4 文件操作
+### 5.4 文件操作
 **(1) HTML控件**
 
 在HTML表单中，可以上传文件的唯一控件就是`<input type="file">`。
@@ -2045,13 +2165,13 @@ DataURL形式指URL同时还包含了文件数据，文件数据为字符串`bas
 
 `reader.onload = function(e) {...}`体现了JavaScript的异步机制，其中函数是异步执行后用于获取响应的回调函数。
 
-###5.5 AJAX
+### 5.5 AJAX
 AJAX指 Asynchronous JavaScript and XML，用JavaScript执行异步网络请求。
 
 **(1) 语法典例**
 
 		'user strict';
-
+	
 		// 新建XMLHttpRequest对象（低版本用AcitveXObject对象）
 		var request;
 		if(window.XMLHttpRequset) {
@@ -2059,18 +2179,18 @@ AJAX指 Asynchronous JavaScript and XML，用JavaScript执行异步网络请求�
 		} else {
 			request = new ActiveXObject('Microsoft.XMLHTTP');
 		}
-
+	
 		// 请求成功后回调函数
 		function success(text) {
 			var textarea = document.getElementById('test-response-text');
 			textarea.value = text;
 		}
-
+	
 		// 请求失败的回调函数
 		function fail(code) {
 			var textarea = document.getElementById('test-response-test');
 			textarea.value = 'Error code: ' + code;
-
+	
 		// 响应回调函数
 		request.onreadystatechange = function() { // 状态发生变化时，函数被回调
 			if(request.readyState === 4) { // 响应完成
@@ -2084,11 +2204,11 @@ AJAX指 Asynchronous JavaScript and XML，用JavaScript执行异步网络请求�
 				// HTTP请求还在继续
 			}
 		}
-
+	
 		// 发送请求
 		request.open('GET', '/api/categories');
 		request.send();
-
+	
 		alert('请求已发送，请等待响应);
 
 以上代码还可以再改进，见下文**5.6 Promise**
@@ -2129,7 +2249,7 @@ JavaScript在发送请求时，URL域名必须和当前页面完全一致，即�
 				head.removeChild(head.lastChild);
 			head.appendChild(js); // 添加节点
 		}
-
+	
 		<!-- HTML内容 绑定触发函数 -->
 		<p id="showarea">placeholder</p>
 		<button type="button" onclick="getFunction()">刷新</button>
@@ -2138,7 +2258,7 @@ JavaScript在发送请求时，URL域名必须和当前页面完全一致，即�
 
 详细内容参考 [https://www.ibm.com/developerworks/cn/xml/wa-ajaxintro2/](https://www.ibm.com/developerworks/cn/xml/wa-ajaxintro2/ "AJAX异步请求")
 
-###5.6 Promise
+### 5.6 Promise
 Promise对象，一种承诺将来会执行的对象。
 
 **语法**
@@ -2200,14 +2320,14 @@ Promise对象，一种承诺将来会执行的对象。
 
 ![图片被吞掉了！](Promise.png)
 
-###5.7 Canvas
+### 5.7 Canvas
 Canvas是HTML5新增的组件，就像一块幕布，可以用JavaScript在上面绘制各种图标、动画等。
 
 **语法**
 
 		// 定义与获取面板
 		<canvas id="test-canvas" width=300" height="200"></canvas>
-
+	
 		var canvas = document.getElementById('test-canvas');
 		var ctx = canvas.getContext('2d'); // 获取2D面板（CanvasRenderingContext2D对象）
 		var gl = canvas.getContext('webgl'); // 获取3D面板
@@ -2226,13 +2346,13 @@ CanvasRenderingContext2D有若干方法来绘制图像，详细参考**“HTML�
 		path.arc(60, 65, 5, 0, Math.PI*2, true);
 		path.moveTo(95, 65);
 		path.arc(90, 65, 5, 0, Math.PI*2, true);
-		ctx.strokeStyle = '#0000ff';
+		ctx.strokeStyle = '# 0000ff';
 		ctx.stroke(path);
 
 此处练习先放下。
 
-##6 错误处理
-###6.1 捕获与抛出
+## 6 错误处理
+### 6.1 捕获与抛出
 **捕获语法**
 
 		try {
@@ -2258,13 +2378,13 @@ JavaScript有一个标准的对象`Error`表示错误，还有派生的`TypeErro
 
 若果错误没有被捕获，则错误会被抛到外层调用函数，直到被JavaScript引擎捕获，代码终止运行。
 
-###6.2 异步错误处理
+### 6.2 异步错误处理
 JavaScript引擎是一个事件驱动的执行引擎，代码总是以单线程执行，而回调函数需要等到下一个满足条件的事件出现后才会被执行。
 
 对于回调函数、事件处理函数等异步代码，无法在调用时捕获，因为捕获当时，回调函数并未执行。只能在函数内捕获。
 
-##7 jQuery
-###7.1 基本概念
+## 7 jQuery
+### 7.1 基本概念
 jQuery是一个JavaScript库，封装了DOM操作，统一了不同浏览器之间的差异。
 
 **(1) 使用jQuery**
@@ -2283,7 +2403,7 @@ jQuery是一个JavaScript库，封装了DOM操作，统一了不同浏览器之�
 * `$.each(obj, function(index/key, element/value){...})` - jQuery的遍历集合对象方法
 * `$.param(obj/arr, trad)` - jQuery创建数组或对象的序列化形式（可用于query）
 
-###7.2 选择器
+### 7.2 选择器
 **(1) 语法**
 
 		var elements = $('CSS选择器');
@@ -2340,7 +2460,7 @@ jQuery是一个JavaScript库，封装了DOM操作，统一了不同浏览器之�
 
 筛选表单
 
-		<form id="test-form" action="#0" onsubmit="return false;">
+		<form id="test-form" action="# 0" onsubmit="return false;">
 		    <p><label>Name: <input name="name"></label></p>
 		    <p><label>Email: <input name="email"></label></p>
 		    <p><label>Password: <input name="password" type="password"></label></p>
@@ -2353,7 +2473,7 @@ jQuery是一个JavaScript库，封装了DOM操作，统一了不同浏览器之�
 		    </select></label></p>	
 		    <p><button type="submit">Submit</button></p>
 		</form>
-
+	
 		var arr = $('#test-form :input').filter("[type!='submit']").filter((index, element) => {	// 在function中，this绑定DOM；在匿名函数中，this绑定window
 		    return element.type !== "radio" || element.checked;
 		}).map(function() {
@@ -2372,7 +2492,7 @@ jQuery是一个JavaScript库，封装了DOM操作，统一了不同浏览器之�
 		});
 		json = JSON.stringify(obj);
 
-###7.3 DOM内容操作
+### 7.3 DOM内容操作
 jQuery节点对象有以下DOM操作方法：
 
 **(1) HTML操作**
@@ -2422,7 +2542,7 @@ jQuery对象包含0~n个DOM对象，上述方法是作用于一组DOM节点上�
 
 jQuery对象的所有方法都返回一个jQuery对象，方便链式调用。
 
-###7.4 DOM结构操作
+### 7.4 DOM结构操作
 **(1) 添加节点**
 
 * `html()` - **详见“6.3 DOM内容操作”**
@@ -2442,20 +2562,20 @@ jQuery对象的所有方法都返回一个jQuery对象，方便链式调用。
 		        <li><span>Swift</span></li>
 		    </ul>
 		</div>
-
+	
 		var ul = $('#test');
-
+	
 		// 字符串方式
 		ul.append('<li><span>Haskell</span></li>');
-
+	
 		// DOM对象方式
 		var ps = document.createElement('li');
 		ps.innerHTML = '<span>Pascal</span>';
 		ul.append(ps);
-
+	
 		// jQuery对象方式
 		ul.append($('#scheme'));
-
+	
 		// 函数对象方式
 		ul.append(function(index,html) {
 			// 要求返回str/jQuery对象/函数对象
@@ -2466,7 +2586,7 @@ jQuery对象的所有方法都返回一个jQuery对象，方便链式调用。
 
 * `reomve()` - 删除DOM节点
 
-###7.5 事件
+### 7.5 事件
 JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页面上所有的代码被执行，就只能依赖触发事件来执行JavaScript代码。
 
 不同的浏览器绑定事件的代码不太一样，使用jQuery可以屏蔽浏览器差异。
@@ -2592,7 +2712,7 @@ JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页�
 		    }
 		});
 
-###7.6 动画
+### 7.6 动画
 “**6.3 DOM内容操作**”中的`show()`、`hide()`添加时间概念即可生成动画。
 
 **语法**
@@ -2628,7 +2748,7 @@ JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页�
 
 动画无效果时，原因是元素不支持某些CSS样式。
 
-###7.7 AJAX
+### 7.7 AJAX
 使用jQuery来处理AJAX不用考虑浏览器问题，也能简化代码。
 
 **语法**
@@ -2642,7 +2762,7 @@ JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页�
 			}).always(function() {
 				ajaxLog('请求完成：无论成功或失败都会调用');
 			});
-
+	
 		// 快速获取JSON的GET方法
 		$.getJSON(url, data).done().fail().always();
 
@@ -2679,7 +2799,7 @@ get方法的`settings`将会被解析为query：
 			name: 'Bob Lee',
 			check: 1
 		});
-
+	
 		/path/to/resource?name=Bob%20Lee&check=1
 
 post方法的`setting`将会被序列化为`dataType`指定的格式，作为body被发送。
@@ -2688,7 +2808,7 @@ post方法的`setting`将会被序列化为`dataType`指定的格式，作为bod
 
 jQuery的AJAX完全封装的是JavaScript的AJAX操作，所以同样受制于同源策略。
 
-###7.8 扩展
+### 7.8 扩展
 jQuery拓展类似于自定义函数，也称为jQuery插件。
 
 **语法**
@@ -2698,14 +2818,14 @@ jQuery拓展类似于自定义函数，也称为jQuery插件。
 			CSS属性名, CSS属性值,
 			CSS属性名, CSS属性值
 		}
-
+	
 		// 定义插件
 		$.fn.myPlugin = function(options) {
 			var opts = $.extend({}, $.fn.myPlugin.defauts, options); // 合并默认值和用户值
 			this.css(CSS属性名, opts.CSS属性值).css(CSS属性名, opts.CSS属性值);
 			return this; // 用于支持链式调用
 		}
-
+	
 		// 定义特定插件
 		$.fn.external = function() {
 			return this.filter('CSS选择器').each(function() {
@@ -2720,8 +2840,8 @@ jQuery拓展类似于自定义函数，也称为jQuery插件。
 * `$.extend(target, obj1, obj2, ...)` - 把多个object对象属性合并到targe对象中，后面的优先级高，详见“**8.4 Object**”
 * 插件函数内的`this`在调用时被绑定为jQuery对象，故可调用jQuery对象的方法
 
-##8 underscore
-###8.1 基本概念
+## 8 underscore
+### 8.1 基本概念
 underscore是一个JavaScript库，封装了函数式编程操作，统一了不同浏览器之间的差异。
 
 **(1) 使用underscore**
@@ -2734,7 +2854,7 @@ underscore是一个JavaScript库，封装了函数式编程操作，统一了不
 		// 还可以作用于对象：
 		_.map({a:1, b:2, c:3}, (v, k) => k + '=' + v); // ['a=1', 'b=2', 'c=3']
 
-###8.2 Collections
+### 8.2 Collections
 underscore为集合类对象（Array，Object，暂不支持Map和Set）提供了一致的接口。
 
 下面是`_.`的集合类方法：
@@ -2795,7 +2915,7 @@ underscore为集合类对象（Array，Object，暂不支持Map和Set）提供�
 
 更多内容参考[underscore的文档](https://underscorejs.org/#)。
 
-###8.3 Array
+### 8.3 Array
 underscore为Array提供了许多工具类方法。
 
 **first / last**
@@ -2822,7 +2942,7 @@ underscore为Array提供了许多工具类方法。
 
 更多内容参考[underscore的文档](https://underscorejs.org/#)。
 
-###8.4 Object
+### 8.4 Object
 underscore为Object提供了许多工具类方法。
 
 **keys / allKeys**
@@ -2856,7 +2976,7 @@ underscore为Object提供了许多工具类方法。
 
 更多内容参考[underscore的文档](https://underscorejs.org/#)。
 
-###8.5 Functions
+### 8.5 Functions
 underscore提供了许多函数工具，类似于Python的functools。
 
 **bind**
