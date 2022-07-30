@@ -120,7 +120,7 @@ Infinity;	// 无穷大
 ```
 
 * 可以进行四则运算 `+`，`-`，`*`，`/`，以及求余 `%`
-* 可以通过 `=`，`+=`，`-=`，`*=`，`/=`，`%=`进行赋值运输
+* 可以通过 `=`，`+=`，`-=`，`*=`，`/=`，`%=` 进行赋值运输
 * 可进行自加自减运算 `++`，`--`
 
 **B 字符串类型**
@@ -185,7 +185,7 @@ new Array(1, 2, 3);
 
 **F 对象类型**
 
-JavaScript对象是一组由键-值组成的无序集合。
+JavaScript 对象是一组由键-值组成的无序集合。
 
 * 键，又称为属性，都是字符串类型。
 
@@ -201,8 +201,8 @@ JavaScript对象是一组由键-值组成的无序集合。
 
 初始化：
 
-1. 命名：使用字母、数字、下划线和`$`的组合，且不能以数字开头。
-2. 声明：使用语句`var`声明一次：`var 变量名`。(此时变量的值将是 `undefined`)
+1. 命名：使用字母、数字、下划线和 `$` 的组合，且不能以数字开头。
+2. 声明：使用语句 `var` 声明一次：`var 变量名`。(此时变量的值将是 `undefined`)
 3. 赋值：同一变量可以反复用不同的数据类型赋值：`变量名 = 变量值`。
 
 提示：
@@ -281,9 +281,9 @@ function isDate(myDate) {
 
 * `String()` - 全局方法
 * `toString()` - Number 方法
-* `toExponential()` - 把对象的值转换为指数计数法。
-* `toFixed()` - 把数字转换为字符串，结果的小数点后有指定位数的数字。
-* `toPrecision()` - 把数字格式化为指定的长度。
+* `toExponential()` - 把对象的值转换为指数计数法
+* `toFixed()` - 把数字转换为字符串，结果的小数点后有指定位数的数字
+* `toPrecision()` - 把数字格式化为指定的长度
 
 	```javascript
 	String(x)         // 将变量 x 转换为字符串并返回
@@ -331,9 +331,9 @@ function isDate(myDate) {
 字符串 -> 数字：
 
 * `Number()` - 全局方法
-* `parseFloat()` - 	解析一个字符串，并返回一个浮点数。
-* `parseInt()` - 解析一个字符串，并返回一个整数。
-* `+` - 用于将变量转换为数字，如果变量不能转换，它仍然会是一个数字，但值为 NaN (不是一个数字):
+* `parseFloat()` - 解析一个字符串，并返回一个浮点数
+* `parseInt()` - 解析一个字符串，并返回一个整数
+* `+` - 用于将变量转换为数字，如果变量不能转换，它仍然会是一个数字，但值为 NaN (不是一个数字)
 
 	```javascript
 	Number("3.14")    // 返回 3.14
@@ -401,12 +401,12 @@ function isDate(myDate) {
 * `\n` - 换行符
 * `\t` - 制表符
 * `\\` - 反斜杠
-* `\x##` - ASCII字符
-* `\u####` - Unicode字符
+* `\x##` - ASCII 字符
+* `\u####` - Unicode 字符
 
 **B 多行字符串**
 
-使用反引号`来表示多行字符串：
+使用反引号 ` 来表示多行字符串：
 
 ```javascript
 `这是一个
@@ -416,9 +416,9 @@ function isDate(myDate) {
 
 **C 模板字符串**
 
-可以使用**加号`+`**来连接字符串。
+可以使用**加号 `+`** 来连接字符串。
 
-在**模板字符串中**使用`${变量名}`来将引入变量。免去了大量加号的麻烦。
+在**模板字符串中**使用 `${变量名}` 来将引入变量。免去了大量加号的麻烦。
 
 案例演示：
 
@@ -458,10 +458,10 @@ var message = `Hello, ${name}!`;
 	* 注意 - 子列不包括 `end`
 * `push(元素1, 元素2, ...)` - 向数组末尾添加若干个元素
 * `pop()` - 删除数组末尾的一个元素
-	* 注意 - 空数组使用时返回`undefined`
+	* 注意 - 空数组使用时返回 `undefined`
 * `unshift(元素1, 元素2, ...)` - 向数组头部添加若干个元素
 * `shift()` - 删除数组头部的一个元素
-	* 注意 - 空数组使用时返回`undefined`
+	* 注意 - 空数组使用时返回 `undefined`
 * `sort()` - 对当前数组进行排序
 	* 注释 - 自定义顺序会在后面提到
 	* 注意- 会修改当前数组
@@ -485,7 +485,7 @@ var message = `Hello, ${name}!`;
 * `obj.hasOwnProperty('属性名')` - 检测对象自身是否拥有指定属性
 
 ### 1.6 函数初步
-在JavaScript中，函数即对象，可以随意地被程序操控。
+在 JavaScript 中，函数即对象，可以随意地被程序操控。
 
 **语法：**
 
@@ -545,7 +545,7 @@ switch(n)
 
 **注意**
 
-若判断值不是布尔类型，JavaScript会把`null`、`undefined`、`0`、`NaN`和`''`视为`false`，其余为`true`。
+若判断值不是布尔类型，JavaScript 会把 `null`、`undefined`、`0`、`NaN` 和 `''` 视为 `false`，其余为 `true`。
 
 #### 1.7.2 循环语句
 **语法**
@@ -574,16 +574,16 @@ do {
 
 **注释**
 
-* 第一种`for ()`循环用于<strong>索引遍历</strong>数组；第二种`for...in`循环用于<strong>属性遍历</strong>对象或数组；第三种`for...of`循环用于<strong>对象遍历</strong>数组，只循环`iterable`类型本身的元素。
-* 使用`break`，`continue`来控制循环的进行。
+* 第一种 `for ()` 循环用于<strong>索引遍历</strong>数组；第二种 `for...in` 循环用于<strong>属性遍历</strong>对象或数组；第三种 `for...of` 循环用于<strong>对象遍历</strong>数组，只循环 `iterable` 类型本身的元素。
+* 使用 `break`，`continue` 来控制循环的进行。
 
 **注意**
 
-* `for...in`循环数组得到是**索引的`String`**，不是`Number`
+* `for...in` 循环数组得到是**索引的`String`**，不是 `Number`
 
 **技巧**
 
-对于`iterable`类型（`Array`，`Map`，`Set`等），还可以通过内置的`forEach()`方法遍历：
+对于 `iterable` 类型（`Array`，`Map`，`Set`等），还可以通过内置的 `forEach()` 方法遍历：
 
 ```javascript
 iter.forEach(function (element, index, array) {
@@ -1861,7 +1861,7 @@ HTML DOM 模型被构造为**对象**的树：
 * JavaScript 能够对页面中的所有事件做出反应
 
 ### 5.2 DOM操作
-####(1) 获取DOM对象
+#### (1) 获取DOM对象
 
 方法：
 
@@ -1885,11 +1885,13 @@ HTML DOM 模型被构造为**对象**的树：
 
 示例：
 
-	var x=document.getElementById("main");
-	var y=x.getElementsByTagName("p");
-	var x=document.getElementsByClassName("intro");
+```javascript
+var x=document.getElementById("main");
+var y=x.getElementsByTagName("p");
+var x=document.getElementsByClassName("intro");
+```
 
-####(2) 更新DOM对象
+#### (2) 更新DOM对象
 
 方法：
 
@@ -1898,84 +1900,92 @@ HTML DOM 模型被构造为**对象**的树：
 
 属性：
 
-* `innerHTML` - 节点对象属性，表示内部HTML内容，不会自动对字符串进行HTML编码
-	* 注意 - 对字符进行编码来避免XSS攻击
-* `innerText` - 节点对象属性，表示内部HTML内容，不返回隐藏元素的文本，自动对字符串进行HTML编码
-* `textContent` - 节点对象属性，表示内部HTML内容，返回所有文本，自动对字符串进行HTML编码
+* `innerHTML` - 节点对象属性，表示内部 HTML 内容，不会自动对字符串进行 HTML 编码
+	* 注意 - 对字符进行编码来避免 XSS 攻击
+* `innerText` - 节点对象属性，表示内部 HTML 内容，不返回隐藏元素的文本，自动对字符串进行 HTML 编码
+* `textContent` - 节点对象属性，表示内部 HTML 内容，返回所有文本，自动对字符串进行 HTML 编码
 * `attribute_name` - 节点对象拥有的 HTML 属性名，能直接使用并赋值
-* `style.property_name` - 节点对象属性，后面跟所拥有的CSS属性
-	* 注意 - 因为CSS允许`font-size`之类的名称，在JavaScript中要改为驼峰命名`fontSize`
+* `style.property_name` - 节点对象属性，后面跟所拥有的 CSS 属性
+	* 注意 - 因为 CSS 允许 `font-size` 之类的名称，在 JavaScript 中要改为驼峰命名 `fontSize`
 
 示例：
 
-	<!DOCTYPE html>
-	<html>
-	<body>
-	
-	<!-- 改变 HTML 输出流 -->
-	<script>
-	document.write(Date());
-	</script>
-	
-	<!-- 改变 HTML 内容 -->
-	<p id="p1">Hello World!</p>
-	<script>
-	document.getElementById("p1").innerHTML="New text!";
-	</script>
-	
-	<!-- 改变 HTML 属性 -->
-	<img id="image" src="smiley.gif">
-	<script>
-	document.getElementById("image").src="landscape.jpg";
-	</script>
-	
-	<!-- 改变 HTML 样式 -->
-	<p id="p2">Hello World!</p> 
-	<script> 
-	document.getElementById("p2").style.color="blue"; 
-	</script> 
-	
-	</body>
-	</html>
+```html
+<!DOCTYPE html>
+<html>
+<body>
 
-####(3) 插入DOM对象
+<!-- 改变 HTML 输出流 -->
+<script>
+document.write(Date());
+</script>
+
+<!-- 改变 HTML 内容 -->
+<p id="p1">Hello World!</p>
+<script>
+document.getElementById("p1").innerHTML="New text!";
+</script>
+
+<!-- 改变 HTML 属性 -->
+<img id="image" src="smiley.gif">
+<script>
+document.getElementById("image").src="landscape.jpg";
+</script>
+
+<!-- 改变 HTML 样式 -->
+<p id="p2">Hello World!</p> 
+<script> 
+document.getElementById("p2").style.color="blue"; 
+</script> 
+
+</body>
+</html>
+```
+
+#### (3) 插入DOM对象
 
 * `createElement('元素名')` - 创建新节点
 * `appendChild(节点变量)` - 添加子节点，由父节点使用该方法
-	* 注释 - 如果节点变量是DOM树中的节点，效果相当于移动节点
+	* 注释 - 如果节点变量是 DOM 树中的节点，效果相当于移动节点
 * `insertBefore(newElement, referenceElement)` - 添加**子**节点到指定**子**节点之前
 
-####(4) 删除DOM对象
+#### (4) 删除DOM对象
 
 * `removeChild(节点变量)` - 删除子节点，由父节点使用该方法
 	* 注意 - 删除后的节点不在文档树中，但其实还在内存中
-	* 注意 - 删除节点时，节点属性（如children）会实时更新，数组下标与会改变
+	* 注意 - 删除节点时，节点属性（如 children）会实时更新，数组下标与会改变
 	* 技巧 - 通过节点对象的 `parentNode` 可以获取一个节点的父节点
 
-####(5) HTML DOM 事件响应
+#### (5) HTML DOM 事件响应
 
-在 1.9 节已经叙述过HTML DOM 事件和如何通过 HTML DOM 事件触发 JavaScript。这里先再回顾一下核心内容：
+在 1.9 节已经叙述过 HTML DOM 事件和如何通过 HTML DOM 事件触发 JavaScript。这里先再回顾一下核心内容：
 
 **方法一：HTML 元素行内添加**
 
-	<some-HTML-element some-event="some JavaScript">
+```html
+<some-HTML-element some-event="some JavaScript">
+```
 
 其中 `some-event` 是事件属性，相当于为该 HTML 元素注册事件；`"some JavaScript"` 是 JavaScript 响应。
 
 **方法二：更新 DOM 对象属性**
 
-	<script>
-	element.event_name=function_name;
-	</script>
+```html
+<script>
+element.event_name=function_name;
+</script>
+```
 
-使用 JavaScript 来向 HTML 元素注册事件的方式，就是通过上文的“改变 HTML 属性”的方式。
+使用 JavaScript 来向 HTML 元素注册事件的方式，就是通过上文的 “改变 HTML 属性” 的方式。
 
 **方法三：`addEventListener() 函数`**
 
-	element.addEventListener(event, function, useCapture); // 为 HTML DOM 对象添加事件句柄
-	element.removeEventListener("event", Function); // 移除上述方法添加的事件句柄
+```javascript
+element.addEventListener(event, function, useCapture); // 为 HTML DOM 对象添加事件句柄
+element.removeEventListener("event", Function); // 移除上述方法添加的事件句柄
+```
 
-* 第一个参数 `event` 是事件的类型 (如 "click" 或 "mousedown").（注意：此处不使用"on"前缀）
+* 第一个参数 `event` 是事件的类型 (如 "click" 或 "mousedown").（注意：此处不使用 "on" 前缀）
 * 第二个参数 `function` 是事件触发后调用的函数。
 * 第三个参数 `useCapture` 是个布尔值用于描述事件是冒泡还是捕获。该参数是可选的，默认值为 `false`。
 	* `false` - 事件冒泡：内部元素的事件会先被触发，然后再触发外部元素
@@ -1985,58 +1995,68 @@ HTML DOM 模型被构造为**对象**的树：
 
 **技巧：**向事件函数**传递参数**，使用“匿名函数”调用带参数的函数。
 
-	element.addEventListener("click", function(){ myFunction(p1, p2); });
+```javascript
+element.addEventListener("click", function(){ myFunction(p1, p2); });
+```
 
 **一些示例：**
 
-	<!DOCTYPE html> 
-	<html> 
-	<body>
-	
-	<!-- 赋值语句 -->
-	<h1 onclick="this.innerHTML='Ooops!'">点击文本!</h1> 
-	
-	<!-- 函数调用 -->
-	<script> 
-	function changetext(id) 
-	{ 
-	id.innerHTML="Ooops!"; 
-	} 
-	</script> 
-	<h1 onclick="changetext(this)">Click on this text!</h1>
-	
-	<!-- JavaScript 注册 HTML DOM 事件 -->
-	document.getElementById("myBtn").onclick=function(){displayDate()}; 
-	
-	</body> 
-	</html>
+```html
+<!DOCTYPE html> 
+<html> 
+<body>
+
+<!-- 赋值语句 -->
+<h1 onclick="this.innerHTML='Ooops!'">点击文本!</h1> 
+
+<!-- 函数调用 -->
+<script> 
+function changetext(id) 
+{ 
+id.innerHTML="Ooops!"; 
+} 
+</script> 
+<h1 onclick="changetext(this)">Click on this text!</h1>
+
+<!-- JavaScript 注册 HTML DOM 事件 -->
+document.getElementById("myBtn").onclick=function(){displayDate()}; 
+
+</body> 
+</html>
+```
 
 案例：向 Window 对象添加事件句柄
 
-	// 当用户重置窗口大小时添加事件监听：
-	window.addEventListener("resize", function(){ 
-	    document.getElementById("demo").innerHTML = sometext; 
-	});
+```javascript
+// 当用户重置窗口大小时添加事件监听：
+window.addEventListener("resize", function(){ 
+    document.getElementById("demo").innerHTML = sometext; 
+});
+```
 
 ### 5.3 表单操作
 **(1) 获取值**
 
-对于`text`，`password`，`hidden`，`select`类型可以之间通过节点的`value`属性获取输入值：
+对于 `text`，`password`，`hidden`，`select` 类型可以之间通过节点的 `value` 属性获取输入值：
 
-		// <input type="text" id="email">
-	
-		var input = document.getElementById('email');
-		input.value;
+```javascript
+// <input type="text" id="email">
 
-对于`raido`，`checkbox`类型需要获取预设值是否被选上，通过节点内的`checked`判断：
+var input = document.getElementById('email');
+input.value;
+```
 
-		// <label><input type="radio" name="weekday" id="monday" value="1"> Monday</label>
-		// <label><input type="radioa" name="weekday" id="tuesday" value="2"> Tuesday</label>
-	
-		var mon = document.getElementById('monday');
-		var tue = document.getElementById('tuesday');
-		mon.checked; // true/false
-		tue.checked; // true/false
+对于`raido`，`checkbox` 类型需要获取预设值是否被选上，通过节点内的`checked`判断：
+
+```javascript
+// <label><input type="radio" name="weekday" id="monday" value="1"> Monday</label>
+// <label><input type="radioa" name="weekday" id="tuesday" value="2"> Tuesday</label>
+
+var mon = document.getElementById('monday');
+var tue = document.getElementById('tuesday');
+mon.checked; // true/false
+tue.checked; // true/false
+```
 
 **(2) 设置值**
 
@@ -2044,275 +2064,298 @@ HTML DOM 模型被构造为**对象**的树：
 
 **(3) 提交表单**
 
-除了HTML默认的表单提交方式，JavaScript可以通过两种方式提交表单。
+除了 HTML 默认的表单提交方式，JavaScript 可以通过两种方式提交表单。
 
 **方式一：介入submit()**
 
-		<form id="test-form">
-			<input type="text" name="test>
-			<button type="button" onclick="doSubmitForm()">Submit</button>
-		</form>
-	
-		<script>
-		function doSubmitForm() {
-			var form = document.getElementById('test-form');
-			处理语句;
-			// 提交form，借用HTML的方式
-			form.submit();
-		}
+```html
+<form id="test-form">
+	<input type="text" name="test>
+	<button type="button" onclick="doSubmitForm()">Submit</button>
+</form>
+
+<script>
+function doSubmitForm() {
+	var form = document.getElementById('test-form');
+	处理语句;
+	// 提交form，借用HTML的方式
+	form.submit();
+}
+```
 
 **方式二：响应onsubmit()**
 
-		<form id="test-form" onsubmit="return checkForm()">
-			<input type="text" name="test">
-			<button type="submit">Submit</button>
-		</form>
-		
-		<script>
-		fucntion checkForm() {
-			var form = document.getElementById('test-form');
-			处理语句;
-			return true; // 若为false，则不会提交
-		}
-		</script>
+```html
+<form id="test-form" onsubmit="return checkForm()">
+    <input type="text" name="test">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    fucntion checkForm() {
+        var form = document.getElementById('test-form');
+        处理语句;
+        return true; // 若为false，则不会提交
+    }
+</script>
+```
 
 **典例：密文隐藏**
 
-		<form id="login-form" method="post" onsubmit="return checkForm()">
-		    <input type="text" id="username" name="username">
-		    <input type="password" id="input-password">
-		    <input type="hidden" id="md5-password" name="password">
-		    <button type="submit">Submit</button>
-		</form>
-		
-		<script>
-		function checkForm() {
-		    var input_pwd = document.getElementById('input-password');
-		    var md5_pwd = document.getElementById('md5-password');
-		    // 把用户输入的明文变为MD5:
-		    md5_pwd.value = toMD5(input_pwd.value);
-		    // 继续下一步:
-		    return true;
-		}
-		</script>
+```html
+<form id="login-form" method="post" onsubmit="return checkForm()">
+    <input type="text" id="username" name="username">
+    <input type="password" id="input-password">
+    <input type="hidden" id="md5-password" name="password">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    function checkForm() {
+        var input_pwd = document.getElementById('input-password');
+        var md5_pwd = document.getElementById('md5-password');
+        // 把用户输入的明文变为MD5:
+        md5_pwd.value = toMD5(input_pwd.value);
+        // 继续下一步:
+        return true;
+    }
+</script>
+```
 
 **提示**
 
-没有`name`属性的`<input>`的数据不会被提交。
+没有 `name` 属性的 `<input>` 的数据不会被提交。
 
 **(4) 工具方法**
 
-* `decodeURI(str)` - 解码一个编码的URI，返回解码后的字符串
-* `decodeURIComponent(str)` - 解码一个编码的URI组件，返回解码后的字符串
-* `encodeURI(str)` - 将字符串编码为URI
-* `encodeURIComponent(str)` - 将字符串编码为URI组件
-	* 区别：URI是完整的URL组成，而URI组件是其中一个，组件编码会对所有非字符进行编码
+* `decodeURI(str)` - 解码一个编码的 URI，返回解码后的字符串
+* `decodeURIComponent(str)` - 解码一个编码的 URI 组件，返回解码后的字符串
+* `encodeURI(str)` - 将字符串编码为 URI
+* `encodeURIComponent(str)` - 将字符串编码为 URI 组件
+	* 区别：URI 是完整的 URL 组成，而 URI 组件是其中一个，组件编码会对所有非字符进行编码
 
 ### 5.4 文件操作
-**(1) HTML控件**
+**(1) HTML 控件**
 
-在HTML表单中，可以上传文件的唯一控件就是`<input type="file">`。
+在 HTML 表单中，可以上传文件的唯一控件就是 `<input type="file">`。
 
 而且还要注意两点：
 
-* 此时表单的`entype`必须制定为`multipart/form-data`，`method`必须指定为`post`。
+* 此时表单的 `entype` 必须制定为 `multipart/form-data`，`method` 必须指定为 `post`
 
-* 用JavaScript对控件的`value`赋值没有任何效果，无法获得真实路径，但有真实的文件名，便于检查。
+* 用 JavaScript 对控件的 `value` 赋值没有任何效果，无法获得真实路径，但有真实的文件名，便于检查
 
 **(2) HTML5控件**
 
-HTML5的File API提供了`File`和`FileReader`两个主要对象，可以获得文件信息并读取文件。
+HTML5 的 File API 提供了 `File` 和 `FileReader` 两个主要对象，可以获得文件信息并读取文件。
 
 **语法典例**
 
-		// 获取节点
-		fileInput = document.getElementById('test-image-file'); // 获取<input type="file">节点
-		info = document.getElementById('test-file-info');
-		preview = document.getElementById('test-image-preview');
-		
-		// 监听change事件
-		fileInput.addEventListener('change', function() {
-			// 参数准备
-			preview.style.backgroundImage = ''; // 清除背景图片
-			if(! fileInput.value) { // 检查文件是否选择
-				info.innerHRML = '没有选择文件';
-				retrun;
-			}
-			var file = fileInput.files[0]; // 获取File引用
-		
-			// 显示文件信息
-			info.innerHTML = '文件：' + file.name + '<br>' +
-							'大小：' + file.size + '<br>' +
-							'修改：' + file.lastModifiedDate;
-		
-			// 检查文件类型
-			if(file.type != 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
-				alter('不是有效的图片文件');
-				return;
-		
-			// 读取文件
-			var reader = new FileReader();
-			reader.onload = fumction(e) { // 载入文件后的操作，将数据/URL存到data变量
-				var data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'
-				preview.style.backgroundImage = 'url(' + data + ')'; // 显示图片
-			}
-			reader.readDataURL(file); // 以DataURL形式读取文件
-		});
+```javascript
+// 获取节点
+fileInput = document.getElementById('test-image-file'); // 获取<input type="file">节点
+info = document.getElementById('test-file-info');
+preview = document.getElementById('test-image-preview');
+
+// 监听change事件
+fileInput.addEventListener('change', function() {
+    // 参数准备
+    preview.style.backgroundImage = ''; // 清除背景图片
+    if(! fileInput.value) { // 检查文件是否选择
+        info.innerHRML = '没有选择文件';
+        retrun;
+    }
+    var file = fileInput.files[0]; // 获取File引用
+
+    // 显示文件信息
+    info.innerHTML = '文件：' + file.name + '<br>' +
+        '大小：' + file.size + '<br>' +
+        '修改：' + file.lastModifiedDate;
+
+    // 检查文件类型
+    if(file.type != 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+        alter('不是有效的图片文件');
+        return;
+
+        // 读取文件
+        var reader = new FileReader();
+        reader.onload = fumction(e) { // 载入文件后的操作，将数据/URL存到data变量
+            var data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'
+            preview.style.backgroundImage = 'url(' + data + ')'; // 显示图片
+        }
+        reader.readDataURL(file); // 以DataURL形式读取文件
+    });
+```
 
 **注释**
 
-DataURL形式指URL同时还包含了文件数据，文件数据为字符串`base64,`后面的字符。
+DataURL 形式指 URL 同时还包含了文件数据，文件数据为字符串 `base64,`后面的字符。
 
-`reader.onload = function(e) {...}`体现了JavaScript的异步机制，其中函数是异步执行后用于获取响应的回调函数。
+`reader.onload = function(e) {...}` 体现了 JavaScript 的异步机制，其中函数是异步执行后用于获取响应的回调函数。
 
 ### 5.5 AJAX
-AJAX指 Asynchronous JavaScript and XML，用JavaScript执行异步网络请求。
+AJAX 指 Asynchronous JavaScript and XML，用 JavaScript 执行异步网络请求。
 
 **(1) 语法典例**
 
-		'user strict';
-	
-		// 新建XMLHttpRequest对象（低版本用AcitveXObject对象）
-		var request;
-		if(window.XMLHttpRequset) {
-			request = new XMLHttpRequest();
-		} else {
-			request = new ActiveXObject('Microsoft.XMLHTTP');
-		}
-	
-		// 请求成功后回调函数
-		function success(text) {
-			var textarea = document.getElementById('test-response-text');
-			textarea.value = text;
-		}
-	
-		// 请求失败的回调函数
-		function fail(code) {
-			var textarea = document.getElementById('test-response-test');
-			textarea.value = 'Error code: ' + code;
-	
-		// 响应回调函数
-		request.onreadystatechange = function() { // 状态发生变化时，函数被回调
-			if(request.readyState === 4) { // 响应完成
-				// 判断响应结果
-				if(request.status === 200) { // 响应成功
-					return success(request.responseText); // 获取响应文本
-				} else { // 响应失败
-					return fail(request.status); // 获取失败代码
-				}
-			} else { // 响应未完成
-				// HTTP请求还在继续
-			}
-		}
-	
-		// 发送请求
-		request.open('GET', '/api/categories');
-		request.send();
-	
-		alert('请求已发送，请等待响应);
+```javascript
+'user strict';
 
-以上代码还可以再改进，见下文**5.6 Promise**
+// 新建XMLHttpRequest对象（低版本用AcitveXObject对象）
+var request;
+if(window.XMLHttpRequset) {
+    request = new XMLHttpRequest();
+} else {
+    request = new ActiveXObject('Microsoft.XMLHTTP');
+}
 
-* `open(method, URL, async=true)` - 某某Request对象的请求配置函数
-	* `method` - 请求方法GET/POST
+// 请求成功后回调函数
+function success(text) {
+    var textarea = document.getElementById('test-response-text');
+    textarea.value = text;
+}
+
+// 请求失败的回调函数
+function fail(code) {
+    var textarea = document.getElementById('test-response-test');
+    textarea.value = 'Error code: ' + code;
+
+    // 响应回调函数
+    request.onreadystatechange = function() { // 状态发生变化时，函数被回调
+        if(request.readyState === 4) { // 响应完成
+            // 判断响应结果
+            if(request.status === 200) { // 响应成功
+                return success(request.responseText); // 获取响应文本
+            } else { // 响应失败
+                return fail(request.status); // 获取失败代码
+            }
+        } else { // 响应未完成
+            // HTTP请求还在继续
+        }
+    }
+
+// 发送请求
+request.open('GET', '/api/categories');
+request.send();
+
+alert('请求已发送，请等待响应);
+```
+
+以上代码还可以再改进，见下文 [5.6 Promise](#5.6 Promise)
+
+* `open(method, URL, async=true)` - 某某 Request 对象的请求配置函数
+	* `method` - 请求方法 GET/POST
 	* `URL` - 请求地址
 	* `async` - 是否使用异步
-* `send(str/FormData)` - 某某Request对象的请求发送函数
-	* `str/FormData` - 当方法为POST是启用，用于传送参数
+* `send(str/FormData)` - 某某 Request 对象的请求发送函数
+	* `str/FormData` - 当方法为 POST 是启用，用于传送参数
 
 **注意**
 
-上面的URL使用的是相对路径，这是因为浏览器的同源策略导致的：
+上面的 URL 使用的是相对路径，这是因为浏览器的同源策略导致的：
 
-JavaScript在发送请求时，URL域名必须和当前页面完全一致，即协议(如`http`）、域主机(如`www`)、端口号（如`:8080`）要完全相同。
+JavaScript 在发送请求时，URL 域名必须和当前页面完全一致，即协议(如 `http`）、域主机(如 `www`)、端口号（如 `:8080`）要完全相同。
 
 **(2) 跨域访问**
 
-方法一是通过Flash插件发送HTTP请求。
+方法一是通过 Flash 插件发送 HTTP 请求。
 
 方法二是通过在同源域名下建立一个代理服务器转发。
 
-方法三是JSONP，但只能用GET请求，并且要求返回JavaScript。
+方法三是 JSONP，但只能用 GET 请求，并且要求返回 JavaScript。
 
-		// 回调函数
-		function callFunction(data) {
-			var p = document.getElementById('showarea'); // 获取展示数据的节点
-			p.innerHTML = ...; // 将处理后的数据传入
-		}
-		
-		// 触发函数
-		function getFunction() {
-			var js = document.createElement('script'), // 创建脚本节点
-			head = document.getElementByTagName('head')[0]; // 获取HTML头
-			js.src = "http://web API地址?callback=callFunction"; // 设置脚本节点属性，绑定回调函数
-			if(head.lastChild.src===js.src) // 避免script递增
-				head.removeChild(head.lastChild);
-			head.appendChild(js); // 添加节点
-		}
-	
-		<!-- HTML内容 绑定触发函数 -->
-		<p id="showarea">placeholder</p>
-		<button type="button" onclick="getFunction()">刷新</button>
+```javascript
+// 回调函数
+function callFunction(data) {
+    var p = document.getElementById('showarea'); // 获取展示数据的节点
+    p.innerHTML = ...; // 将处理后的数据传入
+}
 
-方法四是通过HTML5的新跨域策略：CORS（Cross-Origin Resourse Sharing）。
+// 触发函数
+function getFunction() {
+    var js = document.createElement('script'), // 创建脚本节点
+        head = document.getElementByTagName('head')[0]; // 获取HTML头
+    js.src = "http://web API地址?callback=callFunction"; // 设置脚本节点属性，绑定回调函数
+    if(head.lastChild.src===js.src) // 避免script递增
+        head.removeChild(head.lastChild);
+    head.appendChild(js); // 添加节点
+}
+```
 
-详细内容参考 [https://www.ibm.com/developerworks/cn/xml/wa-ajaxintro2/](https://www.ibm.com/developerworks/cn/xml/wa-ajaxintro2/ "AJAX异步请求")
+```html
+<!-- HTML内容 绑定触发函数 -->
+<p id="showarea">placeholder</p>
+<button type="button" onclick="getFunction()">刷新</button>
+```
+
+方法四是通过 HTML5 的新跨域策略：CORS（Cross-Origin Resourse Sharing）。
+
+详细内容参考 [https://www.ibm.com/developerworks/cn/xml/wa-ajaxintro2/](https://www.ibm.com/developerworks/cn/xml/wa-ajaxintro2/ "AJAX异步请求")。
 
 ### 5.6 Promise
-Promise对象，一种承诺将来会执行的对象。
+Promise 对象，一种承诺将来会执行的对象。
 
 **语法**
 
 (1) 串行执行异步任务：
 
-		var p1 = new Promise(function(resolve, reject) {...});
-		var p2 = p1.then(function(result) { // 成功时执行
-			console.log('成功：' + result); // 执行语句
-		}
-		var p3 = p2.catch(function(reason) { // 失败时执行
-			console.log('失败：' + reason); // 执行语句
-		}
+```javascript
+var p1 = new Promise(function(resolve, reject) {...});
+var p2 = p1.then(function(result) { // 成功时执行
+	console.log('成功：' + result); // 执行语句
+}
+var p3 = p2.catch(function(reason) { // 失败时执行
+	console.log('失败：' + reason); // 执行语句
+}
+```
 
 上述语法简化为
 
-		new Promise(function(resolve, reject) {...}).then(function(result) {
-			console.log('成功：' + result); // 执行语句
-		}).catch(function(reason) {
-			console.log('失败：' + result); // 执行语句
-		});
+```javascript
+new Promise(function(resolve, reject) {...}).then(function(result) {
+    console.log('成功：' + result); // 执行语句
+}).catch(function(reason) {
+    console.log('失败：' + result); // 执行语句
+});
+```
 
 (2) 串行嵌套执行任务：
 
-		new Promise(function(resolve, reject) {...}).then(function(result) {
-			执行语句1;
-			return new Promise(function(resolve, reject) {...}); // 要再执行，继续承诺
-		}).then(function(result) {
-			执行语句2;
-			return new Promise(function(resolve, reject) {...}); // 要再执行，继续承诺
-		}).then(function (result) {
-			执行语句3;	// 不再执行，不再承诺
-		});
+```javascript
+new Promise(function(resolve, reject) {...}).then(function(result) {
+	执行语句1;
+	return new Promise(function(resolve, reject) {...}); // 要再执行，继续承诺
+}).then(function(result) {
+	执行语句2;
+	return new Promise(function(resolve, reject) {...}); // 要再执行，继续承诺
+}).then(function (result) {
+	执行语句3;	// 不再执行，不再承诺
+});
+```
 
 (3) 并行执行异步任务：
 
-		var p1 = new Promise(function(resolve, reject) {
-			执行语句;
-		});
-		var p2 = new Promise(function(resolve, reject) {
-			执行语句;
-		});
-		// 目标为加速
-		Promise.all([p1, p2]).then(function(result) {
-			执行语句;
-		});
-		// 目标为容错
-		Promise.race([p1, p2]).then(function(result) {
-			执行语句;
-		});
+```javascript
+var p1 = new Promise(function(resolve, reject) {
+    执行语句;
+});
+var p2 = new Promise(function(resolve, reject) {
+    执行语句;
+});
+// 目标为加速
+Promise.all([p1, p2]).then(function(result) {
+    执行语句;
+});
+// 目标为容错
+Promise.race([p1, p2]).then(function(result) {
+    执行语句;
+});
+```
 
 **注释**
 
-* 其中`resolve(data)`用于成功时向下级处理函数传递本层结果参数，`reject(data)`用于失败时向下级处理函数传递本层结果参数。
+* `resolve(data)` 用于成功时向下级处理函数传递本层结果参数
+* `reject(data)` 用于失败时向下级处理函数传递本层结果参数
 
 **提示**
 
@@ -2321,33 +2364,37 @@ Promise对象，一种承诺将来会执行的对象。
 ![图片被吞掉了！](Promise.png)
 
 ### 5.7 Canvas
-Canvas是HTML5新增的组件，就像一块幕布，可以用JavaScript在上面绘制各种图标、动画等。
+Canvas 是 HTML5 新增的组件，就像一块幕布，可以用 JavaScript 在上面绘制各种图标、动画等。
 
 **语法**
 
-		// 定义与获取面板
-		<canvas id="test-canvas" width=300" height="200"></canvas>
-	
-		var canvas = document.getElementById('test-canvas');
-		var ctx = canvas.getContext('2d'); // 获取2D面板（CanvasRenderingContext2D对象）
-		var gl = canvas.getContext('webgl'); // 获取3D面板
+```javascript
+// 定义与获取面板
+<canvas id="test-canvas" width=300" height="200"></canvas>
 
-CanvasRenderingContext2D有若干方法来绘制图像，详细参考**“HTML基础 2.1 图形绘制（Canvas)”**。
+var canvas = document.getElementById('test-canvas');
+var ctx = canvas.getContext('2d'); // 获取2D面板（CanvasRenderingContext2D对象）
+var gl = canvas.getContext('webgl'); // 获取3D面板
+```
+
+CanvasRenderingContext2D 有若干方法来绘制图像，详细参考 **“HTML基础 2.1 图形绘制（Canvas)”**。
 
 下面列举补充例子
 
 **绘制复杂路径**
 
-		var path = new Path2D();
-		path.arc(75, 75, 50, 0, Math.PI*2, true);
-		path.moveTo(110,75);
-		path.arc(75, 75, 35, 0, Math.PI, false);
-		path.moveTo(65,65);
-		path.arc(60, 65, 5, 0, Math.PI*2, true);
-		path.moveTo(95, 65);
-		path.arc(90, 65, 5, 0, Math.PI*2, true);
-		ctx.strokeStyle = '# 0000ff';
-		ctx.stroke(path);
+```javascript
+var path = new Path2D();
+path.arc(75, 75, 50, 0, Math.PI*2, true);
+path.moveTo(110,75);
+path.arc(75, 75, 35, 0, Math.PI, false);
+path.moveTo(65,65);
+path.arc(60, 65, 5, 0, Math.PI*2, true);
+path.moveTo(95, 65);
+path.arc(90, 65, 5, 0, Math.PI*2, true);
+ctx.strokeStyle = '# 0000ff';
+ctx.stroke(path);
+```
 
 此处练习先放下。
 
@@ -2355,166 +2402,188 @@ CanvasRenderingContext2D有若干方法来绘制图像，详细参考**“HTML�
 ### 6.1 捕获与抛出
 **捕获语法**
 
-		try {
-			可能出错语句;
-			throw new Error('手动抛出错误');
-		} catch(e) {
-			错误处理语句;
-		} finally {
-			最终执行语句;
-		}
+```javascript
+try {
+    可能出错语句;
+    throw new Error('手动抛出错误');
+} catch(e) {
+    错误处理语句;
+} finally {
+    最终执行语句;
+}
+```
 
 **抛出语法**
 
-		throw exception;
+```javascript
+throw exception;
+```
 
 **注释**
 
-`catch`，`finally`都是可选语句。
+`catch`，`finally` 都是可选语句。
 
 `exception` 可以是一个字符串，其作为参数 `e` 传入 `catch` 中。
 
-JavaScript有一个标准的对象`Error`表示错误，还有派生的`TypeError`，`ReferenceError`等。
+JavaScript 有一个标准的对象 `Error` 表示错误，还有派生的 `TypeError`，`ReferenceError` 等。
 
-若果错误没有被捕获，则错误会被抛到外层调用函数，直到被JavaScript引擎捕获，代码终止运行。
+若果错误没有被捕获，则错误会被抛到外层调用函数，直到被 JavaScript 引擎捕获，代码终止运行。
 
 ### 6.2 异步错误处理
-JavaScript引擎是一个事件驱动的执行引擎，代码总是以单线程执行，而回调函数需要等到下一个满足条件的事件出现后才会被执行。
+JavaScript 引擎是一个事件驱动的执行引擎，代码总是以单线程执行，而回调函数需要等到下一个满足条件的事件出现后才会被执行。
 
 对于回调函数、事件处理函数等异步代码，无法在调用时捕获，因为捕获当时，回调函数并未执行。只能在函数内捕获。
 
 ## 7 jQuery
 ### 7.1 基本概念
-jQuery是一个JavaScript库，封装了DOM操作，统一了不同浏览器之间的差异。
+jQuery 是一个 JavaScript 库，封装了 DOM 操作，统一了不同浏览器之间的差异。
 
 **(1) 使用jQuery**
 
-		<script src="//code.jquery.com/jquery-xxx.min,js"></script>
+```html
+<script src="//code.jquery.com/jquery-xxx.min,js"></script>
+```
 
 **(2) `$`符号**
 
 `$`是变量`jQuery`的别名，本质上是一个函数，也就是一个对象。jQuery所有功能全部封装在这个全局变量中。
 
-		window.jQery; // jQuery(selector, context)
-		window.$; // jQuery(selector, context)
+```javascript
+window.jQery; // jQuery(selector, context)
+window.$; // jQuery(selector, context)
+```
 
 **(3) 常用属性方法**
 
-* `$.each(obj, function(index/key, element/value){...})` - jQuery的遍历集合对象方法
-* `$.param(obj/arr, trad)` - jQuery创建数组或对象的序列化形式（可用于query）
+* `$.each(obj, function(index/key, element/value){...})` - jQuery 的遍历集合对象方法
+* `$.param(obj/arr, trad)` - jQuery 创建数组或对象的序列化形式（可用于 query）
 
 ### 7.2 选择器
 **(1) 语法**
 
-		var elements = $('CSS选择器');
+```javascript
+var elements = $('CSS选择器');
+```
 
-在jQuery节点对象的选择器方法如下：
+在 jQuery 节点对象的选择器方法如下：
 
-* `get(x)` - 获取指定位置x处（从0开始）的DOM对象
-* `find('CSS选择器')` - 在jQuery节点对象的子节点中查找
-* `parent('CSS选择器')` - 在jQuery节点对象的父节点中查找，若参数为空，默认获得上层节点
+* `get(x)` - 获取指定位置x处（从0开始）的 DOM 对象
+* `find('CSS选择器')` - 在 jQuery 节点对象的子节点中查找
+* `parent('CSS选择器')` - 在 jQuery 节点对象的父节点中查找，若参数为空，默认获得上层节点
 * `prev('CSS选择器')` - 获取同层上一个节点，参数表示过滤，若参数为空，默认获得上个节点
 * `next('CSS选择器')` - 获取同层下一个节点，参数表示过滤，若参数为空，默认获得下个节点
-* `first()` - 获取首位jQuery对象
-* `last()` - 获取末位jQuery对象
-* `slice(start,end)` - 获取指定区间内的元素组成的jQuery对象，不包括end
+* `first()` - 获取首位 jQuery 对象
+* `last()` - 获取末位 jQuery 对象
+* `slice(start,end)` - 获取指定区间内的元素组成的 jQuery 对象，不包括 end
 * `filter('CSS选择器'/函数)` - 过滤掉参数内要求的节点或按照函数返回值取舍（true-保留，false-过滤）
 
-		var langs = $('ul.lang li');
-		var arr = langs.filter(function() {
-			return this.innerHTML.indexOf('S') === 0; // 返回S开头的节点
-		});
+  ```javascript
+  var langs = $('ul.lang li');
+  var arr = langs.filter(function() {
+  	return this.innerHTML.indexOf('S') === 0; // 返回S开头的节点
+  });
+  ```
 
-* `map(函数)` - 将jQuery对象内的每个元素作用于函数，获得处理后的结果
+* `map(函数)` - 将 jQuery 对象内的每个元素作用于函数，获得处理后的结果
 
-		var langs = $('ul.lang li');
-		var arr = langs.map(function() {
-			return this.innerHTML;
-		}).get(); // 方法get()拿到包含string的Array
+	```javascript
+	var langs = $('ul.lang li');
+	var arr = langs.map(function() {
+		return this.innerHTML;
+	}).get(); // 方法get()拿到包含string的Array
+	```
 
 **(2) 注意**
 
-* 回调函数中`this`绑定为DOM对象
+* 回调函数中 `this` 绑定为 DOM 对象
 
 **(3) 注释**
 
-* CSS选择器详见**“【CSS】CSS基础 1.1 选择器（Selector）”**
+* CSS 选择器详见**“【CSS】CSS基础 1.1 选择器（Selector）”**
 
-* `$();`返回jQuery对象，类似于数组(Array，似乎实现了数组相关方法)，获取不到时返回空数组
+* `$();` 返回 jQuery 对象，类似于数组 (Array，似乎实现了数组相关方法)，获取不到时返回空数组
 
-* jQuery对象的每个元素都是一个应用了DOM节点的对象
+* jQuery 对象的每个元素都是一个应用了 DOM 节点的对象
 
 **(4) 提示**
 
-* jQuery对象和DOM对象之间可以相互转化：
+* jQuery 对象和 DOM 对象之间可以相互转化：
 
-		var div = $('#abx'); // jQuery对象
-		var divDom = div.get(0); // 获取第一个DOM对象
-		var another = $('divDom'); // 重新包装成jQuery对象
+  ```javascript
+  var div = $('#abx'); // jQuery对象
+  var divDom = div.get(0); // 获取第一个DOM对象
+  var another = $('divDom'); // 重新包装成jQuery对象
+  ```
 
 * 在过滤器中，还有一种属性选择器的过滤方式：`[属性名!=属性值]`
 
-* 回调函数默认传入`(index, element)`
+* 回调函数默认传入 `(index, element)`
 
 **(5) 典例**
 
 筛选表单
 
-		<form id="test-form" action="# 0" onsubmit="return false;">
-		    <p><label>Name: <input name="name"></label></p>
-		    <p><label>Email: <input name="email"></label></p>
-		    <p><label>Password: <input name="password" type="password"></label></p>
-		    <p>Gender: <label><input name="gender" type="radio" value="m" checked> Male</label> <label><input name="gender" type="radio" value="f"> Female</label></p>
-		    <p><label>City: <select name="city">
-		        <option value="BJ" selected>Beijing</option>
-		        <option value="SH">Shanghai</option>
-		        <option value="CD">Chengdu</option>
-		        <option value="XM">Xiamen</option>
-		    </select></label></p>	
-		    <p><button type="submit">Submit</button></p>
-		</form>
-	
-		var arr = $('#test-form :input').filter("[type!='submit']").filter((index, element) => {	// 在function中，this绑定DOM；在匿名函数中，this绑定window
-		    return element.type !== "radio" || element.checked;
-		}).map(function() {
-		    return this.name+":"+this.value;
-		}).get();
-		json=`{${arr.toString()}}`;
+```html
+<form id="test-form" action="# 0" onsubmit="return false;">
+    <p><label>Name: <input name="name"></label></p>
+    <p><label>Email: <input name="email"></label></p>
+    <p><label>Password: <input name="password" type="password"></label></p>
+    <p>Gender: <label><input name="gender" type="radio" value="m" checked> Male</label> <label><input name="gender" type="radio" value="f"> Female</label></p>
+    <p><label>City: <select name="city">
+        <option value="BJ" selected>Beijing</option>
+        <option value="SH">Shanghai</option>
+        <option value="CD">Chengdu</option>
+        <option value="XM">Xiamen</option>
+        </select></label></p>	
+    <p><button type="submit">Submit</button></p>
+</form>
+```
+
+```javascript
+var arr = $('#test-form :input').filter("[type!='submit']").filter((index, element) => {	// 在function中，this绑定DOM；在匿名函数中，this绑定window
+    return element.type !== "radio" || element.checked;
+}).map(function() {
+    return this.name+":"+this.value;
+}).get();
+json=`{${arr.toString()}}`;
+```
 
 我的方法：
 
-		var obj = {};
-		$('#test-form :input').filter(function() {
-			return (this.type!="submit")&&(this.type!=="radio" || this.checked);
-		}).map(function() {
-			obj[this.name] = this.value;
-			return this;
-		});
-		json = JSON.stringify(obj);
+```javascript
+var obj = {};
+$('#test-form :input').filter(function() {
+    return (this.type!="submit")&&(this.type!=="radio" || this.checked);
+}).map(function() {
+    obj[this.name] = this.value;
+    return this;
+});
+json = JSON.stringify(obj);
+```
 
-### 7.3 DOM内容操作
-jQuery节点对象有以下DOM操作方法：
+### 7.3 DOM 内容操作
+jQuery 节点对象有以下 DOM 操作方法：
 
 **(1) HTML操作**
 
 * `text(str)` - 节点文本操作
-	* 参数`str`为空时获取文本
-	* 参数`str`不为空时设置文本
+	* 参数 `str` 为空时获取文本
+	* 参数 `str` 不为空时设置文本
 * `html(str)` - 节点HTML文本操作
-	* 参数`str`为空时获取HTML文本
-	* 参数`str`不为空时设置HTML文本
+	* 参数 `str` 为空时获取 HTML 文本
+	* 参数 `str` 不为空时设置 HTML 文本
 
 **(2) CSS操作**
 
-* `css('属性名','属性值')` - 节点CSS操作
-	* 属性值为空时获取CSS属性
-	* 属性值不为空时设置CSS属性
-	* 属性值为空字符串时删除CSS属性
+* `css('属性名','属性值')` - 节点 CSS 操作
+	* 属性值为空时获取 CSS 属性
+	* 属性值不为空时设置 CSS 属性
+	* 属性值为空字符串时删除 CSS 属性
 * `hasClass('类别名')` - 判断节点是否包含指定类别
 * `addClass('类别名')` - 添加给节点指定类别
 * `removeClass('类别名')` - 删除节点指定类别
-* `show()` - 专门用于修改CSS属性`display`以显示元素
-* `hide()` - 专门用于修改CSS属性`display`以隐藏元素
+* `show()` - 专门用于修改 CSS 属性 `display` 以显示元素
+* `hide()` - 专门用于修改 CSS 属性 `display` 以隐藏元素
 
 **(3) 节点操作**
 
@@ -2533,74 +2602,78 @@ jQuery节点对象有以下DOM操作方法：
 **(4) 表单操作**
 
 * `val('str')` - 表单节点操作
-	* 属性`str`不存在时，获取表单`value`值
-	* 属性`str`存在时，设置表单`value`值
+	* 属性 `str` 不存在时，获取表单 `value` 值
+	* 属性 `str` 存在时，设置表单 `value` 值
 
 **注释**
 
-jQuery对象包含0~n个DOM对象，上述方法是作用于一组DOM节点上，即使无节点也不报错。
+jQuery 对象包含 0~n 个 DOM 对象，上述方法是作用于一组 DOM 节点上，即使无节点也不报错。
 
-jQuery对象的所有方法都返回一个jQuery对象，方便链式调用。
+jQuery 对象的所有方法都返回一个 jQuery 对象，方便链式调用。
 
-### 7.4 DOM结构操作
+### 7.4 DOM 结构操作
 **(1) 添加节点**
 
-* `html()` - **详见“6.3 DOM内容操作”**
-* `append(str/DOM对象/jQuery对象/函数对象)` - 末尾添加DOM节点
-* `str/DOM对象/jQuery对象/函数对象.appendTo(jQuery对象)` - 末尾添加DOM节点，反用
-* `prepend(str/DOM对象/jQuery对象/函数对象)` - 开头添加DOM节点
-* `after(str/DOM对象/jQuery对象/函数对象)` - 同级节点后添加DOM节点
-* `before(str/DOM对象/jQuery对象/函数对象)` - 同级节点前添加DOM节点
+* `html()` - 详见 [7.3 DOM 内容操作](#7.3 DOM 内容操作)
+* `append(str/DOM对象/jQuery对象/函数对象)` - 末尾添加 DOM 节点
+* `str/DOM对象/jQuery对象/函数对象.appendTo(jQuery对象)` - 末尾添加 DOM 节点，反用
+* `prepend(str/DOM对象/jQuery对象/函数对象)` - 开头添加 DOM 节点
+* `after(str/DOM对象/jQuery对象/函数对象)` - 同级节点后添加 DOM 节点
+* `before(str/DOM对象/jQuery对象/函数对象)` - 同级节点前添加 DOM 节点
 
 案例演示：
 
-		// HTML内容
-		<div id="test-div">
-		    <ul>
-		        <li><span>JavaScript</span></li>
-		        <li><span>Python</span></li>
-		        <li><span>Swift</span></li>
-		    </ul>
-		</div>
-	
-		var ul = $('#test');
-	
-		// 字符串方式
-		ul.append('<li><span>Haskell</span></li>');
-	
-		// DOM对象方式
-		var ps = document.createElement('li');
-		ps.innerHTML = '<span>Pascal</span>';
-		ul.append(ps);
-	
-		// jQuery对象方式
-		ul.append($('#scheme'));
-	
-		// 函数对象方式
-		ul.append(function(index,html) {
-			// 要求返回str/jQuery对象/函数对象
-			return '<li><span>Language - ‘ + index + '</span></li>';
-		});
+```html
+// HTML内容
+<div id="test-div">
+    <ul>
+        <li><span>JavaScript</span></li>
+        <li><span>Python</span></li>
+        <li><span>Swift</span></li>
+    </ul>
+</div>
+```
+
+```javascript
+var ul = $('#test');
+
+// 字符串方式
+ul.append('<li><span>Haskell</span></li>');
+
+// DOM 对象方式
+var ps = document.createElement('li');
+ps.innerHTML = '<span>Pascal</span>';
+ul.append(ps);
+
+// jQuery 对象方式
+ul.append($('#scheme'));
+
+// 函数对象方式
+ul.append(function(index,html) {
+    // 要求返回 str/jQuery 对象/函数对象
+    return '<li><span>Language - ‘ + index + '</span></li>';
+});
+```
 
 **(2) 删除节点**
 
-* `reomve()` - 删除DOM节点
+* `reomve()` - 删除 DOM 节点
 
 ### 7.5 事件
-JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页面上所有的代码被执行，就只能依赖触发事件来执行JavaScript代码。
+JavaScript 在浏览器中以单线程模式运行，页面加载后，一旦页面上所有的代码被执行，就只能依赖触发事件来执行 JavaScript 代码。
 
-不同的浏览器绑定事件的代码不太一样，使用jQuery可以屏蔽浏览器差异。
+不同的浏览器绑定事件的代码不太一样，使用 jQuery 可以屏蔽浏览器差异。
 
 **(1) 语法**
 
-* `on('事件名', 函数)` - jQuery节点对象绑定指定事件
+* `on('事件名', 函数)` - jQuery 节点对象绑定指定事件
 	* `'事件名'` - 用于绑定指定事件，一些通用的事件见注释
-* `off('事件名', 函数)` - jQuery节点对象取消绑定指定事件
+* `off('事件名', 函数)` - jQuery 节点对象取消绑定指定事件
 	* `'事件名'` - 用于绑定指定事件，一些通用的事件见注释
 	* 注意 - 无法取消绑定以下绑定方法绑定的事件的函数，只能一次性移除（函数项置空）
-* `节点对象.事件名(function(event) {...})` - jQuery节点对象绑定指定事件，含有详细事件信息
-* `trigger('事件名')` - 代码触发jQuery节点对象的事件
-	* 注释 - 简写形式为`节点对象.事件名()`
+* `节点对象.事件名(function(event) {...})` - jQuery 节点对象绑定指定事件，含有详细事件信息
+* `trigger('事件名')` - 代码触发 jQuery 节点对象的事件
+	* 注释 - 简写形式为 `节点对象.事件名()`
 
 **(2) 注释**
 
@@ -2608,12 +2681,12 @@ JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页�
 
 * click - 鼠标单击
 * dbclick - 鼠标双击
-* mouseenter - 鼠标进入DOM
-* mouseleave - 鼠标移出DOM
-* mousemove - 鼠标DOM内移动
-* hover - 鼠标进入和退出时触发两个函数，相当于mouseenter+mouseleave
+* mouseenter - 鼠标进入 DOM
+* mouseleave - 鼠标移出 DOM
+* mousemove - 鼠标 DOM 内移动
+* hover - 鼠标进入和退出时触发两个函数，相当于 mouseenter+mouseleave
 
-键盘事件 - 仅作用于当前焦点的DOM上，通常是`<input>`和`<textarea>`
+键盘事件 - 仅作用于当前焦点的 DOM 上，通常是 `<input>` 和 `<textarea>`
 
 * keydown - 键盘按下
 * keyup - 键盘松开
@@ -2621,99 +2694,107 @@ JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页�
 
 其他事件
 
-* focus - DOM获得焦点
-* blur - DOM失去焦点
-* change - `<input>`、`<select>`、`<textarea>`内容改变
-* submit - `<form>`提交
-* ready - 页面加载完成且DOM数完成初始化，仅作用与`document`对象
+* focus - DOM 获得焦点
+* blur - DOM 失去焦点
+* change - `<input>`、`<select>`、`<textarea>` 内容改变
+* submit - `<form>` 提交
+* ready - 页面加载完成且 DOM 数完成初始化，仅作用与 `document` 对象
 
 **(3) 注意**
 
-在`<head>`内的代码先执行，对于需要DOM初始化后执行的JavaScript代码会导致无效：
+在 `<head>` 内的代码先执行，对于需要 DOM 初始化后执行的 JavaScript 代码会导致无效：
 
-		<html>
-		<head>
-			<script>
-				$('#testForm).on('submit', function() {	<!-- $('testForm')返回[] -->
-					alert('submit!');
-				});
-			</script>
-		</head>
-		<body>
-			<form id="testForm">
-				...
-			</form>
-		</body>
-		</html>
+```html
+<html>
+    <head>
+        <script>
+            $('#testForm).on('submit', function() {	<!-- $('testForm')返回[] -->
+              alert('submit!');
+            });
+        </script>
+    </head>
+    <body>
+        <form id="testForm">
+            ...
+        </form>
+    </body>
+</html>
+```
 
-使用上面的`ready`事件可以达到目标：
+使用上面的 `ready` 事件可以达到目标：
 
-		<html>
-		<head>
-			<script>
-				$(document).on('ready', function() {
-					$(#testForm).on('submit', function() {
-						alert('submit!');
-					});
-				});
-			<script>
-		</head>
-		<body>
-			<form id="testForm">
-				...
-			</form>
-		</body>
-		</html>
+```html
+<html>
+    <head>
+        <script>
+            $(document).on('ready', function() {
+                $(#testForm).on('submit', function() {
+                    alert('submit!');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <form id="testForm">
+            ...
+        </form>
+    </body>
+</html>
+```
 
 上述`ready`事件处理有简化语法：
 
-		$(function() {
-			DOM初始化后执行;
-		})
+```javascript
+$(function() {
+    DOM初始化后执行;
+})
+```
 
 **(4) 典例 - 表单选项**
 
-		switchSelect = (function(x) {
-		    return function() {
-		        if(x % 2) {
-		            selectAllLabel.show();
-		            deselectAllLabel.hide();
-		        } else {
-		            selectAllLabel.hide();
-		            deselectAllLabel.show();
-		        }
-		        x = x + 1;
-		        return x % 2;
-		    }
-		})(0);
-		
-		selectAll.on('click', function(event) {
-		    if (event.currentTarget.checked) {
-		        langs.filter((index, element) => {
-		            return ! element.checked;
-		        }).click();
-		        switchSelect();
-		    } else {
-		        langs.filter(':checked').click();
-		        switchSelect();
-		    }
-		});
-		
-		invertSelect.on('click', function() {
-		    langs.click();
-		});
-		
-		langs.on('click', function() {
-		    if (langs.filter(':checked').length === 5 && !selectAll[0].checked) {
-		        selectAll.click();
-		    } else if (selectAll[0].checked && !this.checked){
-		        selectAll[0].checked = false;
-		        switchSelect();
-		    }
-		});
+```javascript
+switchSelect = (function(x) {
+    return function() {
+        if(x % 2) {
+            selectAllLabel.show();
+            deselectAllLabel.hide();
+        } else {
+            selectAllLabel.hide();
+            deselectAllLabel.show();
+        }
+        x = x + 1;
+        return x % 2;
+    }
+})(0);
+
+selectAll.on('click', function(event) {
+    if (event.currentTarget.checked) {
+        langs.filter((index, element) => {
+            return ! element.checked;
+        }).click();
+        switchSelect();
+    } else {
+        langs.filter(':checked').click();
+        switchSelect();
+    }
+});
+
+invertSelect.on('click', function() {
+    langs.click();
+});
+
+langs.on('click', function() {
+    if (langs.filter(':checked').length === 5 && !selectAll[0].checked) {
+        selectAll.click();
+    } else if (selectAll[0].checked && !this.checked){
+        selectAll[0].checked = false;
+        switchSelect();
+    }
+});
+```
 
 ### 7.6 动画
-“**6.3 DOM内容操作**”中的`show()`、`hide()`添加时间概念即可生成动画。
+[7.3 DOM 内容操作](#7.3 DOM 内容操作) 中的 `show()`、`hide()` 添加时间概念即可生成动画。
 
 **语法**
 
@@ -2726,18 +2807,20 @@ JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页�
 * `fadeIn(str/毫秒数, 回调函数)` - 淡入
 * `fadeOut(str/毫秒数, 回调函数)` - 淡出
 * `fadeToggle(str/毫秒数, 回调函数)` - 根据当前元素状态，淡入/淡出
-* `animate({CSS样式}, 毫秒数, 回调函数)` - 在指定时间内将元素过渡到指定CSS样式
+* `animate({CSS样式}, 毫秒数, 回调函数)` - 在指定时间内将元素过渡到指定 CSS 样式
 * `delay(毫秒数)` - 暂停动画一定时间（链式调用，可实现串行动画）
 
-		div
-			.slideDown(2000)
-			.delay(1000)
-			.animate({...},2000)
-			.delay(1000);
+	```javascript
+	div
+		.slideDown(2000)
+		.delay(1000)
+		.animate({...},2000)
+		.delay(1000);
+	```
 
 **注释**
 
-`str`参数选项如下：
+`str` 参数选项如下：
 
 * `'slow'` - 缓慢显示/隐藏
 * `'fast'` - 快速显示/隐藏
@@ -2746,46 +2829,48 @@ JavaScript在浏览器中以单线程模式运行，页面加载后，一旦页�
 
 **注意**
 
-动画无效果时，原因是元素不支持某些CSS样式。
+动画无效果时，原因是元素不支持某些 CSS 样式。
 
 ### 7.7 AJAX
-使用jQuery来处理AJAX不用考虑浏览器问题，也能简化代码。
+使用 jQuery 来处理 AJAX 不用考虑浏览器问题，也能简化代码。
 
 **语法**
 
-		// 通用方法
-		$.ajax({settings对象内容
-			}).done(function(data) {
-				ajaxLog('成功，收到数据:' + JSON.stringify(data));
-			}).fail(function(chr, status) {
-				ajaxLog('失败：' + xhr.status + '，原因:' + status);
-			}).always(function() {
-				ajaxLog('请求完成：无论成功或失败都会调用');
-			});
-	
-		// 快速获取JSON的GET方法
-		$.getJSON(url, data).done().fail().always();
+```javascript
+// 通用方法
+$.ajax({settings对象内容
+       }).done(function(data) {
+    ajaxLog('成功，收到数据:' + JSON.stringify(data));
+}).fail(function(chr, status) {
+    ajaxLog('失败：' + xhr.status + '，原因:' + status);
+}).always(function() {
+    ajaxLog('请求完成：无论成功或失败都会调用');
+});
 
-`$.ajax()`的`settings`对象的选项如下：
+// 快速获取JSON的GET方法
+$.getJSON(url, data).done().fail().always();
+```
+
+`$.ajax()` 的 `settings `对象的选项如下：
 
 * `url` - 请求地址
-* `async` - 是否异步执行AJAX请求，默认`true`
-* `type` - 请求方式，默认`GET`，可选`POST`
-* `contentType` - POST请求的格式，默认`application/x-www-form-urlencoded; charset=UTF-8`，可选`text/plain`，`application/json`
-* `data` - 发送数据，类型为str、Array、object
-* `headers` - 自定义的HTTP头，object
-* `dataType` - 接收数据格式，默认自动，可选`html`，`xml`，`json`，`text`
+* `async` - 是否异步执行AJAX请求，默认 `true`
+* `type` - 请求方式，默认 `GET`，可选 `POST`
+* `contentType` - POST 请求的格式，默认 `application/x-www-form-urlencoded; charset=UTF-8`，可选 `text/plain`，`application/json`
+* `data` - 发送数据，类型为 `str`、`Array`、`object`
+* `headers` - 自定义的 HTTP 头，object
+* `dataType` - 接收数据格式，默认自动，可选 `html`，`xml`，`json`，`text`
 
-`$.ajax()`的回调方法：
+`$.ajax()` 的回调方法：
 
 * `done(func)` - 成功时执行
 * `fail(func)` - 失败时执行
 * `always(func)` - 不论成功与否都会执行
-* `beforeSend` - 发送请求签调用，传入XMLHttpRequest作为参数
-* `error` - 请求出错时调用，传入XMLHttpRequest对象，描述错误类型的字符串以及一个异常对象
-* `dataFilter` - 请求成功后调用，传入返回的数据以及`dataType`参数的值。返回新的数据给success回调函数
+* `beforeSend` - 发送请求签调用，传入 XMLHttpRequest 作为参数
+* `error` - 请求出错时调用，传入 XMLHttpRequest 对象，描述错误类型的字符串以及一个异常对象
+* `dataFilter` - 请求成功后调用，传入返回的数据以及 `dataType` 参数的值。返回新的数据给 success 回调函数
 * `success` - 请求成功后调用，传入返回后的数据和包含成功代码的字符串
-* `complete` - 请求完成时调用，无论成功与失败。传入XMLHttpRequest对象，以及状态码
+* `complete` - 请求完成时调用，无论成功与失败。传入 XMLHttpRequest 对象，以及状态码
 
 Ajax的其他操作方法：
 
@@ -2793,107 +2878,113 @@ Ajax的其他操作方法：
 
 **注释**
 
-get方法的`settings`将会被解析为query：
+get 方法的 `settings` 将会被解析为 query：
 
-		var jqxhr = $.get('/path/to/resource', {
-			name: 'Bob Lee',
-			check: 1
-		});
-	
-		/path/to/resource?name=Bob%20Lee&check=1
+```javascript
+var jqxhr = $.get('/path/to/resource', {
+    name: 'Bob Lee',
+    check: 1
+});
 
-post方法的`setting`将会被序列化为`dataType`指定的格式，作为body被发送。
+/path/to/resource?name=Bob%20Lee&check=1
+```
+
+post 方法的 `setting` 将会被序列化为 `dataType` 指定的格式，作为 body 被发送。
 
 **注意**
 
-jQuery的AJAX完全封装的是JavaScript的AJAX操作，所以同样受制于同源策略。
+jQuery 的 AJAX 完全封装的是 JavaScript 的 AJAX 操作，所以同样受制于同源策略。
 
 ### 7.8 扩展
-jQuery拓展类似于自定义函数，也称为jQuery插件。
+jQuery 拓展类似于自定义函数，也称为 jQuery 插件。
 
 **语法**
 
-		// 设定默认值
-		$.fn.myPlugin.defauts = {
-			CSS属性名, CSS属性值,
-			CSS属性名, CSS属性值
-		}
-	
-		// 定义插件
-		$.fn.myPlugin = function(options) {
-			var opts = $.extend({}, $.fn.myPlugin.defauts, options); // 合并默认值和用户值
-			this.css(CSS属性名, opts.CSS属性值).css(CSS属性名, opts.CSS属性值);
-			return this; // 用于支持链式调用
-		}
-	
-		// 定义特定插件
-		$.fn.external = function() {
-			return this.filter('CSS选择器').each(function() {
-				语句;
-			});
-		}
+```javascript
+// 设定默认值
+$.fn.myPlugin.defauts = {
+    CSS属性名, CSS属性值,
+    CSS属性名, CSS属性值
+}
+
+// 定义插件
+$.fn.myPlugin = function(options) {
+    var opts = $.extend({}, $.fn.myPlugin.defauts, options); // 合并默认值和用户值
+    this.css(CSS属性名, opts.CSS属性值).css(CSS属性名, opts.CSS属性值);
+    return this; // 用于支持链式调用
+}
+
+// 定义特定插件
+$.fn.external = function() {
+    return this.filter('CSS选择器').each(function() {
+        语句;
+    });
+}
+```
 
 **注释**
 
-* `$.fn.extend(object)` - 为jQuery扩展一个或多个实例属性和方法（主要）
-	* 注释 - jQuery.fn是jQuery的原型对象
-* `$.extend(target, obj1, obj2, ...)` - 把多个object对象属性合并到targe对象中，后面的优先级高，详见“**8.4 Object**”
-* 插件函数内的`this`在调用时被绑定为jQuery对象，故可调用jQuery对象的方法
+* `$.fn.extend(object)` - 为 jQuery 扩展一个或多个实例属性和方法（主要）
+	* 注释 - jQuery.fn 是 jQuery 的原型对象
+* `$.extend(target, obj1, obj2, ...)` - 把多个 object 对象属性合并到 targe 对象中，后面的优先级高，详见 [8.4 Object](#8.4 Object)
+* 插件函数内的 `this` 在调用时被绑定为 jQuery 对象，故可调用 jQuery 对象的方法
 
 ## 8 underscore
 ### 8.1 基本概念
-underscore是一个JavaScript库，封装了函数式编程操作，统一了不同浏览器之间的差异。
+underscore 是一个 JavaScript 库，封装了函数式编程操作，统一了不同浏览器之间的差异。
 
-**(1) 使用underscore**
+**(1) 使用 underscore**
 
-**(2) `_`符号**
+**(2) `_` 符号**
 
-`_`是变量underscore的别名，本质上是一个函数，也就是一个对象。underscore所有功能全部封装在这个全局变量中。
+`_` 是变量 underscore 的别名，本质上是一个函数，也就是一个对象。underscore 所有功能全部封装在这个全局变量中。
 
-		_.map([1, 2, 3], (x) => x * x); // [1, 4, 9]
-		// 还可以作用于对象：
-		_.map({a:1, b:2, c:3}, (v, k) => k + '=' + v); // ['a=1', 'b=2', 'c=3']
+```javascript
+_.map([1, 2, 3], (x) => x * x); // [1, 4, 9]
+// 还可以作用于对象：
+_.map({a:1, b:2, c:3}, (v, k) => k + '=' + v); // ['a=1', 'b=2', 'c=3']
+```
 
 ### 8.2 Collections
-underscore为集合类对象（Array，Object，暂不支持Map和Set）提供了一致的接口。
+underscore 为集合类对象（Array，Object，暂不支持 Map 和 Set）提供了一致的接口。
 
-下面是`_.`的集合类方法：
+下面是 `_.` 的集合类方法：
 
 **map / filter**
 
-* `map(集合对象, function)` - 将指定函数作用于每一个元素，返回元素组成的Array
-	* Array对象的传入参数 - `(element)`
-	* Object对象的传入参数 - `(value, key)`
-* `mapObjecr(集合对象, function)` - 将指定函数作用于每一个元素，返回元素组成的Object
-	* Array对象的传入参数 - `(element)`
-	* Object对象的传入参数 - `(value, key)`，只需返回value，key会对应匹配
-* `filter(集合对象, function)` - 将指定函数作用于每一个元素，进行筛选（`true`保留，`false`过滤），返回元素组成的Array
-	* Array对象的传入参数 - `(element)`
-	* Object对象的传入参数 - `(value, key)`
+* `map(集合对象, function)` - 将指定函数作用于每一个元素，返回元素组成的 Array
+	* Array 对象的传入参数 - `(element)`
+	* Object 对象的传入参数 - `(value, key)`
+* `mapObjecr(集合对象, function)` - 将指定函数作用于每一个元素，返回元素组成的 Object
+	* Array 对象的传入参数 - `(element)`
+	* Object 对象的传入参数 - `(value, key)`，只需返回 value，key 会对应匹配
+* `filter(集合对象, function)` - 将指定函数作用于每一个元素，进行筛选（`true` 保留，`false` 过滤），返回元素组成的 Array
+	* Array 对象的传入参数 - `(element)`
+	* Object 对象的传入参数 - `(value, key)`
 
 **every / some**
 
-* `every(集合对象, function)` - 当集合的所有元素都满足指定条件时（回调函数全真），返回`true`
-	* Array对象的传入参数 - `(element)`
-	* Object对象的传入参数 - `(value, key)`
-* `some(集合对象, function)` - 当集合至少一个元素满足指定条件时（回调函数非全假），返回`true`
-	* Array对象的传入参数 - `(element)`
-	* Object对象的传入参数 - `(value, key)`
+* `every(集合对象, function)` - 当集合的所有元素都满足指定条件时（回调函数全真），返回 `true`
+	* Array 对象的传入参数 - `(element)`
+	* Object 对象的传入参数 - `(value, key)`
+* `some(集合对象, function)` - 当集合至少一个元素满足指定条件时（回调函数非全假），返回 `true`
+	* Array 对象的传入参数 - `(element)`
+	* Object 对象的传入参数 - `(value, key)`
 
 **max / min**
 
 * `max(集合对象, function)` - 比较集合中的元素，取比较值最大的元素，默认返回最大数
-	* Array对象的传入参数 - `(element1, element2)`
-	* Object对象的传入参数 - `(value1, value2)`，即只作用于value
+	* Array 对象的传入参数 - `(element1, element2)`
+	* Object 对象的传入参数 - `(value1, value2)`，即只作用于value
 * `min(集合对象, function)` - 比较集合中的元素，取比较值最小的元素，默认返回最小数
-	* Array对象的传入参数 - `(element1, element2)`
-	* Object对象的传入参数 - `(value1, value2)`，即只作用于value
+	* Array 对象的传入参数 - `(element1, element2)`
+	* Object 对象的传入参数 - `(value1, value2)`，即只作用于value
 
 **groupBy**
 
-* `groupBy()` - 把集合的元素按照key归类，key由回调函数返回，将同类元素组成Array作为value，返回对象
-	* Array对象的传入参数 - `(element)`
-	* Object对象的传入参数 - `(value, key)`
+* `groupBy()` - 把集合的元素按照 key 归类，key 由回调函数返回，将同类元素组成 Array 作为 value，返回对象
+	* Array 对象的传入参数 - `(element)`
+	* Object 对象的传入参数 - `(value, key)`
 
 **shuffle / sample**
 
@@ -2902,21 +2993,23 @@ underscore为集合类对象（Array，Object，暂不支持Map和Set）提供�
 
 **isEqual**
 
-* `isEqual(集合对象1, 集合对象2)` - 对两个集合对象进行深度比较，内容完全相同时返回`true`
+* `isEqual(集合对象1, 集合对象2)` - 对两个集合对象进行深度比较，内容完全相同时返回 `true`
 
 **chain**
 
 * `chain(集合对象)` - 把对象包装成能进行链式调用
 
-		var r = _.chain([1, 4, 9, 16, 25])
-				.map(Math.sqrt)
-				.filter(x => x % 2 === 1)
-				.value(); // 每一步返回的都是包装对象，最后一步需调用value()返回结果
+	```javascript
+	var r = _.chain([1, 4, 9, 16, 25])
+			.map(Math.sqrt)
+			.filter(x => x % 2 === 1)
+			.value(); // 每一步返回的都是包装对象，最后一步需调用value()返回结果
+	```
 
-更多内容参考[underscore的文档](https://underscorejs.org/#)。
+更多内容参考 [underscore的文档](https://underscorejs.org/#)。
 
 ### 8.3 Array
-underscore为Array提供了许多工具类方法。
+underscore 为 Array 提供了许多工具类方法。
 
 **first / last**
 
@@ -2925,7 +3018,7 @@ underscore为Array提供了许多工具类方法。
 
 **flatten**
 
-* `flatten(arr)` - 将任意层嵌套的Array转换为一维
+* `flatten(arr)` - 将任意层嵌套的 Array 转换为一维
 
 **zip / unzip**
 
@@ -2938,66 +3031,68 @@ underscore为Array提供了许多工具类方法。
 
 **range**
 
-* `range(start, end, step)` - 快速生成一个序列（不包括end）
+* `range(start, end, step)` - 快速生成一个序列（不包括 end）
 
 更多内容参考[underscore的文档](https://underscorejs.org/#)。
 
 ### 8.4 Object
-underscore为Object提供了许多工具类方法。
+underscore 为 Object 提供了许多工具类方法。
 
 **keys / allKeys**
 
-* `keys(obj)` - 返回一个object自身的所有key，不包括继承的。返回Array。
-* `allKeys(obj)` - 返回一个object自身的所有key，包括继承的。返回Array。
+* `keys(obj)` - 返回一个 object 自身的所有 key，不包括继承的。返回 Array。
+* `allKeys(obj)` - 返回一个 object 自身的所有 key，包括继承的。返回 Array。
 
 **values**
 
-* `values(obj)` - 返回一个object自身的所有value，不包括继承的。返回Array。
+* `values(obj)` - 返回一个 object 自身的所有 value，不包括继承的。返回 Array。
 
 **mapObject**
 
-* `mapObject(obj)` - 针对object的map版本，见“**8.2 Collections**”
+* `mapObject(obj)` - 针对object的map版本，见 [8.2 Collections](#8.2 Collections)
 
 **invert** 
 
-* `invert(obj)`- 将键值对`(key, value)`交换身份，去重？？
+* `invert(obj)`- 将键值对 `(key, value)` 交换身份，去重？？
 
 **extend / extendOwn**
 
-* `extend(obj1, obj2, obj3, ...)` - 把多个object的key-value合并到首位object并返回，包括继承的
+* `extend(obj1, obj2, obj3, ...)` - 把多个 object 的 key-value 合并到首位 object 并返回，包括继承的
 	* 注释 - 若有重复key，后面value的覆盖前面的value
-* `extendOwn(obj1, obj2, obj3, ...)` - 把多个object的key-value合并到首位object并返回，不包括继承的
-	* 注释 - 若有重复key，后面value的覆盖前面的value
+* `extendOwn(obj1, obj2, obj3, ...)` - 把多个 object 的key-value合并到首位 object 并返回，不包括继承的
+	* 注释 - 若有重复 key，后面 value 的覆盖前面的 value
 
 **clone**
 
 * `clone(obj)` - 复制一个对象的所有属性，返回一个新对象
-	* 注意 - 该方法是“浅复制”，及相同的key引用的value是同一对象
+	* 注意 - 该方法是 “浅复制”，及相同的 key 引用的 value 是同一对象
 
-更多内容参考[underscore的文档](https://underscorejs.org/#)。
+更多内容参考 [underscore的文档](https://underscorejs.org/#)。
 
 ### 8.5 Functions
-underscore提供了许多函数工具，类似于Python的functools。
+underscore 提供了许多函数工具，类似于 Python 的 functools。
 
 **bind**
 
-先回顾apply/call的一个用处：
+先回顾 apply/call 的一个用处：
 
-		var s = ' Hello  ';
-		var fn = s.trim;
-		// 直接调用fn()传入的this指向undefined，故使用apply/call
-		fn.call(s); // Hello
+```javascript
+var s = ' Hello  ';
+var fn = s.trim;
+// 直接调用fn()传入的this指向undefined，故使用apply/call
+fn.call(s); // Hello
+```
 
-函数`bind()`可以简化以上过程：
+函数 `bind()` 可以简化以上过程：
 
-* `bind(对象方法, 对象)` - 绑定对象到指定的对象方法上，修复this失效问题，返回一个新函数
+* `bind(对象方法, 对象)` - 绑定对象到指定的对象方法上，修复 `this` 失效问题，返回一个新函数
 
 **partial**
 
-partial的概念同Python。
+partial 的概念同 Python。
 
 * `partial(对象方法, 固定参数1, 固定参数2, ...)` - 偏函数，返回一个新函数
-	* 固定参数 - 若要跳过次参数，使用`_`作占位符
+	* 固定参数 - 若要跳过次参数，使用 `_` 作占位符
 
 **memoize**
 
@@ -3012,4 +3107,4 @@ partial的概念同Python。
 
 * `delay(函数, 毫秒数)` - 让一个函数延迟执行指定毫秒数
 
-更多内容参考[underscore的文档](https://underscorejs.org/#)。
+更多内容参考 [underscore的文档](https://underscorejs.org/#)。
