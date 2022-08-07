@@ -400,8 +400,6 @@ flight_data['前航延误'].iloc[flight_data['飞机编号']==0] = np.NaN  # 连
 
 正如 Python/NumPy 的索引和切片支持使用**布尔**类型的集合一样，Pandas 同样有类似的索引和切片方式。
 
-大家过来看看：
-
 
 ```python
 # 使用单列布尔值选择数据帧
@@ -438,6 +436,7 @@ print(df[df > 0])
     2019-01-05  0.629325       NaN  0.126966  1.059090
     2019-01-06  0.387386       NaN       NaN       NaN
 
+【注】布尔选择支持基于位运算符 `&`、`|`、`~` 的逻辑运算。
 
 #### 1.1.5 更新操作
 
@@ -2012,9 +2011,9 @@ print(s.value_counts())
 
 【注】可以进一步用模块 seaborn 中的 `sns.heatmap()` 函数来绘制相关系数矩阵的热力图。
 
-##### 交叉表（类似计数的列联表）
+##### 交叉表
 
-* `pandas.crosstab(index, columns, values=None, rownames=None, colnames=None, aggfunc=None, margins=False, margins_name='All', dropna=True, normalize=False)` : 建立交叉表
+* `pandas.crosstab(index, columns, values=None, rownames=None, colnames=None, aggfunc=None, margins=False, margins_name='All', dropna=True, normalize=False)` : 建立交叉表（类似计数列联表）
   * `index` : array-like, Series, or list of arrays/Series，交叉表中的行组（可复合）
   * `columns` : array-like, Series, or list of arrays/Series，交叉表中的列组（可复合）
   * `values` : array-like, optional，如果有分组时指定的目标，因此需要 `aggfunc` 参数非空
@@ -2030,6 +2029,20 @@ print(s.value_counts())
     * `columns` : 每列进行正则化
 
 ##### 透视表
+
+##### 计数
+
+* `S/D/GroupBy.nunique(axis=0, dropna=True)` - 计算某个维度中唯一值的个数
+  * `axis` - `{0 or ‘index’, 1 or ‘columns’}, default 0`，统计所使用的维度
+  * `dropna` - `bool, default True`，不统计 `NaN` 值
+* `pd.unique(values)` - 返回序列中的唯一值
+  * `values` - 一维序列
+  * 返回：
+    * Index : when the input is an Index
+    * Categorical : when the input is a Categorical dtype
+    * ndarray : when the input is a Series/ndarray
+* `S/D.notna()` - 检测非空值
+  * 返回：返回同样维度的、填满布尔值的对象
 
 ##### 百分比变化
 
@@ -2059,10 +2072,28 @@ print(s.value_counts())
   df.pct_change()
   ```
 
-
 ### 1.3 Pandas 文件处理
 
 #### 1.3.1 文件 IO
+
+##### 1.3.1.0 概览
+
+| 函数             | 说明                                         |
+| ---------------- | -------------------------------------------- |
+| `d_csv`          | 读取默认以逗号作为分隔符的文件               |
+| `read_table`     | 读取默认以制表符分隔的文件                   |
+| `read_fwf`       | 从特定宽度格式的文件中读取数据（无分隔符）   |
+| `read_clipboard` | `read_table` 的剪贴板版本                    |
+| `read_excel`     | 从 EXCEL 的 `XLS` 或者 `XLSX` 文件中读取数据 |
+| `read_hdf`       | 读取用 pandas 存储的 `HDF5` 文件             |
+| `read_html`      | 从 HTML 文件中读取所有表格数据               |
+| `read_json`      | 从 JSON 字符串中读取数据                     |
+| `read_msgpack`   | 读取 MessagePack 格式存储的任意对象          |
+| `read_pickle`    | 读取以 Python Pickle 格式存储的对象          |
+| `read_sas`       | 读取 SAS 系统中定制存储格式的数据集          |
+| `read_sql`       | 将 SQL 查询的结果读取出来                    |
+| `read_stata`     | 读取 stata 格式的数据集                      |
+| `read_feather`   | 读取 Feather 二进制格式                      |
 
 ##### 1.3.1.1 `txt` 文件
 
@@ -2094,7 +2125,7 @@ print(s.value_counts())
   * `converters`  - 强制规定列数据类型
   * `skiprows` - 跳过特定行
   * `nrows` - 需要读取的行数
-  * `skipfooter` - 跳过末尾n行
+  * `skipfooter` - 跳过末尾 n 行
 * `df.to_csv()` - 存储 `csv` 文件
 
 ##### 1.3.1.3 `xls` 文件
@@ -2121,6 +2152,125 @@ print(s.value_counts())
   conda install openpyxl
   ```
   
+
+#### 1.3.2 大文件读取
+
+##### 1.3.2.1 分块读取
+
+Pandas 的 `read_table` 和 `read_csv` 函数提供 `chunksize` 和 `iterator` 参数，可实现按行多次读取文件，避免内存不足情况。
+
+* `chunksize` - `int, default None`，指定一个分块的大小（每次读取多少行），返回一个 `TextFileReader` 对象
+
+  ```python
+  import pandas as pd
+  reader = pd.read_csv('data.csv', sep=',', chunksize=10)
+  # <pandas.io.parsers.TextFileReader at 0x1fc81f905e0>
+  
+  for chunk in reader:
+      # df = chunk，可对 chunk 进行数据处理
+      print(type(chunk), chunk.shape)
+  '''
+  <class 'pandas.core.frame.DataFrame'> (10, 6)
+  <class 'pandas.core.frame.DataFrame'> (10, 6)
+  <class 'pandas.core.frame.DataFrame'> (10, 6)
+  <class 'pandas.core.frame.DataFrame'> (10, 6)
+  <class 'pandas.core.frame.DataFrame'> (10, 6)
+  '''
+  ```
+
+* `iterator` - `boolean, default False`，返回一个 `TextFileReader` 对象，以便逐块处理文件
+
+  ```python
+  reader = pd.read_csv('data.csv', sep=',', iterator=True)
+  data = reader.get_chunk(5) # 返回 N 行数据块
+  data
+  '''
+     Unnamed: 0         a         b         c         d         e
+  0           0  0.289972  0.717806  0.886283  0.522148  0.976798
+  1           1  0.254952  0.048073  0.464765  0.138978  0.983041
+  2           2  0.634708  0.533182  0.855981  0.456156  0.620018
+  3           3  0.812648  0.024870  0.536520  0.894937  0.102704
+  4           4  0.699629  0.038305  0.379534  0.876242  0.906875
+  '''
+  ```
+
+【注1】`chunksize` 和 `iterator` 参数可以同时使用。
+
+【注2】`TextFileReader` 对象的处理方式有：**迭代为 `DataFrame` 对象**、**用 `get_chunk` 获取给定行**，用法如上面的示例。
+
+【注3】还可以**用 `pd.concat` 合并**  `TextFileReader` 对象得到的 `DataFrame`，用法如下所示。
+
+```python
+import feather
+import pandas as pd
+
+filePath = r'data_csv.csv'
+
+def read_csv_feature(filePath):
+    # 读取文件
+    f = open(filePath, encoding='utf-8')
+    reader = pd.read_csv(f, sep=',', iterator=True)
+    loop = True
+    chunkSize = 1000000
+    chunks = []
+    while loop:
+        try:
+            chunk = reader.get_chunk(chunkSize)
+            chunks.append(chunk)
+        except StopIteration:
+            loop = False
+            print('Iteration is END!!!')
+    df = pd.concat(chunks, axis=0, ignore_index=True)
+    f.close()
+    return df 
+
+data = read_csv_feature(filePath)
+```
+
+##### 1.3.2.2 随机采样
+
+对于数据量比较大的文件，可以在分块读取的基础上，采样随机抽样的方式，大致了解数据的统计特性。
+
+```python
+# 如果考虑数据量过大，只抽取部分的数据来进行分析，采取不放回抽样的方式
+pd.concat(chunks, ignore_index=True).sample(frac=0.05, replace=False) # 不放回抽样、记录不重复
+```
+
+##### 1.3.2.3 相关应用
+
+**分块拆分文件**
+
+分块读取文件的一个用途是拆分文件，示例如下。
+
+```python
+import pandas as pd
+reader = pd.read_csv('data_csv.csv', sep=',', chunksize=2000000)
+for i, chunk in enumerate(reader):
+    print(i, '  ', len(chunk))
+    chunk.to_csv('./data/data_' + str(i) + '.csv', index=False)
+```
+
+**获取文件行数**
+
+分块读取的思想可以用于快速统计文件的行数，示例如下。
+
+```python
+count = 0
+file = open('data_csv.csv', 'r', encoding='utf-8')
+while 1:
+    buffer = file.read(8*1024*1024) # 可大概设置
+    if not buffer:
+        break
+    count += buffer.count('\n')
+print(count)
+file.close()
+```
+
+【注】更高级和高效的用法可参考 [03 可视化模块 - 3.4 文件读取封装](03 可视化模块.md#3-4 文件读取封装)。
+
+#### 1.3.3 空值与多类型
+
+
 
 ### 1.4 Pandas 数据可视化
 
