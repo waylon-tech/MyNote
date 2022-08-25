@@ -616,25 +616,33 @@ print(df2)
 
 ##### 缺失值处理
 
-缺失数据处理是数据处理中一个常见的问题。Pandas 默认使用 NumPy 的 np.nan 值作为缺失数据，且<u>默认情况下不参与到 Pandas 的各种运算中</u>。
+缺失数据处理是数据处理中一个常见的问题。Pandas 默认使用 NumPy 的 `np.nan` 值作为缺失数据，且<u>默认情况下不参与到 Pandas 的各种运算中</u>。
 
-无效值 `np.nan `的判断方法为：
+Pandas 中判断 `np.nan` 的方法：
 
-* `pandas.isna(DataFrame)` - 判断缺失值，返回布尔类型的数据帧
+* `pd.isna(df) / sedf.isna()` - 判断无效值 `np.nan`，返回布尔类型的数据帧
+* `pd.notna(df) / sedf.notna()` - 判断有效值，返回布尔类型的数据帧
+* `pd.notnull(df) / sedf.notnull()` - `notna()` 函数的别名
 
-Pandas 提供了以下函数用于简单地处理缺失数据：
+Pandas 中操作 `np.nan` 的方法：
 
-* `DataFrame.dropna([axis, how, thresh, …])` - 移除缺失值
-  * `axis` - 处理的维度，`0`（默认）表示处理`index`，`1`表示处理`columns`
-  * `how` - `any`（默认）表示有空值就处理，`all`表示全为空值才处理
-  * `thresh` - 整数阈值，设置有多少个非空才是正常的（不处理）
-* `DataFrame.fillna([value, method, axis, …])` - 填充缺失值，这里使用给出的 method 填充 value 值
-* `DataFrame.replace([to_replace, value, …])` - 使用给出的 value，替换 to_replace 值
+* `DataFrame.dropna(...)` - 移除缺失值
+  * `axis` - `{0 or ‘index’, 1 or ‘columns’}, default 0`，处理的维度
+  * `how` - `{‘any’, ‘all’}, default ‘any’`，默认有空值就处理，`all` 表示全为空值才处理
+  * `thresh` - `int, optional`，要求非空值数量多于该阈值，否则处理空值
+  * `subset` - `column label or sequence of labels, optional`，用列名列表指出移除空值的子区域
+  * `inplace` - `bool, default False`，为 `True` 时直接在原对象上操作，返回变为 `None`
+* `DataFrame.fillna(...)` - 填充缺失值
+  * `values` - `scalar, dict, Series, or DataFrame`，用于填充的值，`Series` 能定制 `index`，`DataFrame` 能定制 `column`
+  * `method` - `{‘backfill’, ‘bfill’, ‘pad’, ‘ffill’, None}, default None`，控制自动填充，是向上填充还是向下填充
+    * `'pad' / 'ffill'` - 自下自动填充
+    * `'backfill' / 'bfill'` - 自上自动填充
 
-**注释：**
+  * `axis` - `{0 or ‘index’, 1 or ‘columns’}, default 0`，处理的维度
+  * `inplace` - `bool, default False`，为 `True` 时直接在原对象上操作，返回变为 `None`
+  * `limit` - `int, default None`，向上或者向下填充时控制多填充多少个含空值行 / 列 / axis
+  * `downcast` - `dict, default is None`，一个 `item: dtype str or 'infer'` 字典，会据此尝试进行类型转换
 
-* 上面的移除操作是移除整行，只要该行有缺失值就移除。
-* 以上操作会返回新数据帧，而不会修改原有的数据帧。
 
 稍微看看例子：
 
@@ -2300,12 +2308,12 @@ file.close()
 
 * `DataFrame.hist()` - 根据表格绘制直方图
 
-  * `column` - `str`或`sequence`，指定要绘制的列名，默认`None`表示所有列
+  * `column` - `str` 或 `sequence`，指定要绘制的列名，默认 `None` 表示所有列
   * `by` - 指定为分组绘图
   * `grid` - `bool`，表示是否显示网格
   * `figsize` - `tuple`，图像大小
   * `layout` - `tuple(rows, columns)`，直方图布局？
-  * `bins` - `int`或`sequence`，使用的直方数量，会决定横轴显示范围
+  * `bins` - `int` 或 `sequence`，使用的直方数量，会决定横轴显示范围
   * `legend` - `bool`，是否显示图例
 
   ```python
@@ -2320,3 +2328,47 @@ file.close()
 
   * `bw_method` - `str`、`scalar`或`callable`，使用指定的方法来计算（`str`可选`'scott'`（默认）和`'silverman'`）
   * `ind` - 定值点数量（默认1000），`NumPy array`数据表示给定的点，`int`数据表示自定数量
+
+### 1.5 内存控制
+
+Pandas 常处理中小规模的数据，大数据处理更常用 Spark 这类工具。但有时为了高质量清洗、探索和分析，更希望使用用 Pandas。大数据在单机的 Pandas 数据处理中，最大的困难莫过于内存有限，必须时刻注意节约内存。
+
+#### 1.5.1 内存存储机制
+
+##### 获取内存信息
+
+通过 `DataFrame.info()` 可以获取 Pandas 数据帧的内存使用信息。
+
+* `sedf.info(...)` - 打印数据序列 / 帧的简要总览
+
+  * `verbose` - `bool, optional`，是否打印详细的总览，默认受 `pandas.options.display.max_info_columns` 约束
+  * `buf` - `writable buffer, defaults to sys.stdout`，输出的位置，同 `pandas.options.display.max_info_columns` 设置
+  * `memory_usage` - `bool, str, optional`，显示精确的内存使用量，随 `pandas.options.display.memory_usage` 设置
+    * `True` - 总是显示内存使用量
+    * `False` - 从不显示内存使用量
+    * `'deep'` - 相当于 “True with deep introspection”，深入统计所有可读二进制单元（非 deep 方式基于列类型和行数计算得到，其假设所有值占用相同，deep 方式真实地计算底层消耗的计算资源）
+  * `show_counts` - `bool, optional`，是否列出非空值的总数，默认情况下只在数据帧小于 `pandas.options.display.max_info_rows` 和 `andas.options.display.max_info_columns` 时显示
+  * `null_counts` - `bool, optional`，是否列出空值的总数
+
+
+<u>例 1.5-1：总的内存统计</u>
+
+![pandas模块_总的内存统计](img/pandas模块_总的内存统计.jpg)
+
+##### 数据内部表示
+
+在底层，Pandas 会**按照数据类型将列分组形成数据块**（blocks），下图示例为 120 年棒球比赛数据的存储结构。
+
+![pandas模块_内存布局](img/pandas模块_内存布局.jpg)
+
+可以注意到，下面的数据块都经过了优化，**没有保持对列名的引用**。内部的 **BlockManager 类**记录了行列索引与真实数据块的映射关系，对外提供对底层数据的访问。
+
+对于包含数值型数据（比如整型和浮点型）的数据块，Pandas 会**合并这些列，并把它们存储为一个 NumPy 数组**（`ndarray`）。NumPy 数组在 C 数组的基础上构建，其值在内存中是连续存储的，因此支持高速的切片访问。
+
+<u>例 1.5-2：平均内存统计</u>
+
+由于不同类型的数据是分开存放的，我们将检查不同数据类型的内存使用情况，先看看各数据类型的平均内存使用量。
+
+![pandas模块_平均内存统计](img/pandas模块_平均内存统计.jpg)
+
+可以看到 Object 类型占用内存较多，这也是 Pandas 内存优化的重点方向。
