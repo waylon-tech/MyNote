@@ -4,11 +4,19 @@
 
 ## 1 窗口函数
 
-### 1.1 排序窗口函数
+### 1.1 排名函数
 
-#### `row_number`
+#### 1.1.1 概览
 
-**含义**
+* `rank()` - 排序相同时并列排名，后面的排名出现跳跃
+* `dense_rank()` - 排序相同时并列排名，后面的排名继续连续
+* `row_number()` - 排名表示行号，递增顺序，不会重复
+
+![hive技巧_排名函数](img/hive技巧_排名函数.png)
+
+#### 1.1.2 `row_number` 详解
+
+**用法**
 
 ```hive
 ROW_NUMBER() OVER(PARTITION BY COLUMN1 ORDER BY COLUMN2 DESC)
@@ -64,6 +72,8 @@ where
 <img src="img/hive技巧_row_number_topn查询.jpg" alt="hive技巧_row_number_topn查询" style="zoom:80%;" />
 
 > 计算连续
+>
+> 筛选某个值连续单调的一串记录。
 
 <u>例：计算连续访问天数最大的 10 位用户</u>
 
@@ -112,5 +122,22 @@ having
 ```
 
 > 分组抽样
+>
+> 在每个组中都随机抽取一部分数据。
 
-https://zhuanlan.zhihu.com/p/342682617 未完待续 0831 -> 0901
+使用 `row_number` 在子窗口内随机排序，然后抽出所需的样本数据即可。
+
+```hive
+select *
+from (
+    select
+        id,ctime,
+        row_number() over(partition by id order by rand() ) as rn
+    from
+        ods_user_log
+) tmp
+where rn<=3
+;
+```
+
+<img src="img/hive技巧_row_number_分组抽样.jpg" alt="hive技巧_row_number_分组抽样" style="zoom:80%;" />
