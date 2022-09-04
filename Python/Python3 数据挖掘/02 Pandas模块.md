@@ -538,6 +538,48 @@ print(df2)
     2019-01-05 -0.629325 -1.637231 -0.126966 -5 -4.0
     2019-01-06 -0.387386 -1.394027 -1.318434 -5 -5.0
 
+#### 1.1.6 链式赋值
+
+在运行 Pandas 的赋值操作时，常常会出现以下警告：
+
+> ```
+> SettingWithCopyWarning:
+> A value is trying to be set on a copy of a slice from a DataFrame.
+> Try using .loc[row_indexer,col_indexer] = value instead
+> ```
+>
+> 该警告的意思是：在 `DataFrame` 一个切片的 copy 上进行赋值操作。出现警告是因为该切片可能是原始数据框的一个<u>视图（View）</u>，也可能是原始数据框的一个<u>副本（Copy）</u>，从而导致**赋值操作可能不会影响到原始的数据框**。
+>
+> <img src="img/pandas模块_链式赋值_深浅拷贝与视图.png" alt="pandas模块_链式赋值_深浅拷贝与视图" style="zoom: 35%;" />
+
+从代码角度来看，出现**该警告的唯一原因是链式赋值**。链式赋值是指通过使用链式索引来赋值，由显、隐两种方式：
+
+* 第一种是显式的，索引是连续的，例如，`data.iloc[1][3] = value`
+* 第二种是隐式的，例如，先定义 `df = data.iloc[1]`，再使用 `df[3] = value` 也属于链式赋值
+
+链式赋值可以在一行中进行，也可以跨越多行，只要 Pandas 检测到链式赋值，就会抛出 `SettingWithCopyWarning` 警告。
+
+因此，解决 `SettingWithCopyWarning` 的根源在于避免链式赋值，总的来说是以下两个代码规范：
+
+* 如果要更改原始数据，请使用单一赋值操作（`loc`）
+
+  ```python
+  data.loc[data.bidder == 'parakeet2004', 'bidderrate'] = 100
+  ```
+
+* 如果想要一个副本，请确保强制让 Pandas 创建副本
+
+  ```python
+  winners = data.loc[data.bid == data.price].copy()
+  winners.loc[304, 'bidder'] = 'therealname'
+  ```
+
+强烈不建议关闭警告的方法：
+
+```python
+pd.set_option('mode.chained_assignment', None)
+```
+
 ### 1.2 Pandas 数据处理
 
 #### 1.2.1 元素处理
@@ -2349,7 +2391,6 @@ Pandas 常处理中小规模的数据，大数据处理更常用 Spark 这类工
     * `'deep'` - 相当于 “True with deep introspection”，深入统计所有可读二进制单元（非 deep 方式基于列类型和行数计算得到，其假设所有值占用相同，deep 方式真实地计算底层消耗的计算资源）
   * `show_counts` - `bool, optional`，是否列出非空值的总数，默认情况下只在数据帧小于 `pandas.options.display.max_info_rows` 和 `andas.options.display.max_info_columns` 时显示
   * `null_counts` - `bool, optional`，是否列出空值的总数
-
 
 <u>例 1.5-1：总的内存统计</u>
 
