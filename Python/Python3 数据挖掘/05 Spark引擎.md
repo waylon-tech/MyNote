@@ -33,4 +33,14 @@ $ spark-shell # 测试 scalar 接口
 $ pyspark     # 测试 python 接口
 ```
 
-## 2
+## 2 
+
+## 数据结构
+
+### PyArrow
+
+### Parquet
+
+教程：https://juejin.cn/post/6844903462572916743
+
+读写：https://arrow.apache.org/docs/python/parquet.html#finer-grained-reading-and-writing
