@@ -1366,6 +1366,18 @@ print()
 
   【注】`x` 或 `y` 为单个值时，会应用到所有元素。
 
+* `np.sort(a, axis=-1, kind=None, order=None)` - 返回数组的排序副本。
+  * `a` - `array_like`，要排序的数组
+  * `axis` - `int` 或 `None`，要排序的轴。 如果为 `None`，则在排序之前将数组展平。默认值是 `-1`，它沿最后一个轴排序
+  * `kind` - `'quicksort'`、`'mergesort'`、`'heapssort'`、`'stable'`，排序算法
+    * 默认值为 “快速排序”
+    * 注意，`"stable"` 和 `"mergesort"` 都使用 `timsort` 或 `radix sort`，通常实际实现将随数据类型而变化
+    * 保留 `"mergesort"` 选项是为了向后兼容
+  * `order` - `str or list of str`，
+    * 当 `a` 是一个定义了字段的数组时，这个参数指定了首先比较哪个字段、然后比较哪个字段，以此类推
+      * 可以将单个字段指定为字符串，且不需要指定所有字段，但仍将使用未指定的字段（按照它们在 `dtype` 中出现的顺序）
+  * return - `ndarray`，排序后的数组
+
 ### 1.3 拷贝
 
 数据的拷贝是一门学问，有必要理清楚 ndarray 的拷贝方式。

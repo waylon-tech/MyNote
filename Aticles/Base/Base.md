@@ -152,6 +152,60 @@ $$
 
 <img src="img/Base_AP计算示例.png" alt="Base_AP计算示例" style="zoom:67%;" />
 
+<u>代码</u>：
+
+```python
+import bisect 
+import numpy as np
+
+def get_pr(y_prob, y_true):
+    """手动实现 sklearn.metrics.precision_recall_curve 的 PR 序列计算，实现定制需求。"""
+    pos_num = len(y_true[y_true==1])        # 类 1 真值的个数
+    if pos_num == 0:						# 无真值时召回一精度零
+        return [1], [0], 0
+    threshold = np.sort(y_prob)[::-1]       # 预测值按概率降序排列
+    y = y_true[y_prob.argsort()][::-1]      # 真实值按相应顺序排列
+    
+    precisions, recalls = [], []
+    tp, fp, auc = 0, 0, 0
+    for i in range(len(threshold)):
+        """
+        遍历预测概率的降序排列，并设当前概率为真值阈值（大于它就预测为真），
+        从而得到当前阈值下的 precison 和 recall。阈值下面的条件判断只需检
+        查真实值是否等于预测值即可，这里即检查真实值是否为 1.
+        """
+        if y[i] == 1:
+            # 预测为真，真实值也为真
+            tp += 1
+            recalls.append(tp / pos_num)		# recall 的计算是基于全部真实值的
+            precisions.append(tp / (tp + fp))   # precision 的计算基于当前的预测真值
+            auc += (recalls[i] - recalls[i-1]) * precisions[i]  # 近似计算曲线下方面积
+        else:
+            # 此时 auc 值不增加
+            fp += 1
+            recalls.append(tp / pos_num)
+            precisions.append(tp / (tp + fp))
+    return recalls, precisions, auc
+
+def get_integral_points_pr(recalls, precisons, sort_needed=False):
+    """基于 recalls 和 precisions 序列，获取 P-R 曲线上的近似整点"""
+    if sort_needed:
+        # 输入的 recalls 需要升序排列
+        precisions = precisions[recalls.argsort()]
+        recalls = np.sort(recalls)
+        
+    points_x, points_y = [], []
+    for t in np.arange(0, 1.01, 0.1):
+        """
+        遍历 0-1 中等距的 10 个点，寻找最近的 recall 值作为横坐标，
+        相应的 precison 作为纵坐标，得到 PR 曲线上的近似整点。
+        """
+        idx = bisect.bisect_left(recalls, t)
+        points_x.append(recalls[idx])
+        points_y.append(precisions[idx])
+    return points_x, points_y
+```
+
 【注1】IOU 阈值的不同取值导出不同的 AP 指标，如
 
 * `iou_threshold=0.5` 对应 AP@50
