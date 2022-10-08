@@ -522,3 +522,36 @@ GROUP BY
 ```
 
 ![hive技巧_literal_view_例子](img/hive技巧_literal_view_例子.png)
+
+## 3 字段处理
+
+### 3.1 类型转换
+
+### 3.2 文本处理
+
+* `trim(src_str)` - 去除源字符串 `src_str` 中的空格
+
+  ```hive
+  >>> select trim('中文空格 dsfs ');
+  >>> '中文空格 dsfs'
+  >>> select trim('英文空格 dsfs ');
+  >>> '英文空格 dsfs'
+  ```
+
+* `replace(src_str, dst_exp, rep_str)` - 源字符串 `src_str` 中匹配目标字符串 `dst_str`，替换为 `rep_str`
+
+  ```hive
+  >>> select replace('asdas dsfs ',' ','');
+  >>> SemanticException Line 0:-1 Invalid function 'replace'
+  >>> select regexp_replace('中文空格 dsfs ',' ','');
+  >>> '中文空格dsfs'
+  ```
+
+* `regexp_replace(src_str, reg_exp, rep_str)` - 源字符串 `src_str` 中匹配正则表达式 `reg_exp`，替换为 `rep_str`
+
+  ```hive
+  >>> select regexp_replace('\t abc \n def \r hij', '\n|\t|\r|', '');
+  >>> ' abc def hij'
+  >>> select regexp_replace('\t abc \n def \r hij', '\n|\t|\r| |', '');
+  >>> 'abcdefhij'
+  ```

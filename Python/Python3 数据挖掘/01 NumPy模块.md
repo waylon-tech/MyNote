@@ -257,6 +257,23 @@ print('d = \n',d)
   float64
   ```
 
+* `np.full()` - 值已初始化的数组
+
+  ```python
+  # numpy.full()
+  >>> np.full((2, 2), np.inf)
+  array([[inf, inf],
+         [inf, inf]])
+  >>> np.full((2, 2), 10)
+  array([[10, 10],
+         [10, 10]])
+  >>> np.full((2, 2), [1, 2])
+  array([[1, 2],
+         [1, 2]])
+  ```
+
+【注】以上填充函数都有 `like` 版本，能够从已有数组中构造形状相同的新数组，如 `np.ones_like(old_array)`。
+
 ##### 1.1.2.4 网格函数
 
 * `np.meshgrid(*xi, copy=True, sparse=False, indexing='xy')` - 根据多个一维向量生成网点矩阵

@@ -72,9 +72,9 @@ if [ "${PS1-}" ]; then
 fi
 ```
 
-## 配置命令`ls`
+## 配置命令 `ls`
 
-最后，可以对最常用的命令`ls`进行设置，通过在`.bashrc`文件中设置`alias`以实现`ls`命令的一些自定义设置：
+最后，可以对最常用的命令 `ls` 进行设置，通过在 `.bashrc` 文件中设置 `alias` 以实现 `ls` 命令的一些自定义设置：
 
 ```shell
 # some more ls aliases
