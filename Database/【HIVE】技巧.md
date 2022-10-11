@@ -4,15 +4,68 @@
 
 ## 1 窗口操作
 
-### 1.1 聚集函数
+### 1.1 窗口函数
 
-#### 1.1.1 概览
+#### 1.1.1 概念
+
+Hive 的窗口函数 `over()` 应用广泛，常常搭配 [1.2 分析函数](#1.2 分析函数)使用，完成复杂的操作。
+
+https://www.cnblogs.com/erlou96/p/13590358.html
+
+#### 1.1.2 语法
+
+```
+分析函数 over(partition by 列名 order by 列名 rows between 开始位置 and 结束位置)
+```
+
+`over` 函数中包括三个函数：
+
+* 分区 `partition by 列名`
+* 排序 `order by 列名`
+* 窗口范围 `rows between 开始位置 and 结束位`
+
+#### 1.1.3 与 `GROUP BY`
+
+区别：
+
+
+
+结合：
+
+1. `GROUP BY` 先于 `OVER` 解析，因此 `OVER` 作用的是 `GROUP BY` 之后的结果
+
+2. `SELECT` 作用于分组，因此其中要么是 `GROUP BY` 的列，要么是非分析函数的 `聚合函数(其他列)`
+
+综上，在 `SELECT` 中使用 `分析函数 OVER(...)` 时，因为作用对象是分组，因此 `OVER` 内必须是 `GROUP BY` 列或 `聚合函数(其他列)`。
+
+<u>例1：作用于 `GROUP BY` 列</u>
+
+```hive
+SELECT col_1, col_2, sum(Value) over(partition by col_1) as sum_value
+    -- also try changing "col_1" to "col_2" in OVER
+from myTable
+GROUP BY col_2,col_1 
+```
+
+<u>例2：作用于 `聚合函数(其他列)`</u>
+
+```hive
+select product_id, company, 
+sum(members) as No_of_Members, 
+sum(sum(members)) over(partition by company) as TotalMembership 
+From Product_Membership 
+Group by Product_ID, Company
+```
+
+### 1.2 分析函数
+
+#### 1.2.1 概览
 
 * `sum(column_name)` - 对某列值求和
 * `collect_list(column_name)` - 将某列转为一个数组返回，值不去重
 * `collect_set(column_name)` - 将某列转为一个数组返回，值去重
 
-#### 1.1.2 `sum` 详解
+#### 1.2.2 `sum` 详解
 
 **用法**
 
@@ -51,7 +104,7 @@ FROM
 ;
 ```
 
-#### 1.1.3 `collect_list/set` 详解
+#### 1.2.3 `collect_list/set` 详解
 
 **用法**
 
@@ -77,9 +130,9 @@ SELECT username, collect_list(video_name) FROM t_visit_video GROUP BY username;
 SELECT username, collect_set(video_name) FROM t_visit_video GROUP BY username;
 ```
 
-### 1.2 排名函数
+### 1.3 排名函数
 
-#### 1.2.1 概览
+#### 1.3.1 概览
 
 * `rank()` - 排序表示行号，相同时并列排名，后面的排名出现跳跃
 * `dense_rank()` - 排序表示行号，相同时并列排名，后面的排名继续连续
@@ -87,7 +140,7 @@ SELECT username, collect_set(video_name) FROM t_visit_video GROUP BY username;
 
 ![hive技巧_排名函数](img/hive技巧_排名函数.png)
 
-#### 1.2.2 `row_number` 详解
+#### 1.3.2 `row_number` 详解
 
 **用法**
 
