@@ -38,20 +38,20 @@ v-GAN 是 Vanilla GAN 的缩写，它是最基础、最经典的生成式对抗�
 
 #### 1.3.1 数学模型
 
-> **符号对照表**
->
+##### 符号一览
+
 > 分布
 >
 > * $\mu$：样本真实分布，维度 $\mathbb{R}^n$
-> * $\gamma$：网络初始分布，维度 $\mathbb{R}^d$
+>* $\gamma$：网络初始分布，维度 $\mathbb{R}^d$
 > * $v$ : 初始分布的变换分布，定义为 $\gamma \circ G^{-1}$，维度 $\mathbb{R}^n$
->
+> 
 > 样本
 >
 > * $x\in \mathbb{R}^n$ : 取自分布 $\mu$ 的样本
-> * $z \in \mathbb{R}^d$ : 取自分布 $\gamma$ 的样本
+>* $z \in \mathbb{R}^d$ : 取自分布 $\gamma$ 的样本
 > * $y \in \mathbb{R}^n$ : 变换变量，等于 $G(z)$，取自分布 $v$ 的样本
->
+> 
 > 函数
 >
 > * $G_{\theta}$ : 生成函数，$\mathbb{R}^d \longrightarrow \mathbb{R}^n$，使用神经网络时的参数为 $\theta$
@@ -69,6 +69,8 @@ v-GAN 是 Vanilla GAN 的缩写，它是最基础、最经典的生成式对抗�
 > 【注1】$G^{-1}$ 表示将 $\mathbb{R}^n$ 中的子集映射到 $\mathbb{R}^d$。
 >
 > 【注2】$\gamma \circ G^{-1}$ 表示分布 $\gamma$ 的部分经 $G^{-1}$ 映射后得到的分布。
+
+##### 概念思想
 
 设 $\mu$ 为 $\mathbb{R}^n$ 上的真实分布，$\gamma$ 为 $\mathbb{R}^d$ 上的初始分布。GAN 目标是寻找一个映射 $G: \; \mathbb{R}^d \longrightarrow \mathbb{R}^n$，使得 $\forall z \sim \gamma$，$G(z)$ 的变换分布 $v := \gamma \circ G^{-1}$ 等于或者近似真实分布 $ \mu$。
 
@@ -88,17 +90,21 @@ $$
 
 关于解，有定理（<u>定理 ==2.2==, ==2.3==</u>）保证，该最小最大问题的解为 $v=\mu$ 或 $q(x) = p(x)$，$D(x) = \frac{1}{2}$。此时，即使是分类器 $D(x)$ 达到最佳，其效果也不会比随机猜测更好。
 
+【补充】除了直接从随机噪声生成内容外，我们还可以将条件（例如分类标签）作为输入加入生成器和判别器，使得生成结果符合条件输入的属性，让生成内容得以控制。
+
+【优劣】虽然 GAN <u>效果出众</u>，但由于博弈机制的存在，其训练稳定性差且容易出现<u>模式崩溃</u>（Mode collapse），如何让模型平稳地达到博弈均衡点，也是 GAN 的热点研究话题。
+
 #### 1.3.2 求解算法
 
 在实践中，可以使用交替优化的算法思想进行求解，而公式中的总体均值使用样本均值代替。
 
-**(1) 网络化**
+##### 网络化
 
 使用神经网络实现生成函数和判别函数，得到 $D = D_\omega$，$G = G_\theta$ 和 $v_\theta = \gamma \circ G_\theta^{-1}$，于是最小最大问题变为
 $$
 \min_{\theta} \max_{\omega} V(D_\omega,G_\theta) := \min_{\theta} \max_{\omega} \int_{\mathbb{R}^n}^{} \left [ \log_{}{D_\omega(x)p(x)} + \log_{}{(1-D_\omega(x))q(x)} \right ]dx
 $$
-**(2) 离散化**
+##### 离散化
 
 设 $\mathcal{A}$ 为训练集 $\mathcal{X}$ 的子集（分布为 $\mu$），$\mathcal{B}$ 为取自分布 $\gamma$ 的样本集，进行如下近似：
 $$
@@ -109,13 +115,13 @@ $$
 \mathbb{E}_{z \sim \gamma}\left [ \log (1- D_\omega (G_\theta (z))) \right ] \approx \frac{1}{\left | \mathcal{B} \right | } \sum_{z \in \mathcal{B}}^{} \log (1- D_\omega (G_\theta (z)))
 $$
 
-**(3) 算法**
+##### 算法化
 
 > **Vanilla GAN Algorithm** —— GAN 的小批量随机梯度下降求解算法
 >
 > 下面的 $k$ 是超参数。
 >
-> ```python
+> ```c
 > for n in iterations: # 迭代次数
 >       for k in steps: # 判别器优化次数（判别器不会直接训练到最优，而是每次改进一小点）
 >            (1) 从分布 r 中抽取小批量的 m 个 Rd 维样本 {z1, ..., zm}
@@ -158,7 +164,6 @@ GAN 使用概率分布建模数据的 “风格”，并通过有限的样本来
   D_{JS}(p||q):=\frac{1}{2}D_{KL}(p||M)+\frac{1}{2}D_{KL}(q||M), \space M=\frac{p(x)+q(x)}{2}
   $$
   
-
 * $f$ 散度
 
   令 $f(x)$ 为定义在 $I \in \mathbb{R}$ 上的严格凸函数，满足 $f(1)=0$，并设 $f(x \notin I)=+\infty$ .

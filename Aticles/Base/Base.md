@@ -158,9 +158,9 @@ $$
 import bisect 
 import numpy as np
 
-def get_pr(y_prob, y_true):
+def get_pr(y_prob, y_true, label=1):
     """手动实现 sklearn.metrics.precision_recall_curve 的 PR 序列计算，实现定制需求。"""
-    pos_num = len(y_true[y_true==1])        # 类 1 真值的个数
+    pos_num = len(y_true[y_true==label])    # 类 1 真值的个数
     if pos_num == 0:						# 无真值时召回一精度零
         return [1], [0], 0
     threshold = np.sort(y_prob)[::-1]       # 预测值按概率降序排列
@@ -174,7 +174,7 @@ def get_pr(y_prob, y_true):
         从而得到当前阈值下的 precison 和 recall。阈值下面的条件判断只需检
         查真实值是否等于预测值即可，这里即检查真实值是否为 1.
         """
-        if y[i] == 1:
+        if y[i] == label:
             # 预测为真，真实值也为真
             tp += 1
             recalls.append(tp / pos_num)		# recall 的计算是基于全部真实值的
@@ -261,6 +261,44 @@ $$
 ppl(W)=P(w_{1}w_{2}...w_{N})^{-\frac{1}{N}}=\sqrt[N]{\frac{1}{P(w_{1}w_{2}...w_{N})}}
 $$
 由公式可知，句子概率越大，语言模型越好，困惑度越小。
+
+### 1.8 散度
+
+散度是度量两种概率分布相似性的指标。
+
+* $KL$ 散度
+
+  $KL$ 散度（Kullback-Leibler Divergence）是一种**量化**两种概率分布 P 和 Q 之间**差异的方式**，又叫**相对熵**（relative entropy）或**信息散度**（information divergence）。
+  $$
+  \begin{align}
+  D_{KL}(p||q) & := \int_{\mathbb{R}^n}^{}\log \left ( \frac{p(x)}{q(x)} \right ) p(x) dx \\
+  & :=\mathbb E_{p(x)} \left[\log p(x) - \log q(x) \right]
+  \end{align}
+  $$
+  【注1】信息熵角度的推导见 [4.2.2 entropy loss](#4.2.2 entropy loss)
+
+  【注2】$D_{KL}(p \parallel q) = 0$ 当且仅当 $p(x) = q(x)$
+
+  【注3】$D_{KL}(p \parallel q) \ne D_{KL}(q \parallel p)$
+
+* $JS$​ 散度
+  $$
+  D_{JS}(p||q):=\frac{1}{2}D_{KL}(p||M)+\frac{1}{2}D_{KL}(q||M), \space M=\frac{p(x)+q(x)}{2}
+  $$
+
+* $f$ 散度
+
+  令 $f(x)$ 为定义在 $I \in \mathbb{R}$ 上的严格凸函数，满足 $f(1)=0$，并设 $f(x \notin I)=+\infty$ .
+
+  令 $p(x)$ 和 $q(x)$ 为 $\mathbb{R}^n$ 上的两个概率密度函数，则它们的 $f$ 散度为：
+  $$
+  D_{f}(p||q):=\mathbb{E}_{x\sim q}\left [ f\left ( \frac{p(x)}{q(x)} \right ) \right ] = \int_{\mathbb{R}^n}^{} f\left ( \frac{p(x)}{q(x)} \right ) q(x)dx
+  $$
+  其中规定 $q(x)=0$ 时 $f\left ( \frac{p(x)}{q(x)} \right ) q(x)=0$.
+
+  【注1】$D_{KL}$ 和 $D_{JS}$ 都是 $f$ 散度的特例。
+
+  【注2】期望的下标 $x\sim q$ 表示随机变量 $x$ 取遍 $\mathrm{supp}(q)$。
 
 ## 2 结构设计
 
@@ -557,7 +595,7 @@ $$
 
 ![Base_mlp](img/Base_mlp.png)
 
-单隐层无激活函数的 MLP 在深度学习中常称作全连接层、线性变换层。
+<u>单</u>隐层<u>无</u>激活函数的 MLP 在深度学习中常称作**[全连接层](#2.3.5 全连接层)**、**线性变换层**。
 
 ### 2.2 卷积技术
 
@@ -663,6 +701,8 @@ Deformable Convolutional Networks[^DCN] 一文提出了<u>可变形卷积</u>和
 全连接层可以看做多个 “全卷积”，比如下的 $3\times3\times5$ 特征，要输出 $1\times4096$ 的向量，就使用 $4096$ 个 $3\times3\times5$ 卷积核执行：
 
 ![Base_全连接层](img/Base_全连接层.jpg)
+
+【注】全连接层是<u>单</u>隐层<u>无</u>激活函数的 [MLP](#2.1.5 多层感知器)。
 
 ### 2.3 池化技术
 
@@ -1160,7 +1200,7 @@ $$
 
 ### 3.2 神经元
 
-#### 3.1.1 sigmoid
+#### 3.1.1 Sigmoid
 
 公式
 $$
@@ -1182,7 +1222,7 @@ $$
 * 函数取值<u>非 $0$ 均值</u>（zero centered），在深层网络下会改变数据的原始分布
 * 导数取值在 $[0,0.25]$，在深层网络 “链式反应” 下容易出现<u>梯度消失</u>的情况
 
-#### 3.1.2 tanh
+#### 3.1.2 Tanh
 
 公式
 $$
@@ -1370,14 +1410,24 @@ $$
 
 * 相对熵（KL 散度）
 
-  相对熵是两个随机变量**概率分布的差异度量**，随机变量 $X\sim p(x)$ 对随机变量 $Y \sim q(y)$ 的相对熵为
+  相对熵是两个随机变量**概率分布的差异度量**，随机变量 $X\sim p(x)$ 对随机变量 $Y \sim q(y)$（拟合分布）的相对熵为
   $$
-  D_{KL}(p \mid\mid q) = \sum_{x\in X} p(x) \log \frac{p(x)}{q(x)}
+  \begin{align}
+  D_{KL}(p \parallel q) & = \sum_{x\in X}\left[p(x) \log p(x) - p(x) \log q(x) \right] \\
+  & = \sum_{x \in X} p(x) \log \frac{p(x)}{q(x)} \\
+  & = \mathbb E_{p(x)} \left[\log p(x) - \log q(x) \right]
+  \end{align}
   $$
   性质：
 
-  * 如果 $X$ 与 $Y$ 的分布相同，则相对熵为 $0$
-  * $D_{KL}(p \mid\mid q) \ne D_{KL}(q \mid\mid p)$
+  * $D_{KL}(p \parallel q) = 0$ 当且仅当 $p(x) = q(x)$，证明如下
+    $$
+    -D_{KL}(p \parallel q) = \sum^N_{i=1} p(x_i) log \; \frac{q(x_i)}{p(x_i)} \leq \sum^N_{i=1} p(x_i) (\frac{q(x_i)}{p(x_i)} -1) = \sum^N_{i=1}[p(x_i) - q(x_i)] = 0 \\
+    $$
+
+  * $D_{KL}(p \parallel q) \ne D_{KL}(q \parallel p)$
+
+  【拓展】KL 散度是散度的一种，详细内容可见 [1.8 散度](#1.8 散度)。
 
 * 交叉熵
 
@@ -1579,7 +1629,7 @@ $$
 
 综上所述，指数加权平均减小了原始数据的震荡程度，能对原始数据起到平滑的效果。
 
-### 5.2 优化方法
+### 5.2 优化算法
 
 #### 5.2.1 GD
 

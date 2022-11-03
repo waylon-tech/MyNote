@@ -26,35 +26,49 @@ https://www.cnblogs.com/erlou96/p/13590358.html
 
 #### 1.1.3 与 `GROUP BY`
 
-区别：
+`GROUP BY` 优先级先于 `OVER`，`OVER` 在 `GROUP BY` 内的作用时机为：
 
+> `GROUP BY` 分组聚集 $\overset{明细表}\longrightarrow$ 选取分组列、聚集列，`OVER(分组列、聚集列)` $\overset{筛选表}\longrightarrow$ 每组 LIMIT 1 $\overset{分组表}\longrightarrow$ 整合结果
 
+综上，
 
-结合：
+1. `GROUP BY` 先于 `OVER` 解析，`OVER` 作用的是 `GROUP BY` 之后的明细表（仅含分组列、聚集列的 `DISTINCT` 表）
+2. `GROUP BY` 后 `SELECT` 只能选取
+   * 分组列：`GROUP BY` 的列
+   * 聚集列：`聚合函数(其他列)`
+   * 基于分组列聚集列的运算（包括分析函数的作用运算）
 
-1. `GROUP BY` 先于 `OVER` 解析，因此 `OVER` 作用的是 `GROUP BY` 之后的结果
-
-2. `SELECT` 作用于分组，因此其中要么是 `GROUP BY` 的列，要么是非分析函数的 `聚合函数(其他列)`
-
-综上，在 `SELECT` 中使用 `分析函数 OVER(...)` 时，因为作用对象是分组，因此 `OVER` 内必须是 `GROUP BY` 列或 `聚合函数(其他列)`。
-
-<u>例1：作用于 `GROUP BY` 列</u>
+<u>例1：`分析() OVER()` 内只能作用于分组列和聚集列</u>
 
 ```hive
-SELECT col_1, col_2, sum(Value) over(partition by col_1) as sum_value
-    -- also try changing "col_1" to "col_2" in OVER
-from myTable
-GROUP BY col_2,col_1 
+-- 正确 --
+SELECT 
+	Year, Country, 
+	SUM([Total Sales]),
+    SUM(SUM([Total Sales])) OVER (PARTITION BY Year) 
+FROM Table
+GROUP BY Country, Year;
+
+-- 错误 --
+SELECT
+	Year, Country,
+	SUM([Total Sales]),
+    SUM([Total Sales]) OVER(PARTITION BY Year) 
+FROM Table
+GROUP BY Country, Year;
 ```
 
-<u>例2：作用于 `聚合函数(其他列)`</u>
-
 ```hive
-select product_id, company, 
-sum(members) as No_of_Members, 
-sum(sum(members)) over(partition by company) as TotalMembership 
-From Product_Membership 
-Group by Product_ID, Company
+select A, B, sum_C
+from (
+    select
+    	A, B,
+    	sum(C) as sum_C,
+        row_number () over (partition by A order by sum(C) desc) as rn
+	from TBL 
+    group by A, B
+) t
+where rn <= 2
 ```
 
 ### 1.2 分析函数
@@ -64,6 +78,16 @@ Group by Product_ID, Company
 * `sum(column_name)` - 对某列值求和
 * `collect_list(column_name)` - 将某列转为一个数组返回，值不去重
 * `collect_set(column_name)` - 将某列转为一个数组返回，值去重
+
+【注】分析函数在 `OVER` 窗口内是滑动计算的
+
+[]
+
+```hive
+--
+```
+
+
 
 #### 1.2.2 `sum` 详解
 

@@ -196,7 +196,7 @@ ResNet 经典的 Batch Normailzation 在对比学习上会有以下问题：
 
 本文非常认可 **[SimCLR](SimCLR.md#1-SimCLR) 的 <u>MLP projection head</u> 和 <u>more data augmentation</u> 观点**，但是指出 <u>SimCLR 基于 end-to-end 机制</u>的参数更新方式，必须要 large batch 来提供大量的负样本，增加计算成本。
 
-<u>MoCo 的 queue 机制</u>却能很好的解决这个问题，于是作者将 SimCLR 的两个创新应用到 MoCo 的改进上，提出 MoCo v2 版模型，取得 state of art 效果。
+<u>MoCo 的 queue 机制</u>却能很好的解决这个问题，于是作者将 SimCLR 的两个创新应用到 MoCo 的改进上，提出 MoCo v2 版模型，取得 state-of-art 效果。
 
 ### 2.3 实验
 
