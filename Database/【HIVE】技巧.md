@@ -26,8 +26,8 @@ https://www.cnblogs.com/erlou96/p/13590358.html
 
 #### 1.1.3 与 `GROUP BY`
 
-`GROUP BY` 优先级先于 `OVER`，`OVER` 在 `GROUP BY` 内的作用时机为：
-
+> `GROUP BY` 优先级先于 `OVER`，`OVER` 在 `GROUP BY` 内的作用时机为：
+>
 > `GROUP BY` 分组聚集 $\overset{明细表}\longrightarrow$ 选取分组列、聚集列，`OVER(分组列、聚集列)` $\overset{筛选表}\longrightarrow$ 每组 LIMIT 1 $\overset{分组表}\longrightarrow$ 整合结果
 
 综上，
@@ -71,6 +71,36 @@ from (
 where rn <= 2
 ```
 
+> 分析函数在 `OVER PARTITION` 窗口内是滑动计算、累计结果的，而聚集函数在 `GROUP BY` 结果中是分组整体作用的。
+
+<u>例2：`OVER PARTITION` 的滑动计算特性</u>
+
+案例的数据如下图所示。
+
+![hive技巧_窗口的累计特性](img/hive技巧_窗口的累计特性.png)
+
+```hive
+-- SQL1
+SELECT a.cc, a.item, sum(a.num)
+FROM table_temp a
+GROUP BY a.cc, a.item
+```
+
+结果见上图 Result 1，11 条记录经 `Group By` 后为 10 条，其中 `cc='cn' and item='8.1.1'` 对应的两条记录的 `num` 汇总成值 3.
+
+```hive
+--- SQL2
+SELECT a.cc, a.num, min(a.num) OVER (PARTITION BY a.cc ORDER BY a.num ASC) AS amount
+FROM table_temp a
+GROUP BY a.cc, a.num;
+
+SELECT a.cc, a.num, min(a.num) OVER (PARTITION BY a.cc ORDER BY a.num DESC) AS amount
+FROM table_temp a
+GROUP BY a.cc, a.num;
+```
+
+结果见上图 Result 2 和 Result 3，两个 SQL 的唯一区别在于 `a.num` 的排序上，但从结果红框中的数据对比可以看到 `amount` 值并不相同，且第二个结果集 `amount` 并不都是最小值 1。在这里就是要注意将聚合函数用在 `PARTITION` 后的结果集上时，聚合函数是逐条累积计算值的！
+
 ### 1.2 分析函数
 
 #### 1.2.1 概览
@@ -78,16 +108,6 @@ where rn <= 2
 * `sum(column_name)` - 对某列值求和
 * `collect_list(column_name)` - 将某列转为一个数组返回，值不去重
 * `collect_set(column_name)` - 将某列转为一个数组返回，值去重
-
-【注】分析函数在 `OVER` 窗口内是滑动计算的
-
-[]
-
-```hive
---
-```
-
-
 
 #### 1.2.2 `sum` 详解
 
