@@ -1848,6 +1848,82 @@ df.columns.get_loc("pear")
 >> 2
 ```
 
+##### 获取唯一编码
+
+方法 1：`pd.factorize(values, sort=False, na_sentinel=- 1, size_hint=None, dropna=True)`
+
+```python
+>>> labels, uniques = pd.factorize(['b', 'b', 'a', 'c', 'b'])
+>>> labels
+array([0, 0, 1, 2, 0])
+>>> uniques
+array(['b', 'a', 'c'], dtype=object)
+
+>>> labels, uniques = pd.factorize(['b', 'b', 'a', 'c', 'b'], sort=True)
+>>> labels
+array([1, 1, 0, 2, 1])
+>>> uniques
+array(['a', 'b', 'c'], dtype=object)
+```
+
+方法 2：`pd.series.astype('category').cat.codes`
+
+```python
+>>> df
+         lang          level
+0      english         intermediate
+1      spanish         intermediate
+2      spanish         basic
+3      english         basic
+4      english         advanced
+5      spanish         intermediate
+6      spanish         basic
+7      spanish         advanced
+>>> df.lang.astype('category').cat.codes
+>>> df.level.astype('category').cat.codes
+>>> df
+      lang   level
+0      0       1
+1      1       1
+2      1       0
+3      0       0
+4      0       2
+5      1       1
+6      1       0
+7      1       2
+
+>>> dict(enumerate(df.lang.cat.categories))
+{0: 'english', 1: 'spanish'}
+```
+
+方法 3：`pd.get_dummies(...)` - 获取 one-hot 编码
+
+* `prefix` - `str, list of str, dict of str`, 默认为 `None`，用于追加 DataFrame 列名称的字符串
+* `prefix_sep` - `str`，默认为 `‘_’`，如果附加前缀，则使用分隔符 `/`，或者像这样传递列表或字典 prefix。
+* `dummy_na` - `bool`，默认为 `False`，是否忽略 `NaN`
+* `columns` - `list-like`，默认为 `None`，要编码的 DataFrame 中的列名，如果为 `None`，则所有 `object` 或 `category` 将被转换
+* `sparse` - `bool`，默认为 `False`
+* `dummy-encoded` - 列的支持类型，`SparseArray (True)` 或常规 `NumPy Array (False)`
+* `drop_first` - `bool`，默认为 `False`，是否通过删除第一个级别从 `k` 个分类级别中获取 `k-1` 个虚拟对象
+
+```python
+>>> data = pd.DataFrame({"学号":[1,2,3,4],
+...                     "录取":["清华","北大","清华","蓝翔"],
+...                     "学历":["本科","本科","本科","专科"]})
+>>> pd.get_dummies(data)
+   学号  录取_北大  录取_清华  录取_蓝翔  学历_专科  学历_本科
+0   1      0      1      0      0      1
+1   2      1      0      0      0      1
+2   3      0      1      0      0      1
+3   4      0      0      1      1      0
+>>> pd.get_dummies(data,prefix='Hello')
+   学号  Hello_北大  Hello_清华  Hello_蓝翔  Hello_专科  Hello_本科
+0   1         0         1         0         0         1
+1   2         1         0         0         0         1
+2   3         0         1         0         0         1
+3   4         0         0         1         1         0
+```
+
 ##### 重命名列名
 
 方法 1：使用 `DataFrame.rename()` 函数

@@ -106,6 +106,9 @@ GROUP BY a.cc, a.num;
 #### 1.2.1 概览
 
 * `sum(column_name)` - 对某列值求和
+* `avg(cloumn_name)` - 对某列值平均
+* `min(cloumn_name)` - 求某列值最小
+* `max(cloumn_name)` - 求某列值最大
 * `collect_list(column_name)` - 将某列转为一个数组返回，值不去重
 * `collect_set(column_name)` - 将某列转为一个数组返回，值去重
 
@@ -509,11 +512,23 @@ WHERE rn<=3
 ![hive技巧_explode_例子](img/hive技巧_explode_例子.png)
 
 ```hive
+-- 用于 array 的语法
 SELECT explode(myCol) AS myNewCol FROM myTable;                   -- 效果如上图，分成一列
+-- 用于 map 的语法
 SELECT explode(myMap) AS (myMapKey, myMapValue) FROM myMapTable;  -- 效果同理，分成两列
 ```
 
-【注】如果表含有多列，需要将拆分的列与原有的其他列进行聚合，常用下面的 [`lateral view`](#2.3.2 `lateral view` 详解) 关键字。
+【注】此函数的局限性：
+
+1. 不能关联原有的表中的其他字段，即**只能用于 `SELECT` 子句中**
+
+2. 不能与 `group by`、`cluster by`、`distribute by`、`sort by` 联用
+
+3. 不能进行 `UDTF` 嵌套
+
+4. 不允许选择其他表达式
+
+需要将拆分的列与原有的其他列进行聚合，常用下面的 [`lateral view`](#2.3.2 `lateral view` 详解) 关键字。
 
 【技】对于字符串类型，可以使用 `split(colName, sepStr)` 进行分割得到列表。
 
@@ -578,23 +593,39 @@ WHERE
 
 #### 2.3.2 `lateral view` 详解
 
-`lateral view` 用于和 `split`，`explode` 等 `UDTFs` 一起使用（将一行数据拆成多行数据），在此基础上可以对拆分后的数据进行聚合。`lateral view` 首先为原始表的每行调用 `UDTF`，`UDTF` 会把一行拆分成一或者多行，`lateral view` 再把结果组合，产生一个支持别名的虚拟表，以及其中支持别名的虚拟列。
+`lateral view` 是 Hive 中提供给 `UDTF` 的结合，它可以解决 `UDTF` 不能添加额外的 `select` 列的问题。
+
+`lateral view` 用于和 `split`，`explode` 等 `UDTFs`（将一行数据拆成多行数据）一起使用。`lateral view` 首先为原始表的每行调用 `UDTF`，`UDTF` 会把一行拆分成一或者多行，`lateral view` 再把结果组合，产生一个支持别名的虚拟表（其中有支持别名的虚拟列）。
+
+`lateral view` 将 `UDTF` 生成的结果整合到一个虚拟表中，然后这个虚拟表会和输入行进行 `join`，从而达到连接 `UDTF` 外的 `select` 字段的目的。
 
 **语法**
 
-`lateralView` 用法
+* `lateralView` 用法
 
-```hive
-LATERAL VIEW udtf(expression) tableAlias AS columnAlias (’,’ columnAlias)*
-```
+  ```hive
+  LATERAL VIEW UDTF(expression) tableAlias AS columnAlias (’,’ columnAlias)*
+  ```
 
-`fromClause` 用法
+  `lateral view` 在 `UDTF` 前使用，表示连接 `UDTF` 所分裂的字段。`UDTF(expression)` 表示使用的 `UDTF` 函数；`tableAlias` 表示 `UDTF` 函数转换的虚拟表的名称；`columnAlias` 表示虚拟表的虚拟字段名称，如果分裂之后有一个列，则写一个即可，如果分裂之后有多个列，按照列的顺序在括号中声明所有虚拟列名，以逗号隔开。
 
-```hive
-FROM baseTable (lateralView)*
-```
+* `fromClause` 用法
 
-<u>例：统计每个广告出现的次数</u>
+  ```hive
+  FROM baseTable (LATERAL VIEW)*
+  ```
+
+  在 `from` 子句中使用，一般和 `lateralView` 用法搭配使用，这个格式只是说明了 `lateral view` 的使用位置。from子句后面也可以跟多个 `lateral view` 语句，使用空格间隔就可以。
+
+* `fromClause outer` 用法
+
+  ```hive
+  from basetable (LATERAL VIEW OUTER)*
+  ```
+
+  它比格式二只是多了一个 `OUTER`，作用是在 `UDTF` 转换列的时候将其中的空值也给展示出来。`UDTF` 默认是忽略输出空的，加上 `outer` 之后就会输出控制，显示为 `NULL`。这个功能在 Hive 0.12 开始支持。
+
+<u>例 1：统计每个广告出现的次数</u>
 
 ```hive
 -- 1 将单行列表转为多行单值
@@ -619,6 +650,34 @@ GROUP BY
 ```
 
 ![hive技巧_literal_view_例子](img/hive技巧_literal_view_例子.png)
+
+<u>例 2：处理 map 类型数据的过程</u>
+
+给定数据如下，处理思路是将 `map` 中的数据转换成一个虚拟表，然后与 `name` 字段关联。
+
+![hive技巧_lateralview案例二1](img/hive技巧_lateralview案例二1.jpeg)
+
+初次尝试，使用 `explode` 分离 `map` 中的数据，
+
+```hive
+select explode(score) from student_score;
+select explode(score) as (key,value) from student_score;
+```
+
+结果如下，分离成功将行转为列，但是没有将 `name` 字段关联上。
+
+![hive技巧_lateralview案例二2](img/hive技巧_lateralview案例二2.png)
+
+继续尝试，使用 `lateral view` 进行关联，
+
+```hive
+select name,key,value from student_score
+lateral view explode(score) scntable as key, value;
+```
+
+结果如下，目标基本达成。
+
+![hive技巧_lateralview案例二3](img/hive技巧_lateralview案例二3.png)
 
 ## 3 字段处理
 

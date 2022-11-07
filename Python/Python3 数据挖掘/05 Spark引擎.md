@@ -843,6 +843,17 @@ counts = pairs.reduceByKey(lambda a, b: a + b)
   ('Kafka', <pyspark.resultiterable.ResultIterable object at 0x7fcbcb74dba8>)
   ```
 
+  【技】对多个字段进行分组
+
+  * 方法一：将 `rdd` 变成 `dataframe` 然后直接 `groupBy`
+
+  * 方法二：把需要分组的多个字段 `map` 成一个元组作为 key
+
+    ```python
+    df1.rdd.map(lambda x: ((x.col1, x.col2), x.new_col)).collect()
+    df1.rdd.map(lambda x: ((x.col1, x.col2), x.new_col)).reduceByKey(lambda x, y: x+y).collect()
+    ```
+
 * `mapValues(func)` - 对每个 value 应用一个函数，但不改变 key
 
   ```scala
@@ -854,7 +865,7 @@ counts = pairs.reduceByKey(lambda a, b: a + b)
 
 * `combineByKey(...)` - 使用不同的返回类型合并具有相同 key 的 value，每个参数分别对应聚合操作的各个阶段
 
-  ```
+  ```scala
   combineByKey(createCombiner, mergeValue, mergeCombiners, partitioner, mapSideCombine)
   combineByKey(createCombiner, mergeValue, mergeCombiners, partitioner)
   combineByKey(createCombiner, mergeValue, mergeCombiners)
