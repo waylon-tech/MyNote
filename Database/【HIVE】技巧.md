@@ -711,3 +711,49 @@ lateral view explode(score) scntable as key, value;
   >>> select regexp_replace('\t abc \n def \r hij', '\n|\t|\r| |', '');
   >>> 'abcdefhij'
   ```
+
+### 3.3 数据抽样
+
+* 数据块抽样
+
+  ```hive
+  SELECT * FROM xxx TABLESAMPLE(n PERCENT) -- 指定抽样数据的比例，抽取数据
+  SELECT * FROM xxx TABLESAMPLE(n M)  	 -- 指定抽样数据的大小，单位为 M
+  SELECT * FROM xxx (n rows)				 -- 指定抽样数据的行数，其中 n 代表每个 map 任务均取 n 行数据
+  ```
+
+* 分桶抽样
+
+  HIVE 中分桶其实就是根据某一个字段 Hash 取模，放入指定数据的桶中。
+
+  ```hive
+  TABLESAMPLE (BUCKET x OUT OF y [ON colname])  -- x 是要抽样的桶编号，桶编号从 1 开始，colname 表示抽样的列，y 表示桶的数量
+  ```
+
+  <u>例：随机分桶取数</u>
+
+  将表随机分成 10 组，抽取其中的第一个桶的数据。
+
+  ```hive
+  SELECT * FROM table_01 TABLESAMPLE (BUCKET 1 OUT OF 10 ON rand())
+  ```
+
+* 随机抽样
+
+  * 使用 `rand()` 函数
+
+    `rand()` 函数进行随机抽样，`limit` 关键字限制抽样返回的数据，其中 `rand` 函数前的 `distribute` 和 `sort` 关键字可以保证数据在 `mapper` 和 `reducer` 阶段是随机分布的。
+
+    ```hive
+    SELECT * FROM table_name WHERE col=xxx DISTRIBUTE BY rand() sort by rand() LIMIT num;
+    ```
+
+  * 使用 `order` 关键词
+
+    ```hive
+    SELECT * FROM table_name WHERE col=xxx ORDER BY rand() LIMIT num;
+    ```
+
+  【注】经测试对比，千万级数据中进行随机抽样 `order by` 方式耗时更长，大约多 30 秒左右。
+
+  

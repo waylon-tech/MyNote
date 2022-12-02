@@ -771,6 +771,21 @@ print('np.ceil(np.sqrt(X))：\n',np.ceil(np.sqrt(X)))
 
 ##### 1.1.4.5 排序、条件筛选函数
 
+* 最值选择
+
+  * `np.maximum()` - 选取两个数组中的最大值
+  * `np.minimum()` - 选取两个数组中的最小值
+
+  ```python
+  a = np.array(2,1)
+  b = np.array(4,1)
+  
+  >>> np.maximum(a,b)
+  array([4,1])
+  >>> np.minimum(a,b)
+  array([2,1])
+  ```
+
 #### 1.1.5 索引、切片和迭代
 
 NumPy 数组的索引、切片和迭代操作类似类似 Python 。

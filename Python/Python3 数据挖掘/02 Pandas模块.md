@@ -2434,18 +2434,36 @@ file.close()
   * `bins` - `int` 或 `sequence`，使用的直方数量，会决定横轴显示范围
   * `legend` - `bool`，是否显示图例
 
+  【注】直方图上添加核密度图，必须将直方图频数更改为频率，即 `normed` 参数设置成 `True`
+
   ```python
   >>> df = pd.DataFrame({
   ... 'length': [1.5, 0.5, 1.2, 0.9, 3],
   ... 'width': [0.7, 0.2, 0.15, 0.2, 1.1]
   ... }, index=['pig', 'rabbit', 'duck', 'chicken', 'horse'])
-  >>> hist = df.hist(bins=3)
+  >>> hist = df.hist(bins=3) # 直方图
   ```
 
 * `DataFrame.plot.kde(bw_method=None, ind=None)` - 根据表格绘制密度图
 
   * `bw_method` - `str`、`scalar`或`callable`，使用指定的方法来计算（`str`可选`'scott'`（默认）和`'silverman'`）
-  * `ind` - 定值点数量（默认1000），`NumPy array`数据表示给定的点，`int`数据表示自定数量
+  * `ind` - 定值点数量（默认1000），`NumPy array` 数据表示给定的点，`int`数据表示自定数量
+
+  ```python
+  # 直方图
+  df.年龄.plot(kind="hist", bins=20, color="steelblue", edgecolor="black", normed=True, label="直方图")
+  # 加核密度图
+  df.年龄.plot(kind="kde", color="red", label="核密度图")
+  # 添加 x 轴和 y 轴标签
+  plt.xlabel("年龄")
+  plt.ylabel("核密度值")
+  # 添加标题
+  plt.title("患者年龄分布")
+  # 显示图例
+  plt.legend()
+  ```
+
+  ![pandas模块_kde和hist绘图函数的示例](img/pandas模块_kde和hist绘图函数的示例.png)
 
 ### 1.5 内存控制
 
